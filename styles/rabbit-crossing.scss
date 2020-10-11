@@ -1,0 +1,731 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
+$black: #444;
+$white: #fff;
+$grey: #eaeaea;
+
+$primary-color: #91dcc8;
+$primary-color-dark: darken($primary-color, 20%);
+$primary-color-dark-2: darken($primary-color, 30%);
+$primary-color-tint: lighten($primary-color, 15%);
+
+$primary-font: 'Varela Round', sans-serif;
+$primary-border-radius: 3rem;
+$xs: 576px;
+
+$bun-count: 7 + 1;
+
+$blush-color: #f090dd;
+
+$bunnie-fur-color: #ed6a41;
+$bunnie-fur-color-dark: darken($bunnie-fur-color, 10%);
+$bunnie-shirt-color: #d4fb7e;
+$bunnie-shirt-pattern-color: 91, 192, 110;
+$bunnie-shirt-pattern2-color: 238, 129, 99;
+$bunnie-shirt-pattern3-color: 255, 255, 100;
+$bunnie-face-inner-color: #fffebe;
+$bunnie-ear-inner-color: #fffebe;
+$bunnie-arm-color: #fffebe;
+$bunnie-arm-inner-color: #f5b777;
+
+$carmen-fur-color: #764937;
+$carmen-fur-color-dark: darken($carmen-fur-color, 10%);
+$carmen-shirt-color: #67cdd2;
+$carmen-shirt-pattern-color: 95, 53, 14;
+$carmen-face-inner-color: #fffff5;
+$carmen-ear-inner-color: #9ef8ea;
+$carmen-arm-inner-color: #fffff5;
+
+$chrissy-fur-color: #f4c0e7;
+$chrissy-fur-color-dark: darken($chrissy-fur-color, 10%);
+$chrissy-shirt-color: #fbfeff;
+$chrissy-shirt-dot1-color: #59c2f6;
+$chrissy-shirt-dot2-color: #ec657d;
+$chrissy-shirt-dot3-color: #f0b342;
+$chrissy-shirt-dot4-color: #57b739;
+$chrissy-ear-inner-color: transparent;
+$chrissy-arm-color: #fcf8f1;
+$chrissy-face-inner-color: #fcf8f1;
+$chrissy-face-inner-hair-color: #fffe80;
+
+$dotty-fur-color: #353637;
+$dotty-fur-color-dark: darken($dotty-fur-color, 10%);
+$dotty-arm-color: #f7fcfe;
+$dotty-arm-inner-color: $dotty-fur-color;
+$dotty-leg-color: #f7fcfe;
+$dotty-shirt-color: #6660e6;
+$dotty-face-inner-color: #f7fcfe;
+$dotty-ear-inner-color: #87dcd7;
+
+$hopkins-fur-color: #66d9fa;
+$hopkins-fur-color-dark: darken($hopkins-fur-color, 10%);
+$hopkins-shirt-color: #f6fcff;
+$hopkins-shirt-pattern-color: 68, 118, 218;
+$hopkins-ear-inner-color: #f2ef5b;
+
+$ruby-fur-color: #faf9fc;
+$ruby-fur-color-dark: darken($ruby-fur-color, 10%);
+$ruby-leg-color: #f1d5d8;
+$ruby-shirt-color: #71e0d1;
+$ruby-shirt-pattern-color: #eeeee9;
+$ruby-ear-inner-color: #f2a47b;
+$ruby-eye-color: #d25951;
+$ruby-arm-color: $ruby-fur-color;
+$ruby-arm-inner-color: $ruby-leg-color;
+
+$snake-fur-color: #f091c6;
+$snake-fur-color-dark: darken($snake-fur-color, 10%);
+$snake-hood-color: #3065d8;
+$snake-blush-color: #fbe452;
+$snake-shirt-color: #373734;
+$snake-shirt-pattern-color: #d7d5d2;
+$snake-ear-inner-color: #fbedf8;
+$snake-arm-color: $snake-hood-color;
+$snake-leg-color: $snake-hood-color;
+$snake-metal-color: #d7d5d2;
+$snake-face-inner-color: $snake-fur-color;
+
+@mixin border-radius($top: 0, $bottom: 0) {
+	border-top-left-radius: $top;
+	border-top-right-radius: $top;
+	border-bottom-right-radius: $bottom;
+	border-bottom-left-radius: $bottom;
+}
+
+@mixin absolute-fill($pseudo: false) {
+	@if ($pseudo) {
+		content: '';
+	}
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+* { box-sizing: border-box; }
+body {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100vh;
+	padding: 2rem 1rem;
+	background-color: $primary-color;
+	font-family: $primary-font;
+	font-size: 16px;
+	line-height: 1.875em;
+}
+
+.container {
+	display: grid;
+	max-width: 37.5rem;
+	width: 100%;
+	margin: auto 0;
+	border-radius: $primary-border-radius;
+	background-color: $white;
+	box-shadow: 0 0 0 0.5rem $white, 0.5rem 0.5rem 0 0.5rem $primary-color-dark;
+	overflow: hidden;
+	
+	@media(min-width: $xs) {
+		grid-template-columns: 2fr 1fr;
+	}
+}
+
+.bun {
+	--head-color: #{$primary-color};
+	--ear-color: var(--head-color);
+	--ear-inner-color: #{$primary-color-tint};
+	--arm-color: var(--head-color);
+	--arm-inner-color: transparent;
+	--leg-color: var(--head-color);
+	--leg-inner-color: transparent;
+	--shirt-color: #{$primary-color-dark};
+	--eye-color: #{$black};
+	--blush-color: #{$blush-color};
+	--mouth-color: #{$black};
+	
+	padding-top: 7rem;
+	
+	&-title {
+		position: absolute;
+		z-index: 10;
+		grid-column: 1;
+		grid-row: 1 / 2;
+		padding: 0.75rem 1.25rem;
+		border-radius: 2rem;
+		box-shadow: 0.25rem 0.25rem 0 $primary-color-dark-2;
+		background-color: $primary-color-dark;
+		font-size: 2rem;
+		color: $white;
+		transform: rotate(-10deg) translate(-0.5rem, -2rem);
+	}
+	
+	&-label {
+		position: relative;
+		z-index: 1;
+		padding: 0.5em 1rem;
+		font-size: 1.25rem;
+		cursor: pointer;
+		overflow: hidden;
+		transition: color 0.25s;
+		
+		@media(min-width: $xs) {
+			grid-column: 2;
+		}
+		
+		&::before {
+			content: '';
+			position: absolute;
+			z-index: -1;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transform: scaleX(0);
+			transform-origin: left center;
+			border-top-right-radius: 2rem;
+			border-bottom-right-radius: 2rem;
+			background-color: $primary-color-tint;
+			transition: transform 0.35s ease-in-out, border-radius 0.25s 0.2s ease-in-out;
+		}
+		
+		&:hover {
+			color: $primary-color-dark;
+		}
+	}
+	
+	&-control {
+		position: absolute;
+		opacity: 0;
+		visibility: hidden;
+		
+		&:checked {
+			+ .bun-label {
+				color: $primary-color-dark-2;
+				
+				&::before {
+					border-top-right-radius: 0;
+					border-bottom-right-radius: 0;
+					transform: scaleX(1);
+				}
+			}
+		}
+	}
+	
+	&-output {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		grid-column: 1;
+		grid-row: 1 / #{$bun-count};
+		background-color: $primary-color-tint;
+	}
+	
+	&-head {
+		position: relative;
+		z-index: 2;
+		height: 8.25rem;
+		width: 10rem;
+	}
+	
+	&-face {
+		@include absolute-fill;
+		@include border-radius(45% 60%, 40% 40%);
+		
+		background-color: var(--head-color);
+		overflow: hidden;
+		
+		&-inner {
+			position: absolute;
+			top: var(--face-in1-top, 0);
+			left: var(--face-in1-left, 0);
+			height: var(--face-in1-height, 0);
+			width: var(--face-in1-width, 0);
+			border-radius: var(--face-in1-border-radius, 0);
+			background-color: var(--face-in1-background-color, transparent);
+			overflow: var(--face-in1-overflow, visible);
+			
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+			}
+			
+			&::before {
+				top: var(--face-in2-top, 0);
+				left: var(--face-in2-left, auto);
+				right: var(--face-in2-right, auto);
+				height: var(--face-in2-height, 0);
+				width: var(--face-in2-width, 0);
+				border-radius: var(--face-in2-border-radius, 0);
+				background-color: var(--face-in2-background-color, transparent);
+			}
+			
+			&::after {
+				top: var(--face-in3-top, 0);
+				left: var(--face-in3-left, auto);
+				right: var(--face-in3-right, auto);
+				height: var(--face-in3-height, 0);
+				width: var(--face-in3-width, 0);
+				border-radius: var(--face-in3-border-radius, 0);
+				background-color: var(--face-in3-background-color, transparent);
+			}
+		}
+	}
+	
+	&-eye {
+		@include border-radius(50% 50%, 50% 40%);
+		
+		position: absolute;
+		z-index: 5;
+		top: 4.375rem;
+		height: 1.625rem;
+		width: 1rem;
+		background-color: var(--eye-color);
+		box-shadow: var(--eye-box-shadow, none);
+		animation: blinky 7s infinite;
+		
+		&::before {
+			// content: '';
+			position: absolute;
+			top: 20%;
+			left: 20%;
+			height: 0.5rem;
+			width: 0.375rem;
+			border-radius: 50%;
+			background-color: $white;
+		}
+		
+		&-left {
+			left: 2rem;
+		}
+		
+		&-right {
+			right: 2rem;
+		}
+	}
+	
+	&-blush {
+		position: absolute;
+		z-index: 4;
+		top: 5.625rem;
+		height: 1.25rem;
+		width: 1.75rem;
+		border-radius: 50%;
+		background-color: var(--blush-color);
+		opacity: 0.3;
+		
+		&-left {
+			left: 0.625rem;
+		}
+		
+		&-right {
+			right: 0.625rem;
+		}
+	}
+	
+	&-mouth {
+		position: absolute;
+		top: 6.125rem;
+		left: 50%;
+		width: 0.75rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		border-bottom: 3px solid var(--mouth-color);
+		transform: translateX(-50%);
+	}
+	
+	&-ear {
+		@include border-radius(3.5rem, 50% 100%);
+		
+		position: absolute;
+		bottom: calc(100% - 2rem);
+		height: 6.5rem;
+		width: 3.5rem;
+		background-color: var(--ear-color);
+		background-image: var(--ear-background, none);
+		background-position: var(--ear-background-position, 0 0);
+		background-size: var(--ear-background-size, auto);
+		transform-origin: bottom center;
+		
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 1rem;
+			height: 65%;
+			width: calc(100% - 2rem);
+			border-radius: inherit;
+			background-color: var(--ear-inner-color);
+		}
+		
+		&-left {
+			left: 1rem;
+			transform: rotate(-5deg);
+			animation: earMoveLeft 5s infinite;
+		}
+		
+		&-right {
+			right: 1rem;
+			transform: rotate(5deg);
+		}
+	}
+	
+	&-body {
+		position: relative;
+		z-index: 1;
+		top: -1.5rem;
+		left: 50%;
+		height: 4.5rem;
+		width: 4.25rem;
+		transform: translateX(-50%);
+	}
+	
+	&-shirt {
+		@include absolute-fill;
+		@include border-radius(0, 50% 0.75rem);
+		
+		z-index: 5;
+		transform: perspective(1rem) rotateX(7deg);
+		background-color: var(--shirt-color);
+		background-image: var(--shirt-background, none);
+		background-position: var(--shirt-background-position, 0 0);
+		background-size: var(--shirt-background-size, auto);
+	}
+	
+	&-arm {
+		@include border-radius(0, 50% 100%);
+		
+		position: absolute;
+		z-index: 2;
+		top: 1.5rem;
+		height: 2rem;
+		width: 1.25rem;
+		background-color: var(--arm-color);
+		transform-origin: top center;
+		overflow: hidden;
+		transition: transform 0.3s ease-in-out;
+		
+		&::before {
+			content: '';
+			position: absolute;
+			top: var(--arm-inner-top, calc(100% - 1rem));
+			left: var(--arm-inner-left-left, 0);
+			width: var(--arm-inner-width, 100%);
+			height: var(--arm-inner-height, 1rem);
+			border-radius: var(--arm-inner-border-radius, 0);
+			background: var(--arm-inner-color);
+		}
+		
+		&-left {
+			left: 0;
+			transform: rotate(var(--arm-rotate-left, 40deg));
+		}
+		
+		&-right {
+			right: 0;
+			transform: rotate(var(--arm-rotate-right, -40deg));
+			
+			&::before {
+				left: var(--arm-inner-left-right, 0);
+			}
+		}
+	}
+	
+	&-leg {
+		@include border-radius(0, 50% 100%);
+		
+		position: absolute;
+		z-index: 2;
+		top: 100%;
+		height: 2rem;
+		width: 1.75rem;
+		background-color: var(--leg-color);
+		transform-origin: top center;
+		overflow: hidden;
+		transition: transform 0.3s 0.15s ease-in-out;
+		
+		&::before {
+			content: '';
+			position: absolute;
+			top: var(--leg-inner-top, calc(100% - 1rem));
+			left: var(--leg-inner-left, 0);
+			width: var(--leg-inner-width, 100%);
+			height: var(--leg-inner-height, 1rem);
+			background: var(--leg-inner-color);
+		}
+		
+		&-left {
+			left: 0.25rem;
+			transform: rotate(var(--leg-rotate-left, 0deg));
+		}
+		
+		&-right {
+			right: 0.25rem;
+			transform: rotate(var(--leg-rotate-right, 0deg));
+		}
+	}
+}
+
+#bunnie:checked {
+	~ .bun-output .bun {
+		--head-color: #{$bunnie-fur-color};
+		--ear-color: var(--head-color);
+		--ear-inner-color: #{$bunnie-ear-inner-color};
+		
+		--shirt-color: #{$bunnie-shirt-color};
+		--shirt-background: 
+			linear-gradient(transparent 10%, rgba(#{$bunnie-shirt-pattern2-color}, 0.6) 10%, rgba(#{$bunnie-shirt-pattern2-color}, 0.6) 20%, transparent 20%, transparent 30%, rgba(#{$bunnie-shirt-pattern2-color}, 0.6) 30%, rgba(#{$bunnie-shirt-pattern2-color}, 0.6) 40%, transparent 40%, transparent 70%, rgba(#{$bunnie-shirt-pattern3-color}, 0.6) 70%, rgba(#{$bunnie-shirt-pattern3-color}, 0.6) 80%, transparent 80%),
+			linear-gradient(90deg, transparent 10%, rgba(#{$bunnie-shirt-pattern2-color}, 0.6) 10%, rgba(#{$bunnie-shirt-pattern2-color}, 0.6) 20%, transparent 20%, transparent 30%, rgba(#{$bunnie-shirt-pattern2-color}, 0.6) 30%, rgba(#{$bunnie-shirt-pattern2-color}, 0.6) 40%, transparent 40%, transparent 70%, rgba(#{$bunnie-shirt-pattern3-color}, 0.6) 70%, rgba(#{$bunnie-shirt-pattern3-color}, 0.6) 80%, transparent 80%),
+			linear-gradient(90deg, rgba(#{$bunnie-shirt-pattern-color}, 0.6) 50%, transparent 50%), linear-gradient(transparent 50%, rgba(#{$bunnie-shirt-pattern-color}, 0.6) 50%);
+			// linear-gradient(rgba(#{$bunnie-shirt-pattern-color}, 1) 25%, transparent 25%, transparent 50%, rgba(#{$bunnie-shirt-pattern-color}, 1) 50%, rgba(#{$bunnie-shirt-pattern-color}, 1) 75%, transparent 75%, transparent),
+		--shirt-background-size: 1.75rem 1.75rem;
+		
+		--arm-color: #{$bunnie-arm-color};
+		--arm-inner-color: linear-gradient(to top, #{$bunnie-arm-inner-color} 30%, #{$bunnie-arm-color});
+		--arm-rotate-left: 70deg;
+		--arm-rotate-right: -100deg;
+		
+		--leg-color: var(--head-color);
+		--leg-rotate-left: -10deg;
+		--leg-rotate-right: -40deg;
+		
+		--face-in1-top: calc(100% - 3.5rem);
+		--face-in1-left: 0;
+		--face-in1-height: 3.75rem;
+		--face-in1-width: 100%;
+		--face-in1-border-radius: 50%;
+		--face-in1-background-color: #{$bunnie-face-inner-color};
+		--face-in2-top: -2rem;
+		--face-in2-left: 1rem;
+		--face-in2-height: 4.25rem;
+		--face-in2-width: 4.25rem;
+		--face-in2-border-radius: 50%;
+		--face-in2-background-color: var(--face-in1-background-color);
+		--face-in3-top: -2rem;
+		--face-in3-left: auto;
+		--face-in3-right: 1rem;
+		--face-in3-height: 4.25rem;
+		--face-in3-width: 4.25rem;
+		--face-in3-border-radius: 50%;
+		--face-in3-background-color: var(--face-in1-background-color);
+	}
+}
+
+#carmen:checked {
+	~ .bun-output .bun {
+		--head-color: #{$carmen-fur-color};
+		--ear-color: var(--head-color);
+		--ear-inner-color: #{$carmen-ear-inner-color};
+		
+		--shirt-color: #{$carmen-shirt-color};
+		--shirt-background: linear-gradient(90deg, rgba(#{$carmen-shirt-pattern-color}, 0.5) 50%, transparent 50%), linear-gradient(transparent 50%, rgba(#{$carmen-shirt-pattern-color}, 0.5) 50%);
+		--shirt-background-size: 1.25rem 1.25rem;
+		--shirt-background-position: 0 1rem;
+		
+		--arm-color: var(--head-color);
+		--arm-inner-color: #{$carmen-arm-inner-color};
+		--arm-inner-top: calc(100% - 0.375rem);
+		--arm-inner-height: 0.375rem;
+		--arm-rotate-left: 30deg;
+		--arm-rotate-right: -60deg;
+		
+		--leg-color: var(--head-color);
+		--leg-inner-color: var(--arm-inner-color);
+		--leg-inner-top: var(--arm-inner-top);
+		--leg-inner-height: var(--arm-inner-height);
+		--leg-rotate-right: -20deg;
+		
+		--face-in1-top: 1rem;
+		--face-in1-left: 0.5rem;
+		--face-in1-height: 110%;
+		--face-in1-width: calc(100% - 1rem);
+		--face-in1-border-radius: 50%;
+		--face-in1-background-color: #{$carmen-face-inner-color};
+		--face-in2-top: 0;
+		--face-in2-left: 0;
+		--face-in2-height: 3rem;
+		--face-in2-width: 80%;
+		--face-in2-border-radius: 0 0 50% 0 / 0 0 100% 0;
+		--face-in2-background-color: #{$carmen-fur-color};
+	}
+}
+
+#chrissy:checked {
+	~ .bun-output .bun {
+		--head-color: #{$chrissy-fur-color};
+		--ear-color: var(--head-color);
+		--ear-background: radial-gradient(#{$white} 40%, transparent 40%), radial-gradient(#{$white} 40%, transparent 40%);
+		--ear-background-size: 5rem 5rem;
+		--ear-background-position: 0 0, 2.5rem 2.5rem;
+		--ear-inner-color: #{$chrissy-ear-inner-color};
+		
+		--shirt-color: #{$chrissy-shirt-color};
+		--shirt-background: radial-gradient(#{$chrissy-shirt-dot1-color} 40%, transparent 40%), radial-gradient(#{$chrissy-shirt-dot2-color} 40%, transparent 40%);
+		--shirt-background-size: 3rem 3rem;
+		--shirt-background-position: 0 0, 1.5rem 1.5rem;
+		
+		--arm-color: #{$chrissy-arm-color};
+		--arm-rotate-left: 70deg;
+		--arm-rotate-right: -70deg;
+		
+		--leg-color: var(--head-color);
+		--leg-rotate-right: -30deg;
+		
+		--face-in1-top: 0.5rem;
+		--face-in1-left: 0.5rem;
+		--face-in1-height: 110%;
+		--face-in1-width: calc(100% - 1rem);
+		--face-in1-border-radius: 50%;
+		--face-in1-background-color: #{$chrissy-face-inner-color};
+		--face-in2-top: 0;
+		--face-in2-left: 35%;
+		--face-in2-height: 2rem;
+		--face-in2-width: 3.5rem;
+		--face-in2-border-radius: 30% 70% 0 60%;
+		--face-in2-background-color: #{$chrissy-face-inner-hair-color};
+	}
+}
+
+#dotty:checked {
+	~ .bun-output .bun {
+		--head-color: #{$dotty-face-inner-color};
+		--ear-color: #{$dotty-fur-color};
+		--eye-box-shadow: 0 0 0 4px #{$white};
+		--ear-inner-color: #{$dotty-ear-inner-color};
+		
+		--shirt-color: #{$dotty-shirt-color};
+		--shirt-background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 50%, transparent 50%), linear-gradient(transparent 50%, rgba(255, 255, 255, 0.5) 50%);
+		--shirt-background-size: 3rem 3rem;
+		--shirt-background-position: 0 0.5rem;
+		
+		--arm-color: #{$dotty-arm-color};
+		--arm-inner-color: #{$dotty-arm-inner-color};
+		--arm-inner-top: 0rem;
+		--arm-inner-left-left: -0.5rem;
+		--arm-inner-left-right: calc(100% - 0.5rem);
+		--arm-inner-height: 1.5rem;
+		--arm-inner-width: 1rem;
+		--arm-inner-border-radius: 50%;
+		
+		--leg-color: #{$dotty-leg-color};
+		--leg-rotate-left: -5deg;
+		--leg-rotate-right: -10deg;
+		
+		--face-in1-height: 100%;
+		--face-in1-width: 100%;
+		--face-in2-top: 0;
+		--face-in2-left: -0.5rem;
+		--face-in2-height: 6.25rem;
+		--face-in2-width: 50%;
+		--face-in2-border-radius: 0 0.25rem 2rem 0;
+		--face-in2-background-color: #{$dotty-fur-color};
+		--face-in3-top: var(--face-in2-top);
+		--face-in3-right: var(--face-in2-left);
+		--face-in3-height: var(--face-in2-height);
+		--face-in3-width: var(--face-in2-width);
+		--face-in3-border-radius: 0.25rem 0 0 2rem;
+		--face-in3-background-color: var(--face-in2-background-color);
+	}
+}
+
+#hopkins:checked {
+	~ .bun-output .bun {
+		--head-color: #{$hopkins-fur-color};
+		// --eye-box-shadow: 0 0 0 4px #{$white};
+		--ear-color: var(--head-color);
+		--ear-inner-color: #{$hopkins-ear-inner-color};
+		
+		--shirt-color: #{$hopkins-shirt-color};
+		--shirt-background: linear-gradient(0deg, rgba(255, 255, 255, 1) 20%, rgba(#{$hopkins-shirt-pattern-color}, 1) 20%, rgba(#{$hopkins-shirt-pattern-color}, 1) 40%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 1) 60%, rgba(#{$hopkins-shirt-pattern-color}, 1) 60%, rgba(#{$hopkins-shirt-pattern-color}, 1) 80%, rgba(255, 255, 255, 1) 80%);
+		--shirt-background-size: 2.5rem 2.5rem;
+		--shirt-background-position: 0 1.625rem;
+		
+		--arm-color: var(--head-color);
+		--arm-rotate-left: 60deg;
+		--arm-rotate-right: -60deg;
+		
+		--leg-color: var(--head-color);
+		--leg-rotate-left: 30deg;
+		--leg-rotate-right: 5deg;
+	}
+}
+
+#ruby:checked {
+	~ .bun-output .bun {
+		--head-color: #{$ruby-fur-color};
+		--eye-color: #{$ruby-eye-color};
+		--ear-color: var(--head-color);
+		--ear-background: linear-gradient(to top, #{$ruby-fur-color} 50%, #{$ruby-arm-inner-color});
+		--ear-inner-color: #{$ruby-ear-inner-color};
+		
+		--shirt-color: #{$ruby-shirt-color};
+		--shirt-background: radial-gradient(circle, #{$ruby-shirt-pattern-color} 30%, transparent 30%);
+		--shirt-background-position: 0 0.75rem;
+		
+		--arm-color: var(--head-color);
+		--arm-inner-color: linear-gradient(to top, #{$ruby-arm-inner-color} 30%, #{$ruby-arm-color});
+		--arm-rotate-left: 50deg;
+		--arm-rotate-right: -50deg;
+		
+		--leg-color: #{$ruby-leg-color};
+	}
+}
+
+#snake:checked {
+	~ .bun-output .bun {
+		--head-color: #{$snake-hood-color};
+		--ear-color: #{$snake-fur-color};
+		--ear-inner-color: #{$snake-ear-inner-color};
+		--blush-color: #{$snake-blush-color};
+		
+		--shirt-color: #{$snake-shirt-color};
+		--shirt-background: linear-gradient(90deg, transparent 45%, #{$snake-shirt-pattern-color} 45%, #{$snake-shirt-pattern-color} 55%, transparent 55%);
+		
+		--arm-color: #{$snake-arm-color};
+		--arm-inner-color: #{$snake-metal-color};
+		--arm-inner-top: calc(100% - 1rem);
+		--arm-inner-height: 0.5rem;
+		--arm-rotate-left: 30deg;
+		--arm-rotate-right: -50deg;
+		
+		--leg-color: #{$snake-leg-color};
+		--leg-rotate-left: 10deg;
+		--leg-rotate-right: 5deg;
+		
+		--face-in1-top: 1rem;
+		--face-in1-left: 0.5rem;
+		--face-in1-height: 100%;
+		--face-in1-width: calc(100% - 1rem);
+		--face-in1-border-radius: 50%;
+		--face-in1-background-color: #{$snake-face-inner-color};
+		--face-in1-overflow: hidden;
+		--face-in2-top: 0;
+		--face-in2-left: 0;
+		--face-in2-height: 1.75rem;
+		--face-in2-width: 100%;
+		--face-in2-border-radius: 0 0 50% 50% / 0 0 30% 30%;
+		--face-in2-background-color: #{$snake-hood-color};
+		--face-in3-top: 1.5rem;
+		--face-in3-left: 0;
+		--face-in3-height: 2rem;
+		--face-in3-width: 100%;
+		--face-in3-border-radius: 0 0 50% 50% / 0 0 30% 30%;
+		--face-in3-background-color: #{$snake-metal-color};
+	}
+}
+
+@keyframes blinky {
+	0%, 9%, 11%, 19%, 21%, 69%, 71%, 100% { transform: scaleY(1) }
+	10%, 20%, 70% { transform: scaleY(0.1) }
+}
+
+@keyframes earMoveLeft {
+	0%, 100% { transform: rotate(-5deg) }
+	50% { transform: rotate(-15deg) }
+}
+
+@keyframes earMoveRight {
+	0%, 100% { transform: rotate(5deg) }
+	50% { transform: rotate(15deg) }
+}
