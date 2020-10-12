@@ -1,11 +1,26 @@
 <template>
 	<main>
-		<nav>
-			<!-- <nuxt-link></nuxt-link> -->
-		</nav>
+		<Nav :routes="routes" />
 		<Nuxt />
 	</main>
 </template>
+
+<script>
+	export default {
+		computed: {
+			routes() {
+				const context = require.context('@/views/', true, /vue$/);
+				return context.keys().map(item => {
+					const link = item.replace('./', '').split('/')[0];
+					return {
+						name: link.charAt(0).toUpperCase() + link.replace(/-/g, ' ').slice(1),
+						link
+					}
+				});
+			}
+		}
+	}
+</script>
 
 <style lang="scss">
 .vue-container,
