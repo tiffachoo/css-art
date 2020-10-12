@@ -59,4 +59,4 @@
 	}
 </script>
 
-<style lang="scss" src="@/styles/okashi.scss" />
+<style lang="scss" src="./okashi.scss" />

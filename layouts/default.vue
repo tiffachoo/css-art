@@ -1,5 +1,8 @@
 <template>
 	<main>
+		<nav>
+			<!-- <nuxt-link></nuxt-link> -->
+		</nav>
 		<Nuxt />
 	</main>
 </template>

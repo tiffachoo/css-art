@@ -51,4 +51,4 @@
 	}
 </script>
 
-<style lang="scss" src="@/styles/confusion.scss" />
+<style lang="scss" src="./confusion.scss" />

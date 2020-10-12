@@ -66,6 +66,7 @@
 
 <script>
 	export default {
+		name: 'BubblyClouds',
 		mounted() {
 			const dee = document.getElementById('waddleDee');
 			const deeBottom = dee.getBoundingClientRect().height + dee.getBoundingClientRect().top;
@@ -92,4 +93,4 @@
 	}
 </script>
 
-<style lang="scss" src="@/styles/bubbly-clouds.scss" />
+<style lang="scss" src="./bubbly-clouds.scss" />

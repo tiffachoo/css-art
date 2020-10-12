@@ -39,4 +39,4 @@
 	}
 </script>
 
-<style lang="scss" src="@/styles/drifting.scss" />
+<style lang="scss" src="./drifting.scss" />

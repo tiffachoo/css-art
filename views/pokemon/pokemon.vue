@@ -60,4 +60,4 @@
 	}
 </script>
 
-<style lang="scss" src="@/styles/pokemon.scss" />
+<style lang="scss" src="./pokemon.scss" />
