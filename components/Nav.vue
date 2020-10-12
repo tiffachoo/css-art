@@ -6,12 +6,12 @@
 				:key="route.link"
 				class="nav-item"
 			>
-				<nuxt-link 
-					:to="`/art/${route.link}`"
+				<a
+					:href="`/art/${route.link}`"
 					class="nav-link"
 				>
 					{{ route.name }}
-				</nuxt-link>
+				</a>
 			</li>
 		</ul>
 	</nav>
@@ -29,10 +29,11 @@
 <style lang="scss">
 .nav {
 	position: fixed;
+	z-index: 1000;
 	top: 0;
 	left: 0;
 	height: 100vh;
-	min-width: 30ch;
+	min-width: 15em;
 	padding: 1em 1.5em;
 	overflow: auto;
 	background: var(--ca-white);
@@ -41,6 +42,7 @@
 	&-link {
 		display: block;
 		padding: 0.25em 0;
+		font-family: 'Roboto';
 		font-weight: 400;
 		font-size: 1.125em;
 		line-height: 1.5;
