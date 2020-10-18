@@ -1,12 +1,16 @@
 <template>
-	<nav class="nav">
+	<nav 
+		:class="{ active: isActive }"
+		class="nav"
+	>
 		<button 
 			aria-label="Toggle menu" 
 			class="nav-burg"
+			@click="toggleMenu"
 		>
 			<span class="nav-burg-lines"></span>
 		</button>
-		<ul clsas="nav-items">
+		<ul class="nav-items">
 			<li 
 				v-for="route in routes" 
 				:key="route.name"
@@ -28,6 +32,16 @@
 		name: 'Nav',
 		props: {
 			routes: Array
+		},
+		data() {
+			return {
+				isActive: false
+			};
+		},
+		methods: {
+			toggleMenu() {
+				this.isActive = !this.isActive;
+			}
 		}
 	}
 </script>
@@ -38,11 +52,6 @@
 	z-index: 1000;
 	top: 0;
 	left: 0;
-	height: 100vh;
-	width: 20em;
-	padding: 3.5em 1.5em 2em;
-	overflow: auto;
-	background: var(--ca-white);
 	font-size: 16px;
 
 	&-link {
@@ -96,13 +105,21 @@
 	}
 
 	&-items {
+		transform: translateX(var(--nav-transform, -100%));
 		padding: 0;
 		margin: 0;
+		height: 100vh;
+		width: 20em;
+		padding: 3.5em 1.5em 2em;
+		overflow: auto;
+		background-color: var(--ca-white);
 		list-style: none;
+		transition: 0.35s ease-in-out;
 	}
 
 	&-burg {
 		position: fixed;
+		z-index: 1001;
 		top: 1em;
 		left: 1em;
 		padding: 0;
@@ -137,7 +154,10 @@
 				top: 0.5625em;
 			}
 		}
+	}
 
+	&.active {
+		--nav-transform: 0;
 	}
 }
 </style>
