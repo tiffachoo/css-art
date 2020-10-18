@@ -6,7 +6,7 @@ $black: darken($primary-color-dark, 20%);
 $white: lighten($primary-color-tint, 10%);
 
 * { box-sizing: border-box; }
-body {
+.body {
 	background-color: $primary-color-tint;
 	font-family: $primary-font;
 	font-size: 16px;

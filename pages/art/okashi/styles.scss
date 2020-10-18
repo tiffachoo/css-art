@@ -45,7 +45,7 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 }
 
 * { box-sizing: border-box; }
-body {
+.body {
 	display: grid;
 	place-items: center;
 	height: 100vh;

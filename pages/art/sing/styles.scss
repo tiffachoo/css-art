@@ -25,7 +25,7 @@ $cubic-bezier: cubic-bezier(0.35, -0.1, 0.35, 2);
 }
 
 * { box-sizing: border-box; }
-body {
+.body {
 	display: flex;
 	justify-content: center;
 	align-items: center;

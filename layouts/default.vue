@@ -1,7 +1,9 @@
 <template>
 	<main>
 		<Nav :routes="routes" />
-		<Nuxt />
+		<div class="body">
+			<Nuxt />
+		</div>
 	</main>
 </template>
 
@@ -25,10 +27,7 @@
 </script>
 
 <style lang="scss">
-.vue-container,
-#__nuxt,
-#__layout,
-main {
+.vue-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -37,5 +36,14 @@ main {
 
 .w-100 {
 	width: 100%;
+}
+
+.body {
+	position: fixed;
+	height: 100vh;
+	width: 100%;
+	top: 0;
+	left: 0;
+	overflow-y: auto;
 }
 </style>

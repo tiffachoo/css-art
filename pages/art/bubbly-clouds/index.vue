@@ -94,3 +94,11 @@
 </script>
 
 <style lang="scss" src="./styles.scss" />
+<style>
+.body {
+	position: static;
+	height: auto;
+	width: 100%;
+	overflow: visible;
+}
+</style>

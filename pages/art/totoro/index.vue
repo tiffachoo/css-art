@@ -74,3 +74,8 @@
 </script>
 
 <style lang="scss" src="./styles.scss" />
+<style>
+#totoro .body {
+	overflow: visible;
+}
+</style>
