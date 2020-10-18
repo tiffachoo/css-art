@@ -1,0 +1,93 @@
+@import '/assets/styles/mixins';
+
+$primary-color: #e8deac;
+$primary-color-dark: darken($primary-color, 10%);
+$primary-color-tint: lighten($primary-color, 10%);
+$secondary-color: #85725f;
+$secondary-color-dark: darken($secondary-color, 10%);
+$secondary-color-tint: lighten($secondary-color, 10%);
+
+:root {
+	--black: #3b3737;
+	--white: #fff;
+	--grey: #dedede;
+	--primary-color: #{$primary-color};
+	--primary-color-dark: #{$primary-color-dark};
+	--primary-color-tint: #{$primary-color-tint};
+	--secondary-color: #{$secondary-color};
+	--secondary-color-dark: #{$secondary-color-dark};
+	--secondary-color-tint: #{$secondary-color-tint};
+	--accent-color: #d65a2d;
+	--background-color: #4d4949;
+}
+
+* { box-sizing: border-box; }
+.body {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+	background-color: var(--background-color);
+	font-size: 16px;
+	line-height: 1;
+}
+
+.mimikyu {
+	&-disguise {
+		@include absolute-fill;
+		@include border-radius(50% 60%, 50% 35%);
+
+		background-color: var(--primary-color);
+
+		&-eye {
+			position: absolute;
+			bottom: 3.5rem;
+			border-radius: 100%;
+			border: 3px solid;
+			color: var(--black);
+
+			&::before,
+			&::after {
+				content: '';
+			}
+
+			&::before {
+				height: 90%;
+				width: 90%;
+				left: 5%;
+			}
+
+			&::after {
+				height: 70%;
+				width: 70%;
+				left: 5%;
+			}
+
+			*,
+			&::before,
+			&::after {
+				position: absolute;
+				border: inherit;
+				border-radius: inherit;
+			}
+
+			&-left {
+				left: 2rem;
+				height: 2.5rem;
+				width: 2rem;
+			}
+
+			&-right {
+				right: 2rem;
+				height: 3rem;
+				width: 2.25rem;
+			}
+		}
+	}
+
+	&-head {
+		position: relative;
+		z-index: 10;
+		height: 11rem;
+		width: 12.5rem;
+	}
+}

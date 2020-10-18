@@ -1,0 +1,18 @@
+@mixin border-radius($top: 0, $bottom: 0) {
+	border-top-left-radius: $top;
+	border-top-right-radius: $top;
+	border-bottom-right-radius: $bottom;
+	border-bottom-left-radius: $bottom;
+}
+
+@mixin absolute-fill($pseudo: false) {
+	@if ($pseudo) {
+		content: '';
+	}
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
