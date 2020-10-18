@@ -40,4 +40,4 @@
 	}
 </script>
 
-<style lang="scss" src="./cat-in-a-box.scss" />
+<style lang="scss" src="./styles.scss" />

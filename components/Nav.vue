@@ -9,14 +9,14 @@
 		<ul clsas="nav-items">
 			<li 
 				v-for="route in routes" 
-				:key="route.link"
+				:key="route.name"
 				class="nav-item"
 			>
 				<a
-					:href="`/art/${route.link}`"
+					:href="route.path"
 					class="nav-link"
 				>
-					{{ route.name }}
+					{{ route.display }}
 				</a>
 			</li>
 		</ul>

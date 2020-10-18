@@ -73,4 +73,4 @@
 	}
 </script>
 
-<style lang="scss" src="./totoro.scss" />
+<style lang="scss" src="./styles.scss" />

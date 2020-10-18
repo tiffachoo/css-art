@@ -93,4 +93,4 @@
 	}
 </script>
 
-<style lang="scss" src="./bubbly-clouds.scss" />
+<style lang="scss" src="./styles.scss" />

@@ -43,4 +43,4 @@
 	}
 </script>
 
-<style lang="scss" src="./sing.scss" />
+<style lang="scss" src="./styles.scss" />

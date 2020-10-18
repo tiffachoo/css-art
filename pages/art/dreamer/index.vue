@@ -58,4 +58,4 @@
 	}
 </script>
 
-<style lang="scss" src="./dreamer.scss" />
+<style lang="scss" src="./styles.scss" />

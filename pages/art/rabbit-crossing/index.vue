@@ -47,4 +47,4 @@
 	}
 </script>
 
-<style lang="scss" src="./rabbit-crossing.scss" />
+<style lang="scss" src="./styles.scss" />

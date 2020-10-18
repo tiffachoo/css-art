@@ -9,14 +9,16 @@
 	export default {
 		computed: {
 			routes() {
-				const context = require.context('@/views/', true, /vue$/);
-				return context.keys().map(item => {
-					const link = item.replace('./', '').split('/')[0];
-					return {
-						name: link.charAt(0).toUpperCase() + link.replace(/-/g, ' ').slice(1),
-						link
-					}
-				});
+				const routes = this.$router.options.routes;
+				return routes
+					.filter(route => route.path.includes('/art'))
+					.map(route => {
+						const display = route.name.replace('art-', '');
+						return {
+							...route,
+							display: display.charAt(0).toUpperCase() + display.replace(/-/g, ' ').slice(1)
+						}
+					});
 			}
 		}
 	}

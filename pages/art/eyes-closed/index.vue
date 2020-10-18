@@ -53,4 +53,4 @@
 	}
 </script>
 
-<style lang="scss" src="./eyes-closed.scss" />
+<style lang="scss" src="./styles.scss" />
