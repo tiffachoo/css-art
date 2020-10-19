@@ -36,6 +36,7 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 		@include absolute-fill;
 		@include border-radius(50% 60%, 50% 35%);
 
+		z-index: 5;
 		background-color: var(--primary-color);
 
 		&-line {
@@ -294,6 +295,55 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 			&-6 {
 				width: 1rem;
 				transform: rotate(115deg);
+			}
+		}
+	}
+
+	&-ear {
+		position: absolute;
+		z-index: 1;
+		bottom: calc(100% - 2rem);
+		height: 4.5rem;
+		width: 2.75rem;
+		transform-origin: center bottom;
+		border-top-left-radius: 1.375rem;
+		border-top-right-radius: 1.375rem;
+		background-color: var(--primary-color-dark);
+
+		&-top {
+			position: absolute;
+			background-color: inherit;
+		}
+
+		&-left {
+			left: 1.75rem;
+			// transform: rotate(-30deg);
+		}
+
+		&-right {
+			right: 1.75rem;
+			transform: rotate(70deg);
+
+			.mimikyu-ear-top {
+				@include border-radius(50% 70%, 1.375rem);
+				
+				bottom: calc(100% - 2.5rem);
+				height: 5rem;
+				width: 100%;
+				transform: rotate(50deg);
+				transform-origin: 50% calc(5rem - 1.375rem);
+				overflow: hidden;
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: -15%;
+					height: 2.25rem;
+					width: 120%;
+					transform: rotate(-15deg);
+					background-color: var(--black);
+				}
 			}
 		}
 	}

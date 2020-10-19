@@ -27,6 +27,12 @@
 					</div>
 				</div>
 			</div>
+			<div class="mimikyu-ear mimikyu-ear-left">
+				<div class="mimikyu-ear-top"></div>
+			</div>
+			<div class="mimikyu-ear mimikyu-ear-right">
+				<div class="mimikyu-ear-top"></div>
+			</div>
 		</div>
 	</div>
 </template>
