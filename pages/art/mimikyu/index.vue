@@ -1,7 +1,7 @@
 <template>
 	<div class="mimikyu">
 		<div class="mimikyu-head">
-			<div class="mimikyu-disguise">
+			<div class="mimikyu-disguise-face">
 				<div class="mimikyu-disguise-eye mimikyu-disguise-eye-left mimikyu-disguise-line">
 					<div class="mimikyu-disguise-line"></div>
 				</div>
@@ -28,10 +28,25 @@
 				</div>
 			</div>
 			<div class="mimikyu-ear mimikyu-ear-left">
+				<div class="mimikyu-ear-tip"></div>
 				<div class="mimikyu-ear-top"></div>
 			</div>
 			<div class="mimikyu-ear mimikyu-ear-right">
 				<div class="mimikyu-ear-top"></div>
+			</div>
+		</div>
+		<div class="mimikyu-body">
+			<div class="mimikyu-face">
+				<div class="mimikyu-eye mimikyu-eye-left"></div>
+				<div class="mimikyu-eye mimikyu-eye-right"></div>
+			</div>
+			<div class="mimikyu-disguise-torso"></div>
+			<div class="mimikyu-disguise-frays">
+				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-1"></div>
+				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-2"></div>
+				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-3"></div>
+				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-4"></div>
+				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-5"></div>
 			</div>
 		</div>
 	</div>

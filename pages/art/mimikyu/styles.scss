@@ -33,12 +33,6 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 
 .mimikyu {
 	&-disguise {
-		@include absolute-fill;
-		@include border-radius(50% 60%, 50% 35%);
-
-		z-index: 5;
-		background-color: var(--primary-color);
-
 		&-line {
 			&::before,
 			&::after {
@@ -297,18 +291,120 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 				transform: rotate(115deg);
 			}
 		}
+
+		&-face {
+			@include absolute-fill;
+			@include border-radius(50% 60%, 50% 35%);
+
+			z-index: 5;
+			background-color: var(--primary-color);
+		}
+
+		&-torso {
+			@include absolute-fill;
+			@include border-radius(30% 70%, 50% 20%);
+
+			transform: perspective(1rem) rotateX(3deg);
+			background-color: var(--primary-color);
+		}
+
+		&-fray {
+			position: absolute;
+			border-radius: 0.5rem;
+			background-color: var(--primary-color);
+
+			&-1 {
+				top: -2rem;
+				left: 0;
+				height: 3rem;
+				width: 3rem;
+				transform: skew(-10deg, -10deg) rotate(10deg);
+			}
+
+			&-2 {
+				top: -1.325rem;
+				left: 1.5rem;
+				height: 3rem;
+				width: 3rem;
+				transform: skew(-20deg, -10deg) rotate(-15deg);
+			}
+
+			&-3 {
+				top: -0.75rem;
+				left: 3.75rem;
+				height: 2.5rem;
+				width: 2.5rem;
+				transform: skew(-10deg, -10deg) rotate(-45deg);
+			}
+
+			&-4 {
+				top: -1.75rem;
+				right: 0.5rem;
+				height: 3rem;
+				width: 3rem;
+				transform: skew(10deg, 20deg) rotate(-10deg);
+			}
+
+			&-5 {
+				right: -0.25rem;
+				top: -2rem;
+				height: 2.5rem;
+				width: 2.5rem;
+				transform: skew(5deg, 30deg) rotate(-30deg);
+			}
+		}
+
+		&-frays {
+			position: absolute;
+			top: calc(100% - 0.75rem);
+			left: -5%;
+			width: 110%;
+		}
 	}
 
 	&-ear {
 		position: absolute;
 		z-index: 1;
 		bottom: calc(100% - 2rem);
-		height: 4.5rem;
 		width: 2.75rem;
 		transform-origin: center bottom;
 		border-top-left-radius: 1.375rem;
 		border-top-right-radius: 1.375rem;
 		background-color: var(--primary-color-dark);
+
+		&-tip {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			border-radius: inherit;
+			overflow: hidden;
+
+			&,
+			&::before,
+			&::after {
+				position: absolute;
+				top: 0;
+			}
+
+			&::before,
+			&::after {
+				content: '';
+				background-color: var(--black);
+				width: 120%;
+			}
+			
+			&::before {
+				left: -20%;
+				height: 2rem;
+				transform: rotate(-15deg);
+			}
+
+			&::after {
+				left: 20%;
+				height: 1.75rem;
+				transform: rotate(35deg);
+			}
+		}
 
 		&-top {
 			position: absolute;
@@ -317,11 +413,25 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 
 		&-left {
 			left: 1.75rem;
-			// transform: rotate(-30deg);
+			height: 5rem;
+			transform: rotate(-15deg);
+
+			.mimikyu-ear-top {
+				@include border-radius(50% 70%, 0.5rem);
+
+				left: 0.5rem;
+				bottom: calc(100% - 1rem);
+				height: 3.5rem;
+				width: calc(100% - 0.5rem);
+				transform-origin: bottom right;
+				transform: rotate(-20deg);
+				background-color: var(--black);
+			}
 		}
 
 		&-right {
 			right: 1.75rem;
+			height: 4.5rem;
 			transform: rotate(70deg);
 
 			.mimikyu-ear-top {
@@ -334,15 +444,26 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 				transform-origin: 50% calc(5rem - 1.375rem);
 				overflow: hidden;
 
-				&::before {
+				&::before,
+				&::after {
 					content: '';
 					position: absolute;
 					top: 0;
-					left: -15%;
-					height: 2.25rem;
-					width: 120%;
-					transform: rotate(-15deg);
 					background-color: var(--black);
+				}
+
+				&::before {
+					left: -15%;
+					height: 2.75rem;
+					width: 130%;
+					transform: rotate(-15deg);
+				}
+
+				&::after {
+					left: -50%;
+					height: 2.5rem;
+					width: 200%;
+					transform: rotate(-40deg);
 				}
 			}
 		}
@@ -353,5 +474,34 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 		z-index: 10;
 		height: 11rem;
 		width: 12.5rem;
+	}
+
+	&-eye {
+		@include border-radius(50% 60%, 50% 30%);
+
+		position: absolute;
+		z-index: 5;
+		top: 2.5rem;
+		height: 1.5rem;
+		width: 0.5rem;
+		background-color: var(--black);
+
+		&-left {
+			left: 2.325rem;
+		}
+
+		&-right {
+			right: 2.325rem;
+		}
+	}
+
+	&-body {
+		position: relative;
+		z-index: 9;
+		top: -1.5rem;
+		left: calc(50% - 3.5rem);
+		height: 5.5rem;
+		width: 7rem;
+		perspective: 1000px;
 	}
 }
