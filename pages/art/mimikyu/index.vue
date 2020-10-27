@@ -41,14 +41,22 @@
 				<div class="mimikyu-eye mimikyu-eye-right"></div>
 			</div>
 			<div class="mimikyu-disguise-torso"></div>
+			<div class="mimikyu-disguise-tail">
+				<div class="mimikyu-disguise-tail-tip"></div>
+			</div>
 			<div class="mimikyu-disguise-frays">
 				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-1"></div>
 				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-2"></div>
 				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-3"></div>
 				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-4"></div>
 				<div class="mimikyu-disguise-fray mimikyu-disguise-fray-5"></div>
+				<div class="mimikyu-shadow-fray mimikyu-shadow-fray-1"></div>
+				<div class="mimikyu-shadow-fray mimikyu-shadow-fray-2"></div>
+				<div class="mimikyu-shadow-fray mimikyu-shadow-fray-3"></div>
+				<div class="mimikyu-shadow-fray mimikyu-shadow-fray-4"></div>
 			</div>
 		</div>
+		<div class="mimikyu-shadow"></div>
 	</div>
 </template>
 
