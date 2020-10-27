@@ -21,6 +21,7 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 	--tail-color: #7a6754;
 	--tail-color-tint: #a38d77;
 	--background-color: #4d4949;
+	--disguise-break-transition: 0.45s ease-in;
 }
 
 * { box-sizing: border-box; }
@@ -35,7 +36,8 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 
 .mimikyu {
 	position: relative;
-
+	cursor: pointer;
+	
 	&-disguise {
 		&-line {
 			&::before,
@@ -316,12 +318,14 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 				content: '';
 				position: absolute;
 				top: -0.5rem;
-				left: 50%;
+				left: 10%;
 				width: 80%;
 				height: 3rem;
+				transform-origin: 100% center;
+				transform: var(--torso-shadow-transform, scale(1, 1));
 				border-radius: 100%;
 				background-color: var(--primary-color-dark);
-				transform: translateX(-50%);
+				transition: transform var(--disguise-break-transition);
 			}
 		}
 
@@ -377,7 +381,7 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 
 		&-fray {
 			position: absolute;
-			z-index: 4;
+			z-index: 2;
 			border-radius: 0.5rem;
 			background-color: var(--primary-color);
 
@@ -470,12 +474,13 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 	&-ear {
 		position: absolute;
 		z-index: 1;
-		bottom: calc(100% - 2rem);
+		bottom: calc(100% - 3rem);
 		width: 2.75rem;
 		transform-origin: center bottom;
 		border-top-left-radius: 1.375rem;
 		border-top-right-radius: 1.375rem;
 		background-color: var(--primary-color-dark);
+		transition: transform var(--disguise-break-transition);
 
 		&-tip {
 			position: absolute;
@@ -518,8 +523,8 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 
 		&-left {
 			left: 1.75rem;
-			height: 5rem;
-			transform: rotate(-15deg);
+			height: 6rem;
+			transform: rotate(var(--ear-left-rotate, -15deg));
 
 			.mimikyu-ear-top {
 				@include border-radius(50% 70%, 0.5rem);
@@ -536,8 +541,8 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 
 		&-right {
 			right: 1.75rem;
-			height: 4.5rem;
-			transform: rotate(70deg);
+			height: 5.5rem;
+			transform: rotate(var(--ear-right-rotate, 70deg));
 
 			.mimikyu-ear-top {
 				@include border-radius(50% 70%, 1.375rem);
@@ -545,9 +550,10 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 				bottom: calc(100% - 2.5rem);
 				height: 5rem;
 				width: 100%;
-				transform: rotate(50deg);
+				transform: rotate(var(--ear-right-tip-rotate, 50deg));
 				transform-origin: 50% calc(5rem - 1.375rem);
 				overflow: hidden;
+				transition: transform var(--disguise-break-transition);
 
 				&::before,
 				&::after {
@@ -579,6 +585,9 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 		z-index: 10;
 		height: 11rem;
 		width: 12.5rem;
+		transform-origin: center 90%;
+		transform: rotate(var(--head-rotate, 0deg));
+		transition: transform var(--disguise-break-transition);
 	}
 
 	&-eye {
@@ -589,7 +598,9 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 		top: 2.5rem;
 		height: 1.5rem;
 		width: 0.5rem;
+		transform-origin: center 70%;
 		background-color: var(--black);
+		animation: blinky 7s infinite;
 
 		&-left {
 			left: 2.325rem;
@@ -621,4 +632,26 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 		background-color: var(--black);
 		opacity: 0.4;
 	}
+
+	&-control {
+		position: absolute;
+
+		&:checked {
+			+ .mimikyu {
+				--head-rotate: 55deg;
+				--torso-shadow-transform: scale(0.7, 2.1) rotate(5deg);
+				--ear-left-rotate: 50deg;
+				--ear-right-rotate: 100deg;
+				--ear-right-tip-rotate: 10deg;
+			}
+		}
+	}
+
+	&:hover {
+	}
+}
+
+@keyframes blinky {
+	0%, 9%, 11%, 19%, 21%, 69%, 71%, 100% { transform: scaleY(1) }
+	10%, 20%, 70% { transform: scaleY(0) }
 }
