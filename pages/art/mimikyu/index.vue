@@ -62,8 +62,21 @@
 					<div class="mimikyu-shadow-fray mimikyu-shadow-fray-3"></div>
 					<div class="mimikyu-shadow-fray mimikyu-shadow-fray-4"></div>
 				</div>
+				<div class="mimikyu-shadow-clip">
+					<div class="mimikyu-shadow-rotate">
+						<div class="mimikyu-shadow-fingers">
+							<div class="mimikyu-shadow-finger mimikyu-shadow-finger-1"></div>
+							<div class="mimikyu-shadow-finger mimikyu-shadow-finger-2"></div>
+							<div class="mimikyu-shadow-finger mimikyu-shadow-finger-3"></div>
+						</div>
+						<div class="mimikyu-shadow-claw-wrap">
+							<div class="mimikyu-shadow-claw"></div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="mimikyu-shadow"></div>
+			<div class="heart"></div>
 		</label>
 	</div>
 </template>

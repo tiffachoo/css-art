@@ -22,6 +22,7 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 	--tail-color-tint: #a38d77;
 	--background-color: #4d4949;
 	--disguise-break-transition: 0.6s cubic-bezier(1, -0.6, 0.81, 1.41);
+	--shadow-claw-transition: 0.2s ease-out;
 }
 
 * { box-sizing: border-box; }
@@ -469,6 +470,75 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 				transform: skew(20deg, 20deg) rotate(-20deg);
 			}
 		}
+
+		&-finger {
+			@include border-radius(50% 80%, 50% 20%);
+			position: absolute;
+			top: 0;
+			height: 100%;
+			width: 32%;
+			background-color: var(--black);
+
+			&-1 {
+				left: 0;
+			}
+
+			&-2 {
+				top: -0.25rem;
+				left: 33%;
+			}
+
+			&-3 {
+				right: 0;
+			}
+		}
+
+		&-fingers {
+			position: absolute;
+			left: 1px;
+			bottom: calc(100% - 2.25rem);
+			width: 2rem;
+			height: 2rem;
+		}
+
+		&-claw {
+			position: absolute;
+			top: -50%;
+			left: 2rem;
+			height: 6rem;
+			width: 6rem;
+			border-radius: 100%;
+			box-shadow: -1rem 1rem 0 1rem var(--black);
+
+			&-wrap {
+				position: absolute;
+				top: 1.25rem;
+				left: 0;
+				height: 6rem;
+				width: 100%;
+				overflow: hidden;
+			}
+		}
+
+		&-rotate {
+			height: inherit;
+			width: inherit;
+			transform-origin: center center;
+			transform: rotate(var(--shadow-claw-wrap-rotate, -180deg));
+			transition: transform var(--shadow-claw-transition);
+		}
+
+		&-clip {
+			position: absolute;
+			top: calc(100% - 2.5rem);
+			right: 4rem;
+			height: 6.5rem;
+			width: var(--shadow-claw-width, 3rem);
+			transform: var(--shadow-claw-transform, translate(1rem, -4rem));
+			overflow: hidden;
+			transition: var(--shadow-claw-transition);
+			visibility: var(--shadow-claw-visibility, hidden);
+		}
 	}
 
 	&-ear {
@@ -647,9 +717,52 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 				--ear-right-tip-rotate: 10deg;
 			}
 		}
+
+		&:not(:checked) {
+			+ .mimikyu {
+				&:hover {
+					--shadow-claw-width: 9rem;
+					--shadow-claw-transform: translate(0, 0) rotate(20deg);
+					--shadow-claw-wrap-rotate: 0deg;
+					--shadow-claw-visibility: visible;
+					--shadow-claw-transition: 0.35s 0.5s ease-out;
+					--heart-scale: 1;
+					--heart-transition: 0.4s 0.9s ease-in-out;
+				}
+			}
+		}
+	}
+}
+
+.heart {
+	position: absolute;
+	top: 7rem;
+	left: -3rem;
+	height: 2rem;
+	width: 2rem;
+	transform: rotate(-30deg) scale(var(--heart-scale, 0));
+	transition: var(--heart-transition, 0.2s ease-in-out);
+
+	&::before,
+	&::after {
+		@include border-radius(50% 25%, 50% 75%);
+
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 50%;
+		height: 100%;
+		transform-origin: center bottom;
+		background-color: var(--accent-color);
 	}
 
-	&:hover {
+	&::before {
+		transform: rotate(-20deg);
+	}
+
+	&::after {
+		transform: rotate(20deg);
 	}
 }
 
