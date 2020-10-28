@@ -347,7 +347,8 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 			height: 3rem;
 			width: 1rem;
 			transform-origin: center bottom;
-			transform: rotate(25deg);
+			transform: rotate(var(--tail-rotate, 25deg));
+			transition: 0.3s 0.4s ease-in-out;
 
 			&,
 			&::before,
@@ -725,6 +726,7 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 				--ear-left-rotate: 50deg;
 				--ear-right-rotate: 100deg;
 				--ear-right-tip-rotate: 10deg;
+				--tail-rotate: 50deg;
 			}
 		}
 
