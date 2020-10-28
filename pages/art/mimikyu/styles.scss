@@ -308,22 +308,32 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 		}
 
 		&-torso {
-			@include absolute-fill;
-			@include border-radius(30% 70%, 50% 20%);
-
 			z-index: 3;
-			transform: perspective(1rem) rotateX(3deg);
-			background-color: var(--primary-color);
+			// fix safari z-index issue
+			-webkit-transform: translate3d(0px, 0px, 0px);
+
+			&,
+			&::before {
+				@include absolute-fill;
+			}
+
+			&::before {
+				@include border-radius(30% 70%, 50% 20%);
+
+				content: '';
+				transform: perspective(1rem) rotateX(3deg);
+				background-color: var(--primary-color);
+			}
 
 			&::after {
 				content: '';
 				position: absolute;
 				top: -0.5rem;
-				left: 10%;
-				width: 80%;
+				left: 15%;
+				width: 70%;
 				height: 3rem;
 				transform-origin: 100% center;
-				transform: var(--torso-shadow-transform, scale(1, 1));
+				transform: var(--torso-shadow-transform, scale(1, 1)) translate3d(0px, 0px, 10px);
 				border-radius: 100%;
 				background-color: var(--primary-color-dark);
 				transition: transform var(--disguise-break-transition);
