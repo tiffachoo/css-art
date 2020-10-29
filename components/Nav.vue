@@ -105,16 +105,20 @@
 	}
 
 	&-items {
+		position: absolute;
+		top: 0;
+		left: 0;
 		transform: translateX(var(--nav-transform, -100%));
 		padding: 0;
 		margin: 0;
 		height: 100vh;
 		width: 20em;
-		padding: 3.5em 1.5em 2em;
+		padding: 3.5em 1.5em 2em 3.5em;
 		overflow: auto;
+		visibility: var(--nav-visiblity, hidden);
 		background-color: var(--ca-white);
 		list-style: none;
-		transition: 0.35s ease-in-out;
+		transition: 0.3s ease-in-out;
 	}
 
 	&-burg {
@@ -127,37 +131,100 @@
 		width: 2em;
 		border: none;
 		background-color: transparent;
+		cursor: pointer;
 
 		&-lines {
 			top: calc(50% - 1px);
+			left: 0;
+			background-color: var(--burg-line-middle-color, var(--ca-black));
 
 			&,
 			&::before,
 			&::after {
 				position: absolute;
-				left: 0;
 				width: 100%;
 				height: 2px;
-				background-color: var(--ca-black);
+				border-radius: 1px;
+				transition: 0.3s;
 			}
 	
 			&::before,
 			&::after {
 				content: '';
+				left: 50%;
+				background-color: var(--ca-black);
+				transform: translateX(-50%);
 			}
 
 			&::before {
-				top: -0.5em;
+				--burg-line-bottom: -0.5em;
+				--burg-line-rotate: 45deg;
+				top: var(--burg-line-bottom);
 			}
 
 			&::after {
-				top: 0.5625em;
+				--burg-line-bottom: 0.5625em;
+				--burg-line-rotate: -45deg;
+				top: var(--burg-line-bottom);
 			}
 		}
 	}
 
 	&.active {
 		--nav-transform: 0;
+		--nav-visiblity: visible;
+		--burg-line-middle-color: transparent;
+
+		.nav-burg {
+			&-lines {
+				transition: 0s 0.35s;
+
+				&::before,
+				&::after {
+					top: 0;
+					transform-origin: 0 center;
+					transform: rotate(var(--burg-line-rotate)) translateX(-50%);
+					animation: burgMoveLine 0.8s ease-in-out forwards;
+				}
+			}
+		}
+	}
+}
+
+@keyframes burgMoveLine {
+	0% { 
+		top: var(--burg-line-bottom);
+		transform: rotate(0deg) translateX(-50%);
+	}
+
+	43%, 45% { 
+		top: 0; 
+		width: 100%;
+		transform: rotate(0deg) translateX(-50%);
+	}
+
+	55% { 
+		top: 0; 
+		width: 2px;
+		transform: rotate(0deg) translateX(-50%);
+	}
+
+	60% { 
+		top: 0; 
+		width: 2px;
+		transform: rotate(var(--burg-line-rotate)) translateX(-50%);
+	}
+
+	90% { 
+		top: 0; 
+		width: 130%;
+		transform: rotate(var(--burg-line-rotate)) translateX(-50%);
+	}
+
+	100% { 
+		top: 0; 
+		width: 100%;
+		transform: rotate(var(--burg-line-rotate)) translateX(-50%);
 	}
 }
 </style>

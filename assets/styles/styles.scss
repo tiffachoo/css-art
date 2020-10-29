@@ -1,2 +1,13 @@
 @import 'reset';
 @import 'variables';
+
+* { box-sizing: border-box; }
+
+:focus {
+	outline: none;
+}
+
+:focus-visible {
+	outline: 2px solid var(--ca-accent);
+	outline-offset: 1px;
+}
