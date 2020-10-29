@@ -49,7 +49,12 @@
 
 <script>
 	export default {
-		
+		name: 'WithYourEyesClosed',
+		head() {
+			return {
+				title: 'With your eyes closed',
+			}
+		}
 	}
 </script>
 

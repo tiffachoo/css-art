@@ -39,7 +39,12 @@
 
 <script>
 	export default {
-		
+		name: 'SingMeSomethingSoft',
+		head() {
+			return {
+				title: 'Sing me something soft',
+			}
+		}
 	}
 </script>
 

@@ -41,7 +41,12 @@
 
 <script>
 	export default {
-		
+		name: 'FloatOn',
+		head() {
+			return {
+				title: 'Float on',
+			}
+		}
 	}
 </script>
 

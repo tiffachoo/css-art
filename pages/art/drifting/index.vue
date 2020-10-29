@@ -35,7 +35,12 @@
 
 <script>
 	export default {
-		
+		name: 'Drifting',
+		head() {
+			return {
+				title: 'Drifting',
+			}
+		}
 	}
 </script>
 

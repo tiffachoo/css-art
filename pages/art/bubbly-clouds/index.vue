@@ -89,6 +89,11 @@
 					dee.style.top = null;
 				}
 			}
+		},
+		head() {
+			return {
+				title: 'Bubbly clouds',
+			}
 		}
 	}
 </script>

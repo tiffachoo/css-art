@@ -36,7 +36,12 @@
 
 <script>
 	export default {
-		
+		name: 'CatInABox',
+		head() {
+			return {
+				title: 'Cat in a box',
+			}
+		}
 	}
 </script>
 

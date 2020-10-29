@@ -43,6 +43,12 @@
 
 <script>
 	export default {
+		name: 'RabbitCrossing',
+		head() {
+			return {
+				title: 'Rabbit crossing',
+			}
+		}
 		
 	}
 </script>

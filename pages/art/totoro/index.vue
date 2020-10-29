@@ -69,7 +69,12 @@
 
 <script>
 	export default {
-		
+		name: 'Totoro',
+		head() {
+			return {
+				title: 'Totoro',
+			}
+		}
 	}
 </script>
 

@@ -47,7 +47,12 @@
 
 <script>
 	export default {
-		
+		name: 'Confustion',
+		head() {
+			return {
+				title: 'Confusion',
+			}
+		}
 	}
 </script>
 

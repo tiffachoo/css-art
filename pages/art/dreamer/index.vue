@@ -54,7 +54,12 @@
 
 <script>
 	export default {
-		
+		name: 'Dreamer',
+		head() {
+			return {
+				title: 'Dreamer',
+			}
+		}
 	}
 </script>
 

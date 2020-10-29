@@ -55,7 +55,12 @@
 
 <script>
 	export default {
-		
+		name: 'Okashi',
+		head() {
+			return {
+				title: 'Okashi',
+			}
+		}
 	}
 </script>
 

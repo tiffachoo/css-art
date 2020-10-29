@@ -56,7 +56,12 @@
 
 <script>
 	export default {
-		
+		name: 'Pokemon',
+		head() {
+			return {
+				title: 'Pokemon',
+			}
+		}
 	}
 </script>
 

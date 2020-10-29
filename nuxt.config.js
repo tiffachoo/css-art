@@ -4,6 +4,7 @@ export default {
 
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
+		titleTemplate: '%s * CSS art',
 		title: 'CSS art',
 		meta: [
 			{ charset: 'utf-8' },

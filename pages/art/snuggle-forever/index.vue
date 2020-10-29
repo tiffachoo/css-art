@@ -83,7 +83,12 @@
 
 <script>
 	export default {
-		
+		name: 'LetsSnuggleForever',
+		head() {
+			return {
+				title: 'Let\'s Snuggle Forever',
+			}
+		}
 	}
 </script>
 
