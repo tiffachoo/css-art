@@ -718,6 +718,7 @@ $secondary-color-tint: lighten($secondary-color, 10%);
 
 	&-control {
 		position: absolute;
+		opacity: 0;
 
 		&:checked {
 			+ .mimikyu {
