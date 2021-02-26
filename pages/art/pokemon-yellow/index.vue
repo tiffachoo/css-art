@@ -2,7 +2,27 @@
 	<div class="container">
 		<div class="gbc">
 			<div class="gbc-screen-wrap">
-				<div class="gbc-screen"></div>
+				<div class="gbc-screen">
+					<div class="pika-wrap">
+						<div class="pika">
+							<div class="pika-head">
+								<div class="pika-face">
+									<div class="pika-eye pika-eye-left"></div>
+									<div class="pika-eye pika-eye-right"></div>
+									<div class="pika-nose"></div>
+									<div class="pika-mouth">
+										<div class="pika-mouth-3"></div>
+										<div class="pika-mouth-inner"></div>
+									</div>
+									<div class="pika-cheek pika-cheek-left"></div>
+									<div class="pika-cheek pika-cheek-right"></div>
+								</div>
+								<div class="pika-ear pika-ear-left"></div>
+								<div class="pika-ear pika-ear-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="gbc-controls">
 				<div class="gbc-dpad"></div>
