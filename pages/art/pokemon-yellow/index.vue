@@ -30,7 +30,13 @@
 									<div class="pika-arm-fingers"></div>
 									<div class="pika-arm-shadow"></div>
 								</div>
+								<div class="pika-tail pika-tail-1">
+									<div class="pika-tail pika-tail-2">
+										<div class="pika-tail pika-tail-3"></div>
+									</div>
+								</div>
 							</div>
+							<div class="pika-pika"></div>
 						</div>
 					</div>
 				</div>
