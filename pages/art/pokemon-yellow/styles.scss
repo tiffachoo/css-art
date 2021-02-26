@@ -1,7 +1,7 @@
 @import '/assets/styles/mixins';
 
 $primary-color: #f9f652;
-$primary-color-dark: darken($primary-color, 10%);
+$primary-color-dark: #eae571;
 $primary-color-tint: lighten($primary-color, 10%);
 $secondary-color: #68e8d7;
 $secondary-color-dark: darken($secondary-color, 10%);
@@ -146,14 +146,19 @@ $accent-color-tint: #eb6e65;
 }
 
 .pika {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	position: relative;
+	top: 1em;
 
 	&-eye {
+		@include border-radius(50% 55%, 50% 45%);
+
 		position: absolute;
 		top: 2.25em;
 		height: 1em;
 		width: 1em;
-		border-radius: 100%;
 		background-color: var(--black);
 		overflow: hidden;
 
@@ -253,7 +258,7 @@ $accent-color-tint: #eb6e65;
 		&-inner {
 			position: absolute;
 			z-index: 1;
-			top: 0;
+			top: 1px;
 			left: 50%;
 			height: 1em;
 			width: 1em;
@@ -304,7 +309,7 @@ $accent-color-tint: #eb6e65;
 		width: 1.75em;
 		transform-origin: center bottom;
 		background-color: var(--primary-color);
-		// overflow: hidden;
+		overflow: hidden;
 
 		&::before,
 		&::after {
@@ -320,16 +325,18 @@ $accent-color-tint: #eb6e65;
 		}
 
 		&::after {
-			top: calc(100% - 1em);
-			left: 50%;
+			top: calc(100% - 1.5em);
 			height: 3em;
-			width: 3em;
-			transform: translateX(-50%);
+			width: 2em;
+			transform-origin: center center;
+			transform: rotate(var(--shadow-rotate, 20deg));
+			border-radius: 100%;
 			background-color: var(--primary-color-dark);
 		}
 
 		&-left {
 			--tip-rotate: -20deg;
+			--shadow-rotate: -20deg;
 			left: 0.5em;
 			transform: rotate(-70deg);
 			border-top-left-radius: 80% 100%;
@@ -338,6 +345,10 @@ $accent-color-tint: #eb6e65;
 
 			&::before {
 				right: 0;
+			}
+
+			&::after {
+				left: -1em;
 			}
 		}
 
@@ -350,6 +361,10 @@ $accent-color-tint: #eb6e65;
 
 			&::before {
 				left: 0;
+			}
+
+			&::after {
+				right: -1em;
 			}
 		}
 	}
@@ -364,8 +379,136 @@ $accent-color-tint: #eb6e65;
 
 	&-head {
 		position: relative;
+		z-index: 2;
 		height: 5.25em;
 		width: 6em;
+	}
+
+	&-arm {
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		height: 3em;
+		width: 2em;
+		transform-origin: center 1em;
+		background-color: var(--primary-color);
+
+		&,
+		&-shadow {
+			@include border-radius(50% 30%, 40% 70%);
+		}
+
+		&-shadow {
+			@include absolute-fill;
+
+			overflow: hidden;
+
+			// &::before,
+			&::after {
+				content: '';
+				position: absolute;
+				border-radius: 100%;
+				background-color: var(--primary-color-dark);
+			}
+
+			// &::before {
+			// 	top: -0.5em;
+			// 	height: 1.5em;
+			// 	width: 2.5em;
+			// 	transform: rotate(var(--shadow-sm-rotate, 20deg));
+			// }
+
+			&::after {
+				top: -0.25em;
+				height: 2.5em;
+				width: 1.75em;
+			}
+		}
+
+		&-fingers {
+			top: calc(100% - 0.375em);
+			left: 50%;
+			transform: translateX(-50%);
+
+			&,
+			&::before,
+			&::after {
+				@include border-radius(20% 30%, 50% 70%);
+
+				content: '';
+				position: absolute;
+				width: 0.25em;
+				height: 0.5em;
+				background-color: var(--primary-color);
+			}
+
+			&::before {
+				left: -0.1875em;
+			}
+
+			&::after {
+				left: 0.1875em;
+			}
+		}
+
+		&-left {
+			--shadow-sm-rotate: -20deg;
+			left: -0.75em;
+			transform: rotate(130deg);
+
+			.pika-arm-shadow {
+				// &::before {
+				// 	right: -1.75em;
+				// }
+
+				&::after {
+					left: -1em;
+				}
+			}
+		}
+
+		&-right {
+			right: -0.75em;
+			transform: rotate(-130deg);
+
+			.pika-arm-shadow {
+				// &::before {
+				// 	left: -1.75em;
+				// }
+
+				&::after {
+					right: -1em;
+				}
+			}
+		}
+	}
+
+	&-torso {
+		@include absolute-fill;
+		@include border-radius(20% 70%, 50% 20%);
+
+		z-index: 2;
+		background-color: var(--primary-color);
+
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: calc(100% - 1.5em);
+			left: 50%;
+			transform: translateX(-50%);
+			height: 2em;
+			width: 40%;
+			border-radius: 100%;
+			background-color: var(--primary-color-dark);
+		}
+	}
+
+	&-body {
+		position: relative;
+		z-index: 1;
+		margin-top: -1em;
+		height: 4em;
+		width: 5em;
 	}
 
 	&-wrap {

@@ -20,6 +20,17 @@
 								<div class="pika-ear pika-ear-left"></div>
 								<div class="pika-ear pika-ear-right"></div>
 							</div>
+							<div class="pika-body">
+								<div class="pika-torso"></div>
+								<div class="pika-arm pika-arm-left">
+									<div class="pika-arm-fingers"></div>
+									<div class="pika-arm-shadow"></div>
+								</div>
+								<div class="pika-arm pika-arm-right">
+									<div class="pika-arm-fingers"></div>
+									<div class="pika-arm-shadow"></div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
