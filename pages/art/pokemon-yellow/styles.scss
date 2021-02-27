@@ -196,12 +196,51 @@ $motion-boing: cubic-bezier(0, 0.51, 0.31, 1.51);
 					--gbc-screen-transition: background-color 0.3s ease-in-out;
 					--gbc-screen-width: 100%;
 					--gbc-screen-scale: 1;
+					--gbc-body-shadow-opacity: 0.3;
 
 					--pika-bubble-scale: 1;
 					--pika-bubble-transition: transform 0.4s 0.7s #{$motion-boing};
 					--pika-wrap-scale: 0.5;
 					--pika-wrap-transition: transform 0.4s 0.3s #{$motion-boing};
 					--pika-opacity: 1;
+				}
+			}
+
+			&:not(:checked) {
+				+ .gbc-power-label {
+					.gbc-power-label-lines {
+						position: absolute;
+						left: 100%;
+						bottom: 0.3125em;
+						height: 1px;
+					}
+
+					.gbc-power-label-line {
+						&-1,
+						&-2,
+						&-3 {
+							position: absolute;
+							height: 1px;
+							background-color: var(--gbc-stroke-color);
+							transform-origin: left center;
+							animation: moveyLines 2.2s 1s infinite ease-out;
+						}
+
+						&-2,
+						&-3 {
+							left: -0.125em;
+						}
+
+						&-2 {
+							top: -0.5em;
+							transform: rotate(-20deg);
+						}
+
+						&-3 {
+							top: 0.5em;
+							transform: rotate(20deg);
+						}
+					}
 				}
 			}
 		}
@@ -220,8 +259,8 @@ $motion-boing: cubic-bezier(0, 0.51, 0.31, 1.51);
 				height: 1em;
 				width: 0.25em;
 				transform: translateY(var(--power-translate, 100%));
-				border-top-right-radius: 1px;
-				border-bottom-right-radius: 1px;
+				border-top-right-radius: 2px;
+				border-bottom-right-radius: 2px;
 				border: 1px solid var(--gbc-stroke-color);
 				background-color: var(--gbc-controls-color);
 				transition: transform 0.3s ease-in-out;
@@ -239,6 +278,19 @@ $motion-boing: cubic-bezier(0, 0.51, 0.31, 1.51);
 		border: 1px solid var(--gbc-stroke-color);
 		background-color: var(--gbc-body-color);
 		font-size: 1rem;
+
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: -0.75em;
+			left: 50%;
+			height: 2em;
+			width: 80%;
+			transform: translateX(-50%);
+			border-radius: 100%;
+			background-color: var(--grey);
+			opacity: var(--gbc-body-shadow-opacity, 0);
+		}
 	}
 }
 
@@ -418,10 +470,10 @@ $motion-boing: cubic-bezier(0, 0.51, 0.31, 1.51);
 		}
 
 		&::before {
-			height: 1.25em;
+			height: 1.5em;
 			width: 150%;
 			background-color: var(--black);
-			transform: rotate(var(--tip-rotate, 20deg));
+			transform: rotate(var(--tip-rotate, 30deg));
 		}
 
 		&::after {
@@ -435,7 +487,7 @@ $motion-boing: cubic-bezier(0, 0.51, 0.31, 1.51);
 		}
 
 		&-left {
-			--tip-rotate: -20deg;
+			--tip-rotate: -30deg;
 			--shadow-rotate: -20deg;
 			left: 0.5em;
 			transform: rotate(-70deg);
@@ -694,5 +746,18 @@ $motion-boing: cubic-bezier(0, 0.51, 0.31, 1.51);
 	}
 	50% { 
 		transform: rotate(100deg);
+	}
+}
+
+@keyframes moveyLines {
+	0%, 80% {
+		width: 0;
+	}
+	85% {
+		opacity: 1;
+	}
+	 100% {
+		width: 0.75em;
+		opacity: 0;
 	}
 }

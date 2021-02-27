@@ -2,7 +2,13 @@
 	<div class="container">
 		<div class="gbc">
 			<input id="powerSwitch" checked aria-label="Toggle Gameboy power" class="gbc-power-control" type="checkbox">
-			<label for="powerSwitch" class="gbc-power-label"></label>
+			<label for="powerSwitch" class="gbc-power-label">
+				<div class="gbc-power-label-lines">
+					<div class="gbc-power-label-line gbc-power-label-line-1"></div>
+					<div class="gbc-power-label-line gbc-power-label-line-2"></div>
+					<div class="gbc-power-label-line gbc-power-label-line-3"></div>
+				</div>
+			</label>
 			<div class="gbc-body">
 				<div class="gbc-screen-wrap">
 					<div class="gbc-screen-light"></div>
