@@ -1,29 +1,7 @@
 <template>
 	<div class="container">
-		<div>
-			<Logo />
-			<h1 class="title">
-				css-art
-			</h1>
-			<div class="links">
-				<a
-					href="https://nuxtjs.org/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="button--green"
-				>
-					Documentation
-				</a>
-				<a
-					href="https://github.com/nuxt/nuxt.js"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="button--grey"
-				>
-					GitHub
-				</a>
-			</div>
-		</div>
+		<h1>CSS art</h1>
+		<p>by tiffachoo</p>
 	</div>
 </template>
 
@@ -31,43 +9,46 @@
 export default {}
 </script>
 
-<style>
-.container {
-	margin: 0 auto;
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
+<style lang="scss">
+.body {
+	display: grid;
+	place-items: center;
 }
 
-.title {
-	font-family:
-		'Quicksand',
-		'Source Sans Pro',
-		-apple-system,
-		BlinkMacSystemFont,
-		'Segoe UI',
-		Roboto,
-		'Helvetica Neue',
-		Arial,
-		sans-serif;
-	display: block;
-	font-weight: 300;
-	font-size: 100px;
-	color: #35495e;
-	letter-spacing: 1px;
+h1 {
+	position: relative;
+	font-family: var(--ca-font-family);
+	font-size: 3rem;
+
+	&::before,
+	&::after {
+		position: absolute;
+		z-index: -1;
+	}
+
+	&::before {
+		content: '';
+		bottom: 0;
+		left: -1ch;
+		height: 0.5ch;
+		width: 4ch;
+		background-color: var(--ca-accent);
+	}
+
+	&::after {
+		content: '*';
+		top: -1rem;
+		right: -3rem;
+		font-size: 2em;
+		line-height: 1;
+		color: var(--ca-accent);
+	}
 }
 
-.subtitle {
-	font-weight: 300;
-	font-size: 42px;
-	color: #526488;
-	word-spacing: 5px;
-	padding-bottom: 15px;
-}
-
-.links {
-	padding-top: 15px;
+p {
+	font-family: var(--ca-font-family);
+	font-style: italic;
+	letter-spacing: 0.02em;
+	text-align: right;
 }
 </style>
