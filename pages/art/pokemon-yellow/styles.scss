@@ -1,13 +1,12 @@
 @import '/assets/styles/mixins';
+@import url('https://fonts.googleapis.com/css2?family=Ranchers&display=swap');
 
 $primary-color: #f9f652;
 $primary-color-dark: #eae571;
 $primary-color-tint: lighten($primary-color, 10%);
-$secondary-color: #68e8d7;
-$secondary-color-dark: darken($secondary-color, 10%);
-$secondary-color-tint: lighten($secondary-color, 10%);
 $accent-color: #e53225;
 $accent-color-tint: #eb6e65;
+$motion-boing: cubic-bezier(0, 0.51, 0.31, 1.51);
 
 :root {
 	--black: #000c82;
@@ -16,14 +15,19 @@ $accent-color-tint: #eb6e65;
 	--primary-color: #{$primary-color};
 	--primary-color-dark: #{$primary-color-dark};
 	--primary-color-tint: #{$primary-color-tint};
-	--secondary-color: #{$secondary-color};
-	--secondary-color-dark: #{$secondary-color-dark};
-	--secondary-color-tint: #{$secondary-color-tint};
 	--accent-color: #{$accent-color};
 	--accent-color-tint: #{$accent-color-tint};
 
-	--gbc-color: var(--white);
-	--background-color: #555;
+	--background-color: #9198f2;
+	--gbc-white: #d2d6c9;
+	--gbc-black: #000852;
+
+	--gbc-stroke-color: var(--white);
+	--gbc-body-color: transparent;
+	--gbc-controls-color: transparent;
+	--gbc-screen-wrap-color: transparent;
+	--gbc-screen-color: transparent;
+	--gbc-screen-light-color: transparent;
 }
 
 * { box-sizing: border-box; }
@@ -32,19 +36,13 @@ $accent-color-tint: #eb6e65;
 	place-items: center;
 	height: 100vh;
 	background-color: var(--background-color);
+	font-family: 'Ranchers', sans-serif;
 	font-size: 16px;
 	line-height: 1;
 }
 
 .gbc {
-	@include border-radius(1em 1em, 50% 1.5em);
-
 	position: relative;
-	height: 20em;
-	width: 12em;
-	margin-top: 8em;
-	border: 1px solid var(--gbc-color);
-	font-size: 1rem;
 
 	&-screen {
 		top: 1.25em;
@@ -52,12 +50,25 @@ $accent-color-tint: #eb6e65;
 		width: calc(100% - 3.5em);
 		border-radius: 0.25em;
 
+		&::after {
+			@include absolute-fill(true);
+			
+			z-index: -1;
+			left: 50%;
+			width: var(--gbc-screen-width, 0);
+			border-radius: inherit;
+			transform: translateX(-50%) scaleY(var(--gbc-screen-scale, 0.01));
+			background-color: var(--gbc-screen-color);
+			transition: var(--gbc-screen-transition, transform 0.3s ease-in-out, width 0.3s 0.3s ease-in-out, background-color 0s 0.6s);
+		}
+
 		&,
 		&-wrap {
 			position: absolute;
 			left: 50%;
 			transform: translateX(-50%);
 			border: inherit;
+			transition: 0.3s ease-in-out;
 		}
 
 		&-wrap {
@@ -66,6 +77,18 @@ $accent-color-tint: #eb6e65;
 			top: 0.5em;
 			height: 11em;
 			width: calc(100% - 1em);
+			background-color: var(--gbc-screen-wrap-color);
+		}
+
+		&-light {
+			position: absolute;
+			top: 3.25em;
+			left: 0.625em;
+			height: 0.5em;
+			width: 0.5em;
+			border-radius: 100%;
+			background-color: var(--gbc-screen-light-color);
+			transition: 0.3s ease-in-out;
 		}
 	}
 
@@ -81,7 +104,9 @@ $accent-color-tint: #eb6e65;
 			content: '';
 			position: inherit;
 			border-radius: 0.25em;
-			border: 1px solid var(--white);
+			border: 1px solid var(--gbc-stroke-color);
+			background-color: var(--gbc-controls-color);
+			transition: 0.3s ease-in-out;
 		}
 
 		&::before {
@@ -106,7 +131,9 @@ $accent-color-tint: #eb6e65;
 		height: 1.5em;
 		width: 1.5em;
 		border-radius: 100%;
-		border: 1px solid var(--white);
+		border: 1px solid var(--gbc-stroke-color);
+		background-color: var(--gbc-controls-color);
+		transition: 0.3s ease-in-out;
 
 		&-a {
 			right: 0;
@@ -125,7 +152,9 @@ $accent-color-tint: #eb6e65;
 		height: 0.5em;
 		width: 1.25em;
 		border-radius: 0.25em;
-		border: 1px solid var(--white);
+		border: 1px solid var(--gbc-stroke-color);
+		background-color: var(--gbc-controls-color);
+		transition: 0.3s ease-in-out;
 
 		&-start {
 			right: 3.25em;
@@ -143,6 +172,74 @@ $accent-color-tint: #eb6e65;
 		width: calc(100% - 2em);
 		transform: translateX(-50%);
 	}
+
+	&-power {
+		&-control {
+			position: absolute;
+			z-index: -1;
+			opacity: 0;
+
+			&:checked {
+				+ .gbc-power-label {
+					--power-translate: 0%;
+					--gbc-controls-color: var(--black);
+					--gbc-stroke-color: var(--black);
+				}
+
+				~ .gbc-body {
+					--gbc-stroke-color: transparent;
+					--gbc-body-color: var(--grey);
+					--gbc-controls-color: var(--black);
+					--gbc-screen-wrap-color: var(--gbc-black);
+					--gbc-screen-color: var(--gbc-white);
+					--gbc-screen-light-color: var(--accent-color);
+					--gbc-screen-transition: background-color 0.3s ease-in-out;
+					--gbc-screen-width: 100%;
+					--gbc-screen-scale: 1;
+
+					--pika-bubble-scale: 1;
+					--pika-bubble-transition: transform 0.4s 0.7s #{$motion-boing};
+					--pika-wrap-scale: 0.5;
+					--pika-wrap-transition: transform 0.4s 0.3s #{$motion-boing};
+					--pika-opacity: 1;
+				}
+			}
+		}
+
+		&-label {
+			position: absolute;
+			top: 4em;
+			left: calc(100% - 1px);
+			height: 2em;
+			width: 1.5em;
+			cursor: pointer;
+
+			&::before {
+				content: '';
+				position: absolute;
+				height: 1em;
+				width: 0.25em;
+				transform: translateY(var(--power-translate, 100%));
+				border-top-right-radius: 1px;
+				border-bottom-right-radius: 1px;
+				border: 1px solid var(--gbc-stroke-color);
+				background-color: var(--gbc-controls-color);
+				transition: transform 0.3s ease-in-out;
+				cursor: pointer;
+			}
+		}
+	}
+
+	&-body {
+		@include border-radius(1em 1em, 50% 1.5em);
+	
+		position: relative;
+		height: 20em;
+		width: 12em;
+		border: 1px solid var(--gbc-stroke-color);
+		background-color: var(--gbc-body-color);
+		font-size: 1rem;
+	}
 }
 
 .pika {
@@ -159,8 +256,10 @@ $accent-color-tint: #eb6e65;
 		top: 2.25em;
 		height: 1em;
 		width: 1em;
+		transform-origin: center 70%;
 		background-color: var(--black);
 		overflow: hidden;
+		animation: blinky 7s infinite;
 
 		&::before,
 		&::after {
@@ -237,7 +336,6 @@ $accent-color-tint: #eb6e65;
 				position: absolute;
 				bottom: 0;
 				height: 0.5em;
-				// width: calc(50% - (var(--mouth-width) * 2));
 				width: calc(50% - var(--mouth-width));
 				border-radius: 100%;
 				border-bottom: var(--mouth-width) solid var(--black);
@@ -265,8 +363,10 @@ $accent-color-tint: #eb6e65;
 			border-bottom-left-radius: 50% 100%;
 			border-bottom-right-radius: 50% 100%;
 			background-color: var(--accent-color);
-			transform: translateX(-50%);
+			transform-origin: center top;
+			transform: translateX(-50%) scaleY(var(--pika-mouth-inner-scale, 1));
 			overflow: hidden;
+			transition: transform 0.4s ease-in-out;
 
 			&::after {
 				content: '';
@@ -501,6 +601,7 @@ $accent-color-tint: #eb6e65;
 			width: 1em;
 			transform-origin: center bottom;
 			transform: rotate(70deg);
+			animation: var(--pika-tail-animation);
 		}
 
 		&-2 {
@@ -529,6 +630,33 @@ $accent-color-tint: #eb6e65;
 		width: 5em;
 	}
 
+	&-bubble {
+		position: absolute;
+		bottom: calc(100% + 1.5rem);
+		left: 50%;
+		padding: 0.25em 0.5em;
+		transform-origin: center bottom;
+		transform: translateX(-50%) scale(var(--pika-bubble-scale, 0));
+		border-radius: 100%;
+		background-color: var(--black);
+		font-size: 2em;
+		line-height: 1;
+		color: var(--primary-color);
+		transition: var(--pika-bubble-transition, 0s 0.5s ease-in-out);
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: calc(100% - 0.125em);
+			left: 50%;
+			transform: translateX(-50%);
+			border-right: 0.325em solid transparent;
+			border-bottom: 0 solid transparent;
+			border-left: 0.325em solid transparent;
+			border-top: 0.325em solid var(--black);
+		}
+	}
+
 	&-wrap {
 		display: flex;
 		align-items: flex-end;
@@ -539,7 +667,32 @@ $accent-color-tint: #eb6e65;
 		height: 200%;
 		width: 200%;
 		transform-origin: center bottom;
-		transform: translateX(-50%);
-		background: #666;
+		transform: translateX(-50%) scale(var(--pika-wrap-scale, 0));
+		opacity: var(--pika-opacity, 0);
+		overflow: hidden;
+		cursor: pointer;
+		transition: var(--pika-wrap-transition, opacity 0.5s ease-in-out);
+
+		&:hover {
+			--pika-wrap-scale: 1;
+			--pika-mouth-inner-scale: 0;
+			--pika-tail-animation: tailMove 5s infinite ease-in-out;
+			--pika-bubble-scale: 0;
+			--pika-bubble-transition: transform 0.2s ease-in-out;
+		}
+	}
+}
+
+@keyframes blinky {
+	0%, 9%, 11%, 19%, 21%, 69%, 71%, 100% { transform: scaleY(1) }
+	10%, 20%, 70% { transform: scaleY(0) }
+}
+
+@keyframes tailMove {
+	0%, 100% { 
+		transform: rotate(70deg);
+	}
+	50% { 
+		transform: rotate(100deg);
 	}
 }
