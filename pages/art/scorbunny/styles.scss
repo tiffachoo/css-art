@@ -1,0 +1,81 @@
+:root {
+	--black: #9a4c32;
+	--white: #fff;
+	--primary-color: #f26d40;
+	--primary-color-dark: #ee4811;
+	--primary-color-tint: #f79655;
+	--accent-color: #fbe89d;
+
+	--background: #f8b6a0;
+}
+
+* { box-sizing: border-box; }
+.body {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+	background-color: var(--background);
+	font-size: 16px;
+	line-height: 1;
+}
+
+.scor {
+	position: relative;
+
+	&-eye {
+		@include border-radius(50% 55%, 50% 45%);
+		--position-eye-x: 2rem;
+		
+		position: absolute;
+		top: 4.75rem;
+		height: 1.875rem;
+		width: 1.75rem;
+		background-color: var(--black);
+		overflow: hidden;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			border-radius: 100%;
+		}
+
+		&::before {
+			top: 0.125rem;
+			height: 40%;
+			width: 40%;
+			background-color: var(--white);
+		}
+
+		&::after {
+			bottom: -0.125rem;
+			height: 40%;
+			width: 70%;
+			background-color: var(--primary-color);
+		}
+
+		&-left {
+			left: var(--position-eye-x);
+		}
+
+		&-right {
+			right: var(--position-eye-x);
+		}
+	}
+
+	&-face {
+		@include absolute-fill;
+		@include border-radius(50% 60%, 50% 40%);
+
+		background-color: var(--white);
+	}
+
+	&-head {
+		position: relative;
+		z-index: 5;
+		height: 10.5rem;
+		width: 12rem;
+	}
+}
