@@ -4,7 +4,18 @@
 			<div class="scor-face">
 				<div class="scor-eye scor-eye-left"></div>
 				<div class="scor-eye scor-eye-right"></div>
+				<div class="scor-face-lower">
+					<div class="scor-nose"></div>
+					<div class="scor-mouth"></div>
+					<div class="scor-mouth-line"></div>
+				</div>
+				<div class="scor-blush scor-blush-left"></div>
+				<div class="scor-blush scor-blush-right"></div>
 			</div>
+			<div class="scor-face-fluff scor-face-fluff-left"></div>
+			<div class="scor-face-fluff scor-face-fluff-right"></div>
+			<div class="scor-ear scor-ear-left"></div>
+			<div class="scor-ear scor-ear-right"></div>
 		</div>
 	</div>
 </template>
