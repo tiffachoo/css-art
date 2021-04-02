@@ -17,6 +17,10 @@
 			<div class="scor-ear scor-ear-left"></div>
 			<div class="scor-ear scor-ear-right"></div>
 		</div>
+		<div class="scor-body">
+			<div class="scor-torso"></div>
+			<div class="scor-neck"></div>
+		</div>
 	</div>
 </template>
 
