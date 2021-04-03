@@ -20,6 +20,18 @@
 		<div class="scor-body">
 			<div class="scor-torso"></div>
 			<div class="scor-neck"></div>
+			<div class="scor-arm scor-arm-left"></div>
+			<div class="scor-arm scor-arm-right"></div>
+			<div class="scor-leg scor-leg-left">
+				<div class="scor-leg-foot">
+					<div class="scor-leg-foot-pad"></div>
+				</div>
+			</div>
+			<div class="scor-leg scor-leg-right">
+				<div class="scor-leg-foot">
+					<div class="scor-leg-foot-pad"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
