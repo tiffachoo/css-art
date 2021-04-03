@@ -6,7 +6,10 @@
 				<div class="scor-eye scor-eye-right"></div>
 				<div class="scor-face-lower">
 					<div class="scor-nose"></div>
-					<div class="scor-mouth"></div>
+					<div class="scor-mouth">
+						<div class="scor-mouth-outer"></div>
+						<div class="scor-mouth-inner"></div>
+					</div>
 					<div class="scor-mouth-line"></div>
 				</div>
 				<div class="scor-blush scor-blush-left"></div>

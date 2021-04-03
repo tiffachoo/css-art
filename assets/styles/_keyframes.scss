@@ -1,0 +1,4 @@
+@keyframes blinky {
+	0%, 9%, 11%, 19%, 21%, 69%, 71%, 100% { transform: scaleY(1) }
+	10%, 20%, 70% { transform: scaleY(0) }
+}
