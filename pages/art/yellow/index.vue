@@ -70,7 +70,7 @@
 		name: 'Yellow',
 		head() {
 			return {
-				title: 'yellow',
+				title: 'Yellow',
 			}
 		}
 	}

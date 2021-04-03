@@ -45,10 +45,10 @@
 
 <script>
 	export default {
-		name: 'Scorbunny',
+		name: 'WarmingUp',
 		head() {
 			return {
-				title: 'Scorbunny',
+				title: 'Warming up',
 			}
 		}
 	}
