@@ -15,9 +15,13 @@
 			<div class="scor-face-fluff scor-face-fluff-left"></div>
 			<div class="scor-face-fluff scor-face-fluff-right"></div>
 			<div class="scor-ear scor-ear-left"></div>
-			<div class="scor-ear scor-ear-right"></div>
+			<div class="scor-ear-right-wrap">
+				<div class="scor-ear scor-ear-right"></div>
+				<div class="scor-ear-right-fluff"></div>
+			</div>
 		</div>
 		<div class="scor-body">
+			<div class="scor-tail"></div>
 			<div class="scor-torso"></div>
 			<div class="scor-neck"></div>
 			<div class="scor-arm scor-arm-left"></div>

@@ -9,6 +9,7 @@
 	--background: #f8b6a0;
 	--nose-color: #f5879b;
 	--blush-color: #f5879b;
+	--shadow-color: hsl(266, 21%, 95%);
 }
 
 * { box-sizing: border-box; }
@@ -26,6 +27,20 @@
 	position: relative;
 	padding-top: calc(var(--size-ear) + 2rem);
 	padding-bottom: 3rem;
+
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		bottom: 1.75rem;
+		left: 50%;
+		height: 2rem;
+		width: 50%;
+		transform: translateX(-50%);
+		border-radius: 100%;
+		background-color: var(--primary-color);
+		opacity: 0.2;
+	}
 
 	&-eye {
 		@include border-radius(50% 55%, 50% 45%);
@@ -163,6 +178,7 @@
 		@include absolute-fill;
 		@include border-radius(50% 60%, 50% 40%);
 
+		z-index: 2;	
 		background-color: var(--white);
 
 		&-lower {
@@ -219,15 +235,36 @@
 	}
 
 	&-ear {
-		--position-ear-x: -4rem;
-		position: absolute;
-		top: 3.5rem;
-		height: var(--size-ear);
-		width: var(--size-ear);
 		background-color: var(--white);
 		background: linear-gradient(var(--gradient-rotate-ear), var(--primary-color) 30%, var(--primary-color-tint) 30%, var(--primary-color-tint) 40%, var(--white) 40%);
-		transform-origin: var(--transform-origin-ear);
-		transform: rotate(var(--rotate-ear));
+		overflow: hidden;
+		
+		&,
+		&-right-wrap {
+			position: absolute;
+			z-index: 1;
+			top: 3.5rem;
+			height: var(--size-ear);
+			width: var(--size-ear);
+			transform-origin: var(--transform-origin-ear);
+			transform: rotate(var(--rotate-ear));
+		}
+
+		&-right-wrap {
+			--gradient-rotate-ear: -40deg;
+			--rotate-ear: -120deg;
+			--transform-origin-ear: left top;
+			--position-ear-shadow-right: 6rem;
+			right: -4rem;
+
+			> .scor-ear {
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				transform: none;
+			}
+		}
 
 		&::before,
 		&::after {
@@ -245,11 +282,24 @@
 			background-color: var(--accent-color);
 		}
 
+		&::after {
+			top: 1.625rem;
+			left: var(--position-ear-shadow-left, auto);
+			right: var(--position-ear-shadow-right, auto);
+			height: 2rem;
+			width: 4rem;
+			transform: rotate(var(--gradient-rotate-ear));
+			border-radius: 100%;
+			background-color: var(--shadow-color);
+			mix-blend-mode: multiply;
+		}
+
 		&-left {
 			--gradient-rotate-ear: 40deg;
 			--rotate-ear: 120deg;
 			--transform-origin-ear: right top;
-			left: var(--position-ear-x);
+			--position-ear-shadow-left: 6rem;
+			left: -4rem;
 			border-top-left-radius: 90%;
 			border-bottom-right-radius: 90%;
 			border-bottom-left-radius: 0.5rem;
@@ -257,23 +307,22 @@
 		}
 
 		&-right {
-			--gradient-rotate-ear: -40deg;
-			--rotate-ear: -120deg;
-			--transform-origin-ear: left top;
-			right: var(--position-ear-x);
-			border-top-right-radius: 90%;
-			border-bottom-left-radius: 90%;
-			border-bottom-right-radius: 0.5rem;
-			border-top-left-radius: 0.5rem;
+			&,
+			&-fluff {
+				border-top-right-radius: 90%;
+				border-bottom-left-radius: 90%;
+				border-bottom-right-radius: 0.5rem;
+				border-top-left-radius: 0.5rem;
+			}
 
-			&::after {
+			&-fluff {
+				position: absolute;
 				top: 2.5rem;
 				left: 1rem;
 				height: 3.5rem;
 				width: 2rem;
 				transform-origin: inherit;
 				transform: rotate(25deg);
-				border-radius: inherit;
 				border-bottom-right-radius: 0.25rem;
 				background-color: var(--white);
 			}
@@ -289,6 +338,7 @@
 
 	&-neck {
 		position: absolute;
+		z-index: 5;
 		top: 1.25rem;
 		height: 1rem; 
 		width: 100%;
@@ -350,12 +400,12 @@
 		}
 
 		&-left {
-			left: 0;
+			left: -0.125rem;
 			transform: rotate(-10deg);
 		}
 
 		&-right {
-			right: 0;
+			right: -0.125rem;
 			transform: rotate(10deg);
 		}
 	}
@@ -368,7 +418,7 @@
 		width: 1.25rem;
 		transform-origin: top center;
 		transform: rotate(var(--rotate-leg));
-		background-color: var(--white);
+		background-color: var(--shadow-color);
 
 		&-foot {
 			@include border-radius(50% 30%, 50% 60%);
@@ -454,7 +504,41 @@
 		@include absolute-fill();
 		@include border-radius(50% 70%, 50% 30%);
 
-		background: var(--white);
+		background: var(--shadow-color);
+		overflow: hidden;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		&::before {
+			top: 0;
+			height: 50%;
+			width: 100%;
+			background-color: var(--white);
+		}
+
+		&::after {
+			top: -0.75rem;
+			width: 45%;
+			height: 90%;
+			border-radius: 100%;
+			background-color: var(--white);
+		}
+	}
+
+	&-tail {
+		position: absolute;
+		left: -0.75rem;
+		bottom: 0.75rem;
+		height: 3rem;
+		width: 3rem;
+		border-radius: 100%;
+		background-color: var(--shadow-color);
 	}
 
 	&-body {
@@ -464,5 +548,18 @@
 		width: 6rem;
 		margin-top: -1.5rem;
 		transform: translateX(-50%);
+
+		&::before {
+			content: '';
+			position: absolute;
+			z-index: 2;
+			top: 1rem;
+			left: 50%;
+			height: 1.75rem;
+			width: 60%;
+			transform: translateX(-50%);
+			border-radius: 100%;
+			background-color: var(--shadow-color);
+		}
 	}
 }
