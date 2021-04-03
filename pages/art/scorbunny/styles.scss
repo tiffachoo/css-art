@@ -24,9 +24,9 @@
 }
 
 .scor {
-	--size-ear: 9rem;
+	--ear-size: 9rem;
 	position: relative;
-	padding-top: calc(var(--size-ear) + 2rem);
+	padding-top: calc(var(--ear-size) + 2rem);
 	padding-bottom: 3rem;
 
 	&::after {
@@ -45,7 +45,7 @@
 
 	&-eye {
 		@include border-radius(50% 55%, 50% 45%);
-		--position-eye-x: 2rem;
+		--eye-position-x: 2rem;
 		
 		position: absolute;
 		z-index: 2;
@@ -81,11 +81,11 @@
 		}
 
 		&-left {
-			left: var(--position-eye-x);
+			left: var(--eye-position-x);
 		}
 
 		&-right {
-			right: var(--position-eye-x);
+			right: var(--eye-position-x);
 		}
 	}
 
@@ -207,7 +207,7 @@
 	}
 
 	&-blush {
-		--position-blush-x: 1rem;
+		--blush-position-x: 1rem;
 		position: absolute;
 		z-index: 1;
 		top: 6.25rem;
@@ -215,17 +215,17 @@
 		width: 1.75rem;
 		border-radius: 100%;
 		background-color: var(--blush-color);
-		transform: rotate(var(--rotate-blush));
+		transform: rotate(var(--blush-rotate));
 		opacity: 0.3;
 
 		&-left { 
-			--rotate-blush: 5deg;
-			left: var(--position-blush-x);
+			--blush-rotate: 5deg;
+			left: var(--blush-position-x);
 		}
 
 		&-right { 
-			--rotate-blush: -5deg;
-			right: var(--position-blush-x);
+			--blush-rotate: -5deg;
+			right: var(--blush-position-x);
 		}
 	}
 
@@ -246,7 +246,7 @@
 	}
 
 	&-face-fluff {
-		--position-fluff-x: 2.5rem;
+		--fluff-position-x: 2.5rem;
 
 		position: absolute;
 		top: 7rem;
@@ -280,18 +280,18 @@
 		}
 		
 		&-left {
-			right: calc(100% - var(--position-fluff-x));
+			right: calc(100% - var(--fluff-position-x));
 		}
 		
 		&-right {
 			transform: rotateY(180deg);
-			left: calc(100% - var(--position-fluff-x));
+			left: calc(100% - var(--fluff-position-x));
 		}
 	}
 
 	&-ear {
 		background-color: var(--white);
-		background: linear-gradient(var(--gradient-rotate-ear), var(--primary-color) 30%, var(--primary-color-tint) 30%, var(--primary-color-tint) 40%, var(--white) 40%);
+		background: linear-gradient(var(--ear-gradient-rotate), var(--primary-color) 30%, var(--primary-color-tint) 30%, var(--primary-color-tint) 40%, var(--white) 40%);
 		overflow: hidden;
 		
 		&,
@@ -299,19 +299,19 @@
 			position: absolute;
 			z-index: 1;
 			top: 3.5rem;
-			height: var(--size-ear);
-			width: var(--size-ear);
-			transform-origin: var(--transform-origin-ear);
-			transform: rotate(var(--rotate-ear));
+			height: var(--ear-size);
+			width: var(--ear-size);
+			transform-origin: var(--ear-transform-origin);
+			transform: rotate(var(--ear-rotate));
 			animation: rotateThing 2s ease-in-out infinite alternate;
 		}
 
 		&-right-wrap {
-			--gradient-rotate-ear: -40deg;
-			--rotate-ear: -120deg;
-			--rotate-keyframe-to: -115deg;
-			--transform-origin-ear: left top;
-			--position-ear-shadow-right: 6rem;
+			--ear-gradient-rotate: -40deg;
+			--ear-rotate: -120deg;
+			--keyframe-rotate-to: -115deg;
+			--ear-transform-origin: left top;
+			--ear-position-shadow-right: 6rem;
 			right: -4rem;
 
 			> .scor-ear {
@@ -341,22 +341,22 @@
 
 		&::after {
 			top: 1.625rem;
-			left: var(--position-ear-shadow-left, auto);
-			right: var(--position-ear-shadow-right, auto);
+			left: var(--ear-position-shadow-left, auto);
+			right: var(--ear-position-shadow-right, auto);
 			height: 2rem;
 			width: 4rem;
-			transform: rotate(var(--gradient-rotate-ear));
+			transform: rotate(var(--ear-gradient-rotate));
 			border-radius: 100%;
 			background-color: var(--shadow-color);
 			mix-blend-mode: multiply;
 		}
 
 		&-left {
-			--gradient-rotate-ear: 40deg;
-			--rotate-ear: 120deg;
-			--rotate-keyframe-to: 115deg;
-			--transform-origin-ear: right top;
-			--position-ear-shadow-left: 6rem;
+			--ear-gradient-rotate: 40deg;
+			--ear-rotate: 120deg;
+			--keyframe-rotate-to: 115deg;
+			--ear-transform-origin: right top;
+			--ear-position-shadow-left: 6rem;
 			left: -4rem;
 			border-top-left-radius: 90%;
 			border-bottom-right-radius: 90%;
@@ -480,7 +480,7 @@
 		height: 2rem;
 		width: 1.25rem;
 		transform-origin: top center;
-		transform: rotate(var(--rotate-leg));
+		transform: rotate(var(--leg-rotate));
 		background-color: var(--shadow-color);
 
 		&-foot {
@@ -488,16 +488,16 @@
 
 			position: absolute;
 			bottom: 0;
-			left: var(--position-foot-left, auto);
-			right: var(--position-foot-right, auto);
+			left: var(--foot-position-left, auto);
+			right: var(--foot-position-right, auto);
 			height: 6.5rem;
 			width: 3rem;
 			transform-origin: center bottom;
-			transform: rotate(var(--rotate-foot));
-			border-top-right-radius: var(--radius-foot-right, 50% 30%);
-			border-top-left-radius: var(--radius-foot-left, 50% 30%);
+			transform: rotate(var(--foot-rotate));
+			border-top-right-radius: var(--foot-radius-right, 50% 30%);
+			border-top-left-radius: var(--foot-radius-left, 50% 30%);
 			background-color: var(--white);
-			background: linear-gradient(var(--gradient-rotate-foot), var(--primary-color) 30%, var(--white) 30%);
+			background: linear-gradient(var(--foot-gradient-rotate), var(--primary-color) 30%, var(--white) 30%);
 			overflow: hidden;
 			perspective: 1000px;
 			animation: rotateThing 1s ease-in-out infinite alternate;
@@ -516,52 +516,52 @@
 
 			&::before {
 				left: 1rem;
-				transform: var(--transform-foot-before);
+				transform: var(--foot-transform-before);
 			}
 			
 			&::after {
 				right: 1rem;
-				transform: var(--transform-foot-after);
+				transform: var(--foot-transform-after);
 			}
 
 			&-pad {
 				position: absolute;
 				top: 3rem;
-				left: var(--position-foot-pad-left, auto);
-				right: var(--position-foot-pad-right, auto);
+				left: var(--foot-pad-position-left, auto);
+				right: var(--foot-pad-position-right, auto);
 				height: 1.75rem;
 				width: 2.5rem;
-				transform: rotate(var(--rotate-foot-pad)) perspective(1rem) rotateX(-7deg);
+				transform: rotate(var(--foot-pad-rotate)) perspective(1rem) rotateX(-7deg);
 				border-radius: 0.5rem;
 				background-color: var(--accent-color);
 			}
 		}
 
 		&-left {
-			--radius-foot-right: 50% 20%;
-			--rotate-leg: 80deg;
-			--position-foot-left: 1rem;
-			--rotate-foot: -110deg;
-			--rotate-keyframe-to: -120deg;
-			--gradient-rotate-foot: 175deg;
-			--transform-foot-before: rotate(-5deg) translateX(-0.25rem);
-			--transform-foot-after: rotate(-5deg) translateX(-0.25rem);
-			--rotate-foot-pad: -5deg;
-			--position-foot-pad-left: -0.25rem;
+			--foot-radius-right: 50% 20%;
+			--leg-rotate: 80deg;
+			--foot-position-left: 1rem;
+			--foot-rotate: -110deg;
+			--keyframe-rotate-to: -120deg;
+			--foot-gradient-rotate: 175deg;
+			--foot-transform-before: rotate(-5deg) translateX(-0.25rem);
+			--foot-transform-after: rotate(-5deg) translateX(-0.25rem);
+			--foot-pad-rotate: -5deg;
+			--foot-pad-position-left: -0.25rem;
 			right: calc(100% - 2.125rem);
 		}
 
 		&-right {
-			--radius-foot-left: 50% 20%;
-			--rotate-leg: -80deg;
-			--position-foot-right: 1rem;
-			--rotate-foot: 110deg;
-			--rotate-keyframe-to: 120deg;
-			--gradient-rotate-foot: -175deg;
-			--transform-foot-before: rotate(5deg) translateX(0.25rem);
-			--transform-foot-after: rotate(5deg) translateX(0.25rem);
-			--rotate-foot-pad: 5deg;
-			--position-foot-pad-right: -0.25rem;
+			--foot-radius-left: 50% 20%;
+			--leg-rotate: -80deg;
+			--foot-position-right: 1rem;
+			--foot-rotate: 110deg;
+			--keyframe-rotate-to: 120deg;
+			--foot-gradient-rotate: -175deg;
+			--foot-transform-before: rotate(5deg) translateX(0.25rem);
+			--foot-transform-after: rotate(5deg) translateX(0.25rem);
+			--foot-pad-rotate: 5deg;
+			--foot-pad-position-right: -0.25rem;
 			left: calc(100% - 2.125rem);
 		}
 	}
@@ -641,6 +641,6 @@
 
 @keyframes rotateThing {
 	100% {
-		transform: rotate(var(--rotate-keyframe-to));
+		transform: rotate(var(--keyframe-rotate-to));
 	}
 }
