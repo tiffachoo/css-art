@@ -3,7 +3,7 @@ to: pages/art/<%= name %>/index.vue
 unless_exists: true
 ---
 <template>
-	<div class="">
+	<div class="<%= name %>">
 	</div>
 </template>
 

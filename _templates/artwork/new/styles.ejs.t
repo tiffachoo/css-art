@@ -22,3 +22,13 @@ unless_exists: true
 	font-size: 16px;
 	line-height: 1;
 }
+
+.<%= name %> {
+	position: relative;
+
+	*,
+	*::before,
+	*::after {
+		position: absolute;
+	}
+}

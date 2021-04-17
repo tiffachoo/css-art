@@ -1,0 +1,111 @@
+:root {
+	--black: #634f38;
+	--white: #fff;
+	--primary-color: #f5bc60;
+	--primary-color-dark: hsl(37, 88%, 50%);
+	--primary-color-tint: hsl(37, 88%, 80%);
+	--secondary-color: #bd9b74;
+	--accent-color: #3774b6;
+
+	--background: #eaeaea;
+	--stroke-width: 0.1875rem;
+}
+
+* { box-sizing: border-box; }
+.body {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+	background-color: var(--background);
+	font-size: 16px;
+	line-height: 1;
+}
+
+.retsuko {
+	position: relative;
+
+	*,
+	*::before,
+	*::after {
+		position: absolute;
+	}
+
+	&-eye {
+		--eye-position-x: 2.75rem;
+		top: 5rem;
+		height: 1.75rem;
+		width: 1.5rem;
+		border-radius: 50%;
+		background-color: var(--black);
+
+		&-left {
+			left: var(--eye-position-x);
+		}
+
+		&-right {
+			right: var(--eye-position-x);
+		}
+	}
+
+	&-mouth {
+		bottom: 1rem;
+		left: 50%;
+		height: 0.3125rem;
+		width: 1.5rem;
+		transform: translateX(-50%);
+		overflow: hidden;
+
+		&::before {
+			content: '';
+			bottom: 0;
+			left: 0;
+			height: 200%;
+			width: calc(100% - (var(--stroke-width) * 2));
+			border-radius: 100%;
+			border: var(--stroke-width) solid var(--black);
+		}
+	}
+
+	&-nose {
+		top: 1.25rem;
+		left: 50%;
+		height: 0.9375rem;
+		width: 0.9375rem;
+		transform: translateX(-50%) scaleY(0.65);
+
+		&::before {
+			@include absolute-fill(true);
+
+			border-top-left-radius: 100%;
+			border-top-right-radius: 0.5rem;
+			border-bottom-left-radius: 0.5rem;
+			border-bottom-right-radius: 0.25rem;
+			transform: rotate(45deg);
+			background-color: var(--black);
+		}
+	}
+
+	&-snout {
+		@include border-radius(50% 65%, 50% 35%);
+
+		bottom: 1rem;
+		left: 50%;
+		height: 4rem;
+		width: 4.5rem;
+		transform: translateX(-50%);
+		background-color: var(--white);
+	}
+
+	&-face {
+		@include absolute-fill;
+		@include border-radius(50% 75%, 50% 25%);
+
+		background-color: var(--primary-color);
+	}
+
+	&-head {
+		position: relative;
+		height: 10rem;
+		width: 12.5rem;
+	}
+}
