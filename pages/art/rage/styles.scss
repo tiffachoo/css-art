@@ -4,7 +4,7 @@
 	--primary-color: #f5bc60;
 	--primary-color-dark: hsl(37, 88%, 50%);
 	--primary-color-tint: hsl(37, 88%, 80%);
-	--secondary-color: #bd9b74;
+	--secondary-color: #d4a672;
 	--accent-color: #3774b6;
 
 	--background: #eaeaea;
@@ -31,23 +31,64 @@
 	}
 
 	&-eye {
+		@include border-radius(50% 60%, 50% 40%);
+
 		--eye-position-x: 2.75rem;
-		top: 5rem;
-		height: 1.75rem;
-		width: 1.5rem;
-		border-radius: 50%;
+		--eye-lash-position-x: -0.25rem;
+		z-index: 5;
+		top: 5.5rem;
+		height: 1.875rem;
+		width: 1.625rem;
 		background-color: var(--black);
+		transform: rotate(var(--eye-rotate));
+
+		&::before {
+			content: '';
+			top: -0.5rem;
+			height: 1rem;
+			width: 1.5rem;
+			border-radius: 100%;
+			border-bottom: 0.5rem solid var(--black);
+		}
 
 		&-left {
+			--eye-rotate: 15deg;
 			left: var(--eye-position-x);
+
+			&::before {
+				left: var(--eye-lash-position-x);
+			}
 		}
 
 		&-right {
+			--eye-rotate: -15deg;
 			right: var(--eye-position-x);
+
+			&::before {
+				right: var(--eye-lash-position-x);
+			}
+		}
+	}
+
+	&-eyebrow {
+		--eyebrow-position-x: 3.25rem;
+		top: 4rem;
+		height: 1rem;
+		width: 1.125rem;
+		border-radius: 100%;
+		background-color: var(--white);
+
+		&-left {
+			left: var(--eyebrow-position-x);
+		}
+
+		&-right {
+			right: var(--eyebrow-position-x);
 		}
 	}
 
 	&-mouth {
+		z-index: 4;
 		bottom: 1rem;
 		left: 50%;
 		height: 0.3125rem;
@@ -67,6 +108,7 @@
 	}
 
 	&-nose {
+		z-index: 4;
 		top: 1.25rem;
 		left: 50%;
 		height: 0.9375rem;
@@ -85,15 +127,74 @@
 		}
 	}
 
-	&-snout {
-		@include border-radius(50% 65%, 50% 35%);
+	&-face-fur {
+		--face-fur-position-x: -1.375rem;
+		--face-fur-border-radius: 60% 70%;
+		z-index: 2;
+		bottom: 0.1875rem;
+		height: 2.5rem;
+		width: 3rem;
+		transform-origin: center bottom;
+		transform: rotate(var(--face-fur-rotate));
+		background-color: var(--secondary-color);
 
-		bottom: 1rem;
+		&-left {
+			--face-fur-rotate: 5deg;
+			left: var(--face-fur-position-x);
+			border-bottom-left-radius: var(--face-fur-border-radius);
+		}
+
+		&-right {
+			--face-fur-rotate: -5deg;
+			right: var(--face-fur-position-x);
+			border-bottom-right-radius: var(--face-fur-border-radius);
+		}
+
+		&-white {
+			--face-fur-white-position-x: -2.5rem;
+			--face-fur-white-border-top-radius: 30% 70%;
+			--face-fur-white-border-bottom-radius: 70% 70%;
+			bottom: 0.75rem;
+			height: 2.875rem;
+			width: 2.125rem;
+			transform-origin: center bottom;
+			transform: rotate(var(--face-fur-white-rotate));
+			background-color: var(--white);
+
+			&-left {
+				--face-fur-white-rotate: 15deg;
+				left: var(--face-fur-white-position-x);
+				border-top-left-radius: var(--face-fur-white-border-top-radius);
+				border-bottom-left-radius: var(--face-fur-white-border-bottom-radius);
+			}
+
+			&-right {
+				--face-fur-white-rotate: -15deg;
+				right: var(--face-fur-white-position-x);
+				border-top-right-radius: var(--face-fur-white-border-top-radius);
+				border-bottom-right-radius: var(--face-fur-white-border-bottom-radius);
+			}
+		}
+	}
+
+	&-snout {
+		bottom: 0.5rem;
 		left: 50%;
 		height: 4rem;
 		width: 4.5rem;
 		transform: translateX(-50%);
-		background-color: var(--white);
+
+		&-fur {
+			@include border-radius(50% 65%, 50% 35%);
+
+			z-index: 3;
+			background-color: var(--white);
+
+			&,
+			&-wrap {
+				@include absolute-fill;
+			}
+		}
 	}
 
 	&-face {
