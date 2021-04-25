@@ -25,9 +25,27 @@
 					<div class="retsuko-nose"></div>
 					<div class="retsuko-mouth"></div>
 				</div>
+				<div class="retsuko-blush retsuko-blush-left"></div>
+				<div class="retsuko-blush retsuko-blush-right"></div>
 			</div>
-			<div class="retsuko-ear retsuko-ear-left"></div>
-			<div class="retsuko-ear retsuko-ear-right"></div>
+			<div class="retsuko-ear retsuko-ear-left">
+				<div class="retsuko-ear-fur retsuko-ear-fur-1"></div>
+				<div class="retsuko-ear-fur retsuko-ear-fur-2"></div>
+			</div>
+			<div class="retsuko-ear retsuko-ear-right">
+				<div class="retsuko-ear-fur retsuko-ear-fur-1"></div>
+				<div class="retsuko-ear-fur retsuko-ear-fur-2"></div>
+			</div>
+		</div>
+		<div class="retsuko-body">
+			<div class="retsuko-torso">
+				<div class="retsuko-shirt"></div>
+				<div class="retsuko-shirt-cut">
+					<div class="retsuko-shirt-cut-fur"></div>
+					<div class="retsuko-shirt-collar retsuko-shirt-collar-left"></div>
+					<div class="retsuko-shirt-collar retsuko-shirt-collar-right"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

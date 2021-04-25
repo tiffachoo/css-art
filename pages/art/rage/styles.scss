@@ -8,6 +8,7 @@
 	--accent-color: #3774b6;
 
 	--background: #eaeaea;
+	--blush-color: #ff99b8;
 	--stroke-width: 0.1875rem;
 }
 
@@ -84,6 +85,23 @@
 
 		&-right {
 			right: var(--eyebrow-position-x);
+		}
+	}
+
+	&-blush {
+		top: 6.75rem;
+		height: 1.25rem;
+		width: 1.625rem;
+		border-radius: 100%;
+		background-color: var(--blush-color);
+		opacity: 0.5;
+
+		&-left {
+			left: 1.625rem;
+		}
+
+		&-right {
+			right: 1.625rem;
 		}
 	}
 
@@ -270,6 +288,26 @@
 			background-color: var(--secondary-color);
 		}
 
+		&-fur {
+			height: 1.25rem;
+			width: 1.25rem;
+			transform: skewX(var(--ear-fur-skew)) rotate(var(--ear-fur-rotate, 0deg));
+			background-color: var(--white);
+
+			&-1 {
+				bottom: 0.625rem;
+				left: var(--ear-fur-1-left, auto);
+				right: var(--ear-fur-1-right, auto);
+			}
+
+			&-2 {
+				--ear-fur-rotate: var(--ear-fur-2-rotate);
+				bottom: 0rem;
+				left: var(--ear-fur-2-left, auto);
+				right: var(--ear-fur-2-right, auto);
+			}
+		}
+
 		&-left {
 			--ear-border-radius: 0.5rem 0 0 100%;
 			--ear-transform-origin: right center;
@@ -277,6 +315,10 @@
 			--ear-inner-left: 1.5rem;
 			--ear-inner-rotate: -5deg;
 			--ear-inner-border-radius:  0.25rem 90% 0 90%;
+			--ear-fur-skew: -30deg;
+			--ear-fur-1-left: 1.875rem;
+			--ear-fur-2-left: 2.325rem;
+			--ear-fur-2-rotate: -30deg;
 			left: var(--ear-position-x);
 		}
 
@@ -287,6 +329,10 @@
 			--ear-inner-right: 1.5rem;
 			--ear-inner-rotate: 5deg;
 			--ear-inner-border-radius:  90% 0.25rem 90% 0;
+			--ear-fur-skew: 30deg;
+			--ear-fur-1-right: 1.875rem;
+			--ear-fur-2-right: 2.325rem;
+			--ear-fur-2-rotate: 30deg;
 			right: var(--ear-position-x);
 		}
 	}
@@ -295,5 +341,106 @@
 		position: relative;
 		height: 10rem;
 		width: 12.5rem;
+	}
+
+	&-shirt {
+		@include absolute-fill;
+
+		background-color: var(--accent-color);
+		transform: perspective(1rem) rotateX(3deg);
+
+		&::before,
+		&::after {
+			--shirt-bottom-position-x: 0.1875rem;
+			content: '';
+			bottom: -0.325rem;
+			height: 1.9375rem;
+			width: 1.9375rem;
+			transform: rotate(var(--shirt-bottom-rotate));
+			background-color: var(--accent-color);
+		}
+
+		&::before {
+			--shirt-bottom-rotate: 15deg;
+			left: var(--shirt-bottom-position-x);
+		}
+
+		&::after {
+			--shirt-bottom-rotate: -15deg;
+			right: var(--shirt-bottom-position-x);
+		}
+
+		&-cut {
+			left: 50%;
+
+			&-fur {
+				z-index: 2;
+				border-style: solid;
+				border-width: 2rem 1.25rem 0 1.25rem;
+				border-color: var(--secondary-color) transparent transparent transparent;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		}
+
+		&-collar {
+			z-index: 1;
+
+			&::before,
+			&::after {
+				content: '';
+				background-color: var(--white);
+			}
+
+			&::before {
+				top: 0.5rem;
+				left: var(--collar-1-left, auto);
+				right: var(--collar-1-right, auto);
+				height: 1rem;
+				width: 1rem;
+				transform: rotate(var(--collar-1-rotate));
+			}
+
+			&::after {
+				top: 1.25rem;
+				left: var(--collar-2-left, auto);
+				right: var(--collar-2-right, auto);
+				height: 0.625rem;
+				width: 0.625rem;
+				transform: rotate(var(--collar-2-rotate));
+			}
+
+			&-left {
+				--collar-1-rotate: 20deg;
+				--collar-2-rotate: 18deg;
+				--collar-1-left: -1rem;
+				--collar-2-left: -0.5rem;
+			}
+
+			&-right {
+				--collar-1-rotate: -20deg;
+				--collar-2-rotate: -18deg;
+				--collar-1-right: -1rem;
+				--collar-2-right: -0.5rem;
+			}
+		}
+	}
+
+	&-torso {
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 3rem;
+		perspective: 1000px;
+	}
+
+	&-body {
+		position: relative;
+		margin-top: -1rem;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 4rem;
+		height: 5.5rem;
+		background-color: var(--secondary-color);
 	}
 }
