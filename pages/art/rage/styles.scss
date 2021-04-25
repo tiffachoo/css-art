@@ -161,8 +161,43 @@
 			transform: rotate(var(--face-fur-white-rotate));
 			background-color: var(--white);
 
+			&-detail {
+				height: 1.25rem;
+				width: 1.25rem;
+				border-radius: var(--face-fur-detail-border-radius);
+				background-color: var(--white);
+
+				&-1 {
+					top: 0;
+					left: var(--face-fur-detail-1-left, auto);
+					right: var(--face-fur-detail-1-right, auto);
+					transform: rotate(var(--face-fur-detail-1-rotate));
+				}
+
+				&-2 {
+					top: 1rem;
+					left: var(--face-fur-detail-2-left, auto);
+					right: var(--face-fur-detail-2-right, auto);
+					transform: rotate(var(--face-fur-detail-2-rotate));
+				}
+
+				&-3 {
+					top: 1.625rem;
+					left: var(--face-fur-detail-3-left, auto);
+					right: var(--face-fur-detail-3-right, auto);
+					transform: rotate(var(--face-fur-detail-3-rotate));
+				}
+			}
+
 			&-left {
 				--face-fur-white-rotate: 15deg;
+				--face-fur-detail-border-radius: 90% 0 90% 0;
+				--face-fur-detail-1-left: -0.5rem;
+				--face-fur-detail-1-rotate: -15deg;
+				--face-fur-detail-2-left: -0.325rem;
+				--face-fur-detail-2-rotate: -30deg;
+				--face-fur-detail-3-left: 0.125rem;
+				--face-fur-detail-3-rotate: -72deg;
 				left: var(--face-fur-white-position-x);
 				border-top-left-radius: var(--face-fur-white-border-top-radius);
 				border-bottom-left-radius: var(--face-fur-white-border-bottom-radius);
@@ -170,6 +205,13 @@
 
 			&-right {
 				--face-fur-white-rotate: -15deg;
+				--face-fur-detail-border-radius: 0 90% 0 90%;
+				--face-fur-detail-1-right: -0.5rem;
+				--face-fur-detail-1-rotate: 15deg;
+				--face-fur-detail-2-right: -0.325rem;
+				--face-fur-detail-2-rotate: 30deg;
+				--face-fur-detail-3-right: 0.125rem;
+				--face-fur-detail-3-rotate: 72deg;
 				right: var(--face-fur-white-position-x);
 				border-top-right-radius: var(--face-fur-white-border-top-radius);
 				border-bottom-right-radius: var(--face-fur-white-border-bottom-radius);
@@ -201,7 +243,52 @@
 		@include absolute-fill;
 		@include border-radius(50% 75%, 50% 25%);
 
+		z-index: 3;
 		background-color: var(--primary-color);
+	}
+
+	&-ear {
+		--ear-position-x: -2rem;
+		z-index: 1;
+		top: 1.5rem;
+		height: 6rem;
+		width: 6rem;
+		background-color: var(--white);
+		border-radius: var(--ear-border-radius);
+		transform-origin: var(--ear-transform-origin);
+		transform: rotate(var(--ear-rotate));
+
+		&::before {
+			content: '';
+			top: 1.5rem;
+			left: var(--ear-inner-left, auto);
+			right: var(--ear-inner-right, auto);
+			height: 3rem;
+			width: 3rem;
+			transform: rotate(var(--ear-inner-rotate));
+			border-radius:  var(--ear-inner-border-radius);
+			background-color: var(--secondary-color);
+		}
+
+		&-left {
+			--ear-border-radius: 0.5rem 0 0 100%;
+			--ear-transform-origin: right center;
+			--ear-rotate: 30deg;
+			--ear-inner-left: 1.5rem;
+			--ear-inner-rotate: -5deg;
+			--ear-inner-border-radius:  0.25rem 90% 0 90%;
+			left: var(--ear-position-x);
+		}
+
+		&-right {
+			--ear-border-radius: 0 0.5rem 100% 0;
+			--ear-transform-origin: left center;
+			--ear-rotate: -30deg;
+			--ear-inner-right: 1.5rem;
+			--ear-inner-rotate: 5deg;
+			--ear-inner-border-radius:  90% 0.25rem 90% 0;
+			right: var(--ear-position-x);
+		}
 	}
 
 	&-head {
