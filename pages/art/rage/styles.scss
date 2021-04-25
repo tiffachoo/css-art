@@ -9,6 +9,7 @@
 
 	--background: #eaeaea;
 	--blush-color: #ff99b8;
+	--shadow-color: rgba(73, 104, 136, 0.3);
 	--stroke-width: 0.1875rem;
 }
 
@@ -346,6 +347,7 @@
 	&-shirt {
 		@include absolute-fill;
 
+		z-index: 5;
 		background-color: var(--accent-color);
 		transform: perspective(1rem) rotateX(3deg);
 
@@ -371,6 +373,7 @@
 		}
 
 		&-cut {
+			z-index: 6;
 			left: 50%;
 
 			&-fur {
@@ -426,12 +429,77 @@
 		}
 	}
 
+	&-arm {
+		--arm-position-x: -0.25rem;
+		--arm-height: 1.5rem;
+		z-index: 1;
+		top: 0.5rem;
+		height: var(--arm-height);
+		width: 0.5rem;
+		transform-origin: 0.25rem center;
+		transform: rotate(var(--arm-rotate));
+		background-color: var(--white);
+
+		&-lower {
+			z-index: 2;
+			top: calc(100% - 0.5rem);
+			width: 100%;
+			height: var(--arm-height);
+			background-color: inherit;
+		}
+
+		&-paw {
+			z-index: 1;
+			left: calc(50% - 0.375rem);
+			top: calc(100% + var(--arm-height) - 0.625rem);
+			height: 1rem;
+			width: 0.75rem;
+			transform: rotate(--arm-paw-rotate);
+			transform-origin: center 0.125rem;
+			background-color: var(--secondary-color);
+			border-radius: 100%;
+		}
+
+		&-left {
+			--arm-rotate: 15deg;
+			--arm-paw-rotate: 10deg;
+			left: var(--arm-position-x);
+		}
+
+		&-right {
+			--arm-rotate: -15deg;
+			--arm-paw-rotate: -10deg;
+			right: var(--arm-position-x);
+		}
+	}
+
 	&-torso {
+		z-index: 2;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 3rem;
 		perspective: 1000px;
+	}
+
+	&-skirt {
+		z-index: 1;
+		bottom: 0;
+		height: 3rem;
+		width: 100%;
+		background-color: var(--accent-color);
+		transform: perspective(1rem) rotateX(-2deg);
+
+		&::before {
+			content: '';
+			left: 50%;
+			width: 90%;
+			height: 1.5rem;
+			transform: translateX(-50%);
+			border-radius: 100%;
+			background-color: var(--shadow-color);
+			mix-blend-mode: multiply;
+		}
 	}
 
 	&-body {
@@ -441,6 +509,6 @@
 		transform: translateX(-50%);
 		width: 4rem;
 		height: 5.5rem;
-		background-color: var(--secondary-color);
+		perspective: 1000px;
 	}
 }

@@ -45,7 +45,16 @@
 					<div class="retsuko-shirt-collar retsuko-shirt-collar-left"></div>
 					<div class="retsuko-shirt-collar retsuko-shirt-collar-right"></div>
 				</div>
+				<div class="retsuko-arm retsuko-arm-left">
+					<div class="retsuko-arm-lower"></div>
+					<div class="retsuko-arm-paw"></div>
+				</div>
+				<div class="retsuko-arm retsuko-arm-right">
+					<div class="retsuko-arm-lower"></div>
+					<div class="retsuko-arm-paw"></div>
+				</div>
 			</div>
+			<div class="retsuko-skirt"></div>
 		</div>
 	</div>
 </template>
