@@ -54,7 +54,12 @@
 					<div class="retsuko-arm-paw"></div>
 				</div>
 			</div>
-			<div class="retsuko-skirt"></div>
+			<div class="retsuko-body-lower">
+				<div class="retsuko-skirt"></div>
+				<div class="retsuko-leg retsuko-leg-left"></div>
+				<div class="retsuko-leg retsuko-leg-right"></div>
+				<div class="retsuko-tail"></div>
+			</div>
 		</div>
 	</div>
 </template>

@@ -482,24 +482,107 @@
 		perspective: 1000px;
 	}
 
-	&-skirt {
-		z-index: 1;
-		bottom: 0;
+	&-tail {
+		top: 2rem;
+		left: calc(100% - 1rem);
 		height: 3rem;
-		width: 100%;
+		width: 3rem;
+		transform-origin: left top;
+		transform: rotate(-30deg);
+		border-top-right-radius: 85%;
+		border-bottom-left-radius: 85%;
+		border-bottom-right-radius: 15%;
+		background-color: aqua;
+		// background: linear-gradient(135deg, var(--primary-color) 30%, var(--secondary-color) 30%, var(--secondary-color) 40%, var(--primary-color) 40%, var(--primary-color) 55%, var(--secondary-color) 55%, var(--secondary-color) 65%, var(--primary-color) 65%, var(--primary-color) 80%, var(--secondary-color) 80%);
+		background-image: radial-gradient(circle 4rem at 0 0.3125rem, var(--primary-color) 30%, var(--secondary-color) 30%, var(--secondary-color) 40%, var(--primary-color) 40%, var(--primary-color) 55%, var(--secondary-color) 55%, var(--secondary-color) 65%, var(--primary-color) 65%, var(--primary-color) 80%, var(--secondary-color) 80%);
+		background-repeat: no-repeat;
+	}
+
+	&-leg {
+		--leg-position-x: 0.75rem;
+		z-index: 1;
+		top: calc(100% - 0.5rem);
+		height: 1.75rem;
+		width: 1rem;
+		background-color: var(--secondary-color);
+
+		&::before,
+		&::after {
+			content: '';
+			transform-origin: var(--leg-foot-transform-origin);
+			transform: rotate(var(--leg-foot-rotate));
+			border-radius: 100%;
+		}
+
+		&::before {
+			top: calc(100% - 0.5rem);
+			left: var(--leg-foot-left, auto);
+			right: var(--leg-foot-right, auto);
+			height: 0.625rem;
+			width: 1.325rem;
+			background-color: var(--black);
+		}
+
+		&::after {
+			bottom: 0.125rem;
+			left: 0;
+			width: 100%;
+			height: 0.4375rem;
+			background-color: var(--secondary-color);
+		}
+
+		&-left {
+			--leg-foot-left: -0.0625rem;
+			--leg-foot-rotate: 20deg;
+			--leg-foot-transform-origin: left center;
+			left: var(--leg-position-x);
+		}
+
+		&-right {
+			--leg-foot-right: -0.0625rem;
+			--leg-foot-rotate: -20deg;
+			--leg-foot-transform-origin: right center;
+			right: var(--leg-position-x);
+		}
+	}
+
+	&-skirt {
+		@include absolute-fill;
+
+		z-index: 2;
 		background-color: var(--accent-color);
 		transform: perspective(1rem) rotateX(-2deg);
 
-		&::before {
+		&::before,
+		&::after {
 			content: '';
+		}
+
+		&::before {
+			top: -0.5rem;
 			left: 50%;
-			width: 90%;
-			height: 1.5rem;
+			width: 95%;
+			height: 2rem;
 			transform: translateX(-50%);
 			border-radius: 100%;
 			background-color: var(--shadow-color);
 			mix-blend-mode: multiply;
 		}
+
+		&::after {
+			bottom: -0.25rem;
+			border-style: solid;
+			border-width: 0.25rem 2rem 0 2rem;
+			border-color: var(--accent-color) transparent transparent transparent;
+
+		}
+	}
+
+	&-body-lower {
+		z-index: 1;
+		bottom: 0;
+		height: 3rem;
+		width: 100%;
 	}
 
 	&-body {
