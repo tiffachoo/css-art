@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700&display=swap');
+
 :root {
 	--black: #634f38;
 	--white: #fff;
@@ -7,9 +9,9 @@
 	--secondary-color: #d4a672;
 	--accent-color: #3774b6;
 
-	--background: #eaeaea;
 	--blush-color: #ff99b8;
 	--shadow-color: rgba(73, 104, 136, 0.3);
+	--background: linear-gradient(hsl(8, 100%, 90%) 0%, hsl(342, 100%, 90%) 100%);
 	--stroke-width: 0.1875rem;
 }
 
@@ -18,18 +20,31 @@
 	display: grid;
 	place-items: center;
 	height: 100vh;
-	background-color: var(--background);
+	background: var(--background);
+	font-family: 'Shippori Mincho B1', serif;
 	font-size: 16px;
 	line-height: 1;
 }
 
 .retsuko {
 	position: relative;
+	cursor: pointer;
 
 	*,
 	*::before,
 	*::after {
 		position: absolute;
+	}
+
+	&-rage {
+		top: 3rem;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: var(--black);
+		opacity: var(--rage-opacity, 0);
+		transition: 0.2s;
 	}
 
 	&-eye {
@@ -593,5 +608,16 @@
 		width: 4rem;
 		height: 5.5rem;
 		perspective: 1000px;
+	}
+}
+
+.rage-control {
+	position: absolute;
+	opacity: 0;
+
+	&:checked {
+		+ .retsuko {
+			--rage-opacity: 1;
+		}
 	}
 }
