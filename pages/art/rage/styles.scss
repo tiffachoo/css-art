@@ -10,6 +10,8 @@
 	--accent-color: #3774b6;
 
 	--blush-color: #ff99b8;
+	--mouth-color: #c42127;
+	--tongue-color: #e0464b;
 	--shadow-color: rgba(73, 104, 136, 0.3);
 	--background: linear-gradient(hsl(8, 100%, 90%) 0%, hsl(342, 100%, 90%) 100%);
 	--stroke-width: 0.1875rem;
@@ -110,7 +112,8 @@
 		width: 1.625rem;
 		border-radius: 100%;
 		background-color: var(--blush-color);
-		opacity: 0.5;
+		opacity: var(--blush-opacity, 0.5);
+		transition: var(--blush-transition, opacity 0s);
 
 		&-left {
 			left: 1.625rem;
@@ -136,8 +139,159 @@
 			left: 0;
 			height: 200%;
 			width: calc(100% - (var(--stroke-width) * 2));
+			transform-origin: center bottom;
+			transform: var(--mouth-transform, none);
 			border-radius: 100%;
 			border: var(--stroke-width) solid var(--black);
+			background-color: var(--mouth-background-color, transparent);
+			transition: var(--mouth-transition, transform 0s ease-in-out);
+		}
+	}
+
+	&-mouth-rage {
+		z-index: 4;
+		bottom: 0.25rem;
+		left: 50%;
+		height: 2.75rem;
+		width: 2.625rem;
+		transform: translateX(-50%) scale(var(--mouth-rage-scale, 0));
+		transition: var(--mouth-rage-transition, transform 0s);
+
+		&-teeth {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+
+			&-tooth {
+				position: relative;
+				border-style: solid;
+			}
+
+			&-top {
+				top: 0;
+
+				.retsuko-mouth-rage-teeth-tooth {
+					border-width: 0.5rem 0.25rem 0 0.25rem;
+					border-color: var(--white) transparent transparent transparent;
+
+					&-2,
+					&-3 {
+						border-width: 0.5rem 0.1875rem 0 0.1875rem;
+					}
+				}
+			}
+
+			&-bottom {
+				bottom: 0;
+
+				.retsuko-mouth-rage-teeth-tooth {
+					border-width: 0 0.25rem 0.375rem 0.25rem;
+					border-color: transparent transparent var(--white) transparent;
+				}
+			}
+		}
+
+		&-inner {
+			@include absolute-fill();
+
+			border: 0.3125rem solid var(--black);
+			border-top-width: 0.5rem;
+			background-color: var(--mouth-color);
+			transform: perspective(1rem) rotateX(5deg);
+		}
+
+		&-makeup {
+			--makeup-tip-border-radius: 0.0625rem;
+			z-index: -1;
+			left: 50%;
+			transform: translateX(-50%);
+
+			&::before,
+			&::after {
+				content: '';
+				height: 1rem;
+				width: 1rem;
+				background-color: var(--black);
+			}
+
+			&-top {
+				top: -0.5rem;
+				width: 90%;
+				height: 0.75rem;
+
+				&::before,
+				&::after {
+					top: 0.5rem;
+				}
+
+				&::before {
+					left: -0.125rem;
+					transform: rotate(-5deg);
+					border-top-left-radius: var(--makeup-tip-border-radius);
+					border-top-right-radius: 100%;
+					border-bottom-left-radius: 100%;
+				}
+
+				&::after {
+					right: -0.125rem;
+					transform: rotate(5deg);
+					border-top-right-radius: var(--makeup-tip-border-radius);
+					border-top-left-radius: 100%;
+					border-bottom-right-radius: 100%;
+				}
+			}
+
+			&-bottom {
+				bottom: -0.875rem;
+				width: 110%;
+				height: 0.75rem;
+
+				&::before,
+				&::after {
+					bottom: 0.5rem;
+				}
+
+				&::before {
+					left: -0.125rem;
+					transform: rotate(15deg);
+					border-bottom-left-radius: var(--makeup-tip-border-radius);
+					border-bottom-right-radius: 100%;
+					border-top-left-radius: 100%;
+				}
+
+				&::after {
+					right: -0.125rem;
+					transform: rotate(-15deg);
+					border-bottom-right-radius: var(--makeup-tip-border-radius);
+					border-bottom-left-radius: 100%;
+					border-top-right-radius: 100%;
+				}
+			}
+		}
+
+		&-tongue {
+			@include border-radius(50% 20%, 50% 80%);
+
+			right: 0;
+			top: calc(100% - 1.125rem);
+			height: 1.875rem;
+			width: 1.5rem;
+			transform-origin: center 20%;
+			transform: rotate(-20deg) scaleY(var(--tongue-scale, 0));
+			background-color: var(--tongue-color);
+			transition: var(--tongue-transition, transform 0s);
+
+			&::before {
+				content: '';
+				top: 0;
+				left: 50%;
+				height: 60%;
+				width: var(--stroke-width);
+				transform: translateX(-50%);
+				border-bottom-right-radius: var(--stroke-width);
+				border-bottom-left-radius: var(--stroke-width);
+				background-color: var(--mouth-color);
+			}
 		}
 	}
 
@@ -147,7 +301,8 @@
 		left: 50%;
 		height: 0.9375rem;
 		width: 0.9375rem;
-		transform: translateX(-50%) scaleY(0.65);
+		transform: translate(-50%, var(--nose-translate-y, 0)) scaleY(0.65);
+		transition: var(--nose-transition, transform 0s);
 
 		&::before {
 			@include absolute-fill(true);
@@ -269,6 +424,10 @@
 			&,
 			&-wrap {
 				@include absolute-fill;
+
+				transform-origin: center bottom;
+				transform: var(--snout-fur-transform, none);
+				transition: var(--snout-fur-transition, transform 0s);
 			}
 		}
 	}
@@ -618,6 +777,26 @@
 	&:checked {
 		+ .retsuko {
 			--rage-opacity: 1;
+			--rage-delay: 0.4s;
+			
+			--blush-opacity: 0;
+			--blush-transition: opacity 1s;
+
+			--mouth-transform: scale(0.3);
+			--mouth-background-color: var(--black);
+			--mouth-transition: transform 0.2s ease-in-out;
+
+			--mouth-rage-scale: 1;
+			--mouth-rage-transition: transform 0.3s var(--rage-delay) ease-in-out;
+
+			--tongue-scale: 1;
+			--tongue-transition: transform 0.4s 0.6s ease-in-out;
+
+			--nose-translate-y: -1.25rem;
+			--nose-transition: transform 0.3s var(--rage-delay);
+
+			--snout-fur-transform: scaleY(1.1);
+			--snout-fur-transition: transform 0.3s var(--rage-delay);
 		}
 	}
 }

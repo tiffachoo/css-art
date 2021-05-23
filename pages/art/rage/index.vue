@@ -26,6 +26,25 @@
 						</div>
 						<div class="retsuko-nose"></div>
 						<div class="retsuko-mouth"></div>
+						<div class="retsuko-mouth-rage">
+							<div class="retsuko-mouth-rage-makeup retsuko-mouth-rage-makeup-top"></div>
+							<div class="retsuko-mouth-rage-makeup retsuko-mouth-rage-makeup-bottom"></div>
+							<div class="retsuko-mouth-rage-inner">
+								<div class="retsuko-mouth-rage-teeth retsuko-mouth-rage-teeth-top">
+									<div class="retsuko-mouth-rage-teeth-tooth retsuko-mouth-rage-teeth-tooth-1"></div>
+									<div class="retsuko-mouth-rage-teeth-tooth retsuko-mouth-rage-teeth-tooth-2"></div>
+									<div class="retsuko-mouth-rage-teeth-tooth retsuko-mouth-rage-teeth-tooth-3"></div>
+									<div class="retsuko-mouth-rage-teeth-tooth retsuko-mouth-rage-teeth-tooth-4"></div>
+								</div>
+								<div class="retsuko-mouth-rage-teeth retsuko-mouth-rage-teeth-bottom">
+									<div class="retsuko-mouth-rage-teeth-tooth"></div>
+									<div class="retsuko-mouth-rage-teeth-tooth"></div>
+									<div class="retsuko-mouth-rage-teeth-tooth"></div>
+									<div class="retsuko-mouth-rage-teeth-tooth"></div>
+								</div>
+							</div>
+							<div class="retsuko-mouth-rage-tongue"></div>
+						</div>
 					</div>
 					<div class="retsuko-blush retsuko-blush-left"></div>
 					<div class="retsuko-blush retsuko-blush-right"></div>
