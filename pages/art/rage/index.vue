@@ -6,6 +6,16 @@
 				<div class="retsuko-face">
 					<div class="retsuko-eye retsuko-eye-left"></div>
 					<div class="retsuko-eye retsuko-eye-right"></div>
+					<div class="retsuko-eye-rage retsuko-eye-rage-left">
+						<div class="retsuko-eye-rage-makeup retsuko-eye-rage-makeup-1"></div>
+						<div class="retsuko-eye-rage-makeup retsuko-eye-rage-makeup-2"></div>
+						<div class="retsuko-eye-rage-makeup retsuko-eye-rage-makeup-3"></div>
+					</div>
+					<div class="retsuko-eye-rage retsuko-eye-rage-right">
+						<div class="retsuko-eye-rage-makeup retsuko-eye-rage-makeup-1"></div>
+						<div class="retsuko-eye-rage-makeup retsuko-eye-rage-makeup-2"></div>
+						<div class="retsuko-eye-rage-makeup retsuko-eye-rage-makeup-3"></div>
+					</div>
 					<div class="retsuko-eyebrow retsuko-eyebrow-left"></div>
 					<div class="retsuko-eyebrow retsuko-eyebrow-right"></div>
 					<div class="retsuko-snout">

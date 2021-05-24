@@ -15,6 +15,7 @@
 	--shadow-color: rgba(73, 104, 136, 0.3);
 	--background: linear-gradient(hsl(8, 100%, 90%) 0%, hsl(342, 100%, 90%) 100%);
 	--stroke-width: 0.1875rem;
+	--stroke-width-2: 0.25rem;
 }
 
 * { box-sizing: border-box; }
@@ -58,8 +59,10 @@
 		top: 5.5rem;
 		height: 1.875rem;
 		width: 1.625rem;
+		transform-origin: center 70%;
+		transform: rotate(var(--eye-rotate)) scaleY(var(--eye-scale, 1));
 		background-color: var(--black);
-		transform: rotate(var(--eye-rotate));
+		transition: var(--eye-transition, transform 0s);
 
 		&::before {
 			content: '';
@@ -89,19 +92,141 @@
 		}
 	}
 
+	&-eye-rage {
+		--eye-position-x: 2.375rem;
+		z-index: 5;
+		top: 5.5rem;
+		height: 2.125rem;
+		width: 2.125rem;
+		transform: translateY(var(--eye-rage-translate, 0)) scaleY(var(--eye-rage-scale, 0));
+		transition: var(--eye-rage-transition);
+
+		&::before {
+			content: '';
+			top: 0;
+			height: calc(100% - var(--stroke-width-2) * 2);
+			width: calc(100% - var(--stroke-width-2) * 2);
+			transform: rotate(var(--eye-rage-rotate));
+			border: var(--stroke-width-2) solid var(--black);
+			background-color: var(--white);
+		}
+
+		&-makeup {
+			z-index: -1;
+			height: 1.375rem;
+			width: 1.375rem;
+			
+			&::before {
+				content: '';
+				height: 100%;
+				width: 100%;
+				transform-origin: var(--eye-makeup-transform-origin);
+				transform: rotate(var(--eye-makeup-rotate));
+				border-top-left-radius: var(--eye-makeup-top-left-radius);
+				border-top-right-radius: var(--eye-makeup-top-right-radius);
+				border-bottom-left-radius: var(--eye-makeup-bottom-left-radius);
+				border-bottom-right-radius: var(--eye-makeup-bottom-right-radius);
+				background-color: var(--black);
+			}
+
+			&-1 {
+				--eye-makeup-position-x: -1.25rem;
+				--eye-makeup-rotate: calc(80deg * var(--eye-makeup-rotate-flip, 1));
+				top: -0.5rem;
+			}
+
+			&-2 {
+				--eye-makeup-position-x: -0.375rem;
+				--eye-makeup-rotate: calc(-10deg * var(--eye-makeup-rotate-flip, 1));
+				top: 0.25rem;
+			}
+
+			&-3 {
+				--eye-makeup-position-x: -0.75rem;
+				--eye-makeup-rotate: calc(-130deg * var(--eye-makeup-rotate-flip, 1));
+				top: -0.75rem;
+			}
+		}
+
+		&-left {
+			--eye-rage-rotate: -25deg;
+			--eye-makeup-transform-origin: right bottom;
+			--eye-makeup-top-right-radius: 100% 80%;
+			--eye-makeup-bottom-right-radius: 20%;
+			--eye-makeup-bottom-left-radius: 80% 100%;
+			left: var(--eye-position-x);
+
+			&::before {
+				left: 0;
+				border-top-left-radius: 50%;
+				border-top-right-radius: 45% 100%;
+				border-bottom-left-radius: 100% 45%;
+			}
+
+			.retsuko-eye-rage-makeup {
+				left: var(--eye-makeup-position-x);
+			}
+		}
+
+		&-right {
+			--eye-rage-rotate: 25deg;
+			--eye-makeup-transform-origin: left bottom;
+			--eye-makeup-top-left-radius: 100% 80%;
+			--eye-makeup-bottom-left-radius: 20%;
+			--eye-makeup-bottom-right-radius: 80% 100%;
+			--eye-makeup-rotate-flip: -1;
+			right: var(--eye-position-x);
+
+			&::before {
+				right: 0;
+				border-top-right-radius: 50%;
+				border-top-left-radius: 45% 100%;
+				border-bottom-right-radius: 100% 45%;
+			}
+
+			.retsuko-eye-rage-makeup {
+				right: var(--eye-makeup-position-x);
+			}
+		}
+	}
+
 	&-eyebrow {
+		--eyebrow-flip: 1;
 		--eyebrow-position-x: 3.25rem;
+		--eyebrow-rage-position-x: 0;
 		top: 4rem;
 		height: 1rem;
 		width: 1.125rem;
 		border-radius: 100%;
+		transform: var(--eyebrow-transform);
 		background-color: var(--white);
+		transition: var(--eyebrow-transition, transform 0s);
 
-		&-left {
-			left: var(--eyebrow-position-x);
+		&::before {
+			content: '';
+			left: var(--eyebrow-rage-left);
+			right: var(--eyebrow-rage-right);
+			height: 1rem;
+			width: 1rem;
+			transform: rotate(calc(80deg * var(--eyebrow-flip))) scaleX(var(--eyebrow-rage-scale, 0));
+			border-bottom-left-radius: var(--eyebrow-rage-bottom-left-radius, 0);
+			border-bottom-right-radius: var(--eyebrow-rage-bottom-right-radius, 0);
+			border-top-left-radius: 100%;
+			border-top-right-radius: 100%;
+			background-color: var(--white);
+			transition: var(--eyebrow-rage-transition, transform 0s);
 		}
 
+		&-left {
+			--eyebrow-rage-left: var(--eyebrow-rage-position-x);
+			--eyebrow-rage-bottom-right-radius: 100%;
+			left: var(--eyebrow-position-x);
+		}
+		
 		&-right {
+			--eyebrow-flip: -1;
+			--eyebrow-rage-right: var(--eyebrow-rage-position-x);
+			--eyebrow-rage-bottom-left-radius: 100%;
 			right: var(--eyebrow-position-x);
 		}
 	}
@@ -324,8 +449,9 @@
 		height: 2.5rem;
 		width: 3rem;
 		transform-origin: center bottom;
-		transform: rotate(var(--face-fur-rotate));
+		transform: rotate(var(--face-fur-rotate)) scaleY(var(--face-fur-scale));
 		background-color: var(--secondary-color);
+		transition: var(--face-fur-transition, transform 0s);
 
 		&-left {
 			--face-fur-rotate: 5deg;
@@ -778,13 +904,24 @@
 		+ .retsuko {
 			--rage-opacity: 1;
 			--rage-delay: 0.4s;
+
+			--eye-scale: 0;
+			--eye-transition: transform 0.3s ease-in-out;
+
+			--eye-rage-translate: -1.25rem;
+			--eye-rage-scale: 1;
+			--eye-rage-transition: transform 0.3s var(--rage-delay) ease-in-out;
+
+			--eyebrow-transition: transform 0.3s var(--rage-delay) ease-in-out;
+			--eyebrow-rage-scale: 1;
+			--eyebrow-rage-transition: transform 0.2s 0.4s ease-in-out;
 			
 			--blush-opacity: 0;
 			--blush-transition: opacity 1s;
 
 			--mouth-transform: scale(0.3);
 			--mouth-background-color: var(--black);
-			--mouth-transition: transform 0.2s ease-in-out;
+			--mouth-transition: transform 0.05s ease-in-out;
 
 			--mouth-rage-scale: 1;
 			--mouth-rage-transition: transform 0.3s var(--rage-delay) ease-in-out;
@@ -793,10 +930,16 @@
 			--tongue-transition: transform 0.4s 0.6s ease-in-out;
 
 			--nose-translate-y: -1.25rem;
-			--nose-transition: transform 0.3s var(--rage-delay);
+			--nose-transition: transform 0.3s var(--rage-delay) ease-in-out;
 
+			--face-fur-scale: 1.3;
+			--face-fur-transition: transform 0.3s ease-in-out;
 			--snout-fur-transform: scaleY(1.1);
-			--snout-fur-transition: transform 0.3s var(--rage-delay);
+			--snout-fur-transition: transform 0.3s var(--rage-delay) ease-in-out;
+
+			.retsuko-eyebrow {
+				--eyebrow-transform: translate(calc(0.875rem * var(--eyebrow-flip)), -0.375rem) rotate(calc(20deg * var(--eyebrow-flip)));
+			}
 		}
 	}
 }
