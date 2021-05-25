@@ -95,6 +95,28 @@
 					<div class="retsuko-tail"></div>
 				</div>
 			</div>
+			<div class="retsuko-body retsuko-arm-clone">
+				<div class="retsuko-arm retsuko-arm-left">
+					<div class="retsuko-arm-lower">
+						<div class="retsuko-arm-paw retsuko-arm-paw-rage"></div>
+						<div class="retsuko-arm-paw-rage-finger-wrap">
+							<div class="retsuko-arm-paw-rage-finger retsuko-arm-paw-rage-finger-1"></div>
+							<div class="retsuko-arm-paw-rage-finger retsuko-arm-paw-rage-finger-2"></div>
+							<div class="retsuko-arm-paw-rage-finger retsuko-arm-paw-rage-finger-3"></div>
+						</div>
+					</div>
+				</div>
+				<div class="retsuko-arm retsuko-arm-right">
+					<div class="retsuko-arm-lower">
+						<div class="retsuko-arm-paw retsuko-arm-paw-rage"></div>
+						<div class="retsuko-arm-paw-rage-finger-wrap">
+							<div class="retsuko-arm-paw-rage-finger retsuko-arm-paw-rage-finger-1"></div>
+							<div class="retsuko-arm-paw-rage-finger retsuko-arm-paw-rage-finger-2"></div>
+							<div class="retsuko-arm-paw-rage-finger retsuko-arm-paw-rage-finger-3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</label>
 	</div>
 </template>

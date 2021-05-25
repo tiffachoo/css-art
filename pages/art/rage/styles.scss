@@ -47,7 +47,7 @@
 		font-weight: 700;
 		color: var(--black);
 		opacity: var(--rage-opacity, 0);
-		transition: 0.2s;
+		transition: var(--rage-transition, opacity 0.2s);
 	}
 
 	&-eye {
@@ -730,46 +730,131 @@
 	}
 
 	&-arm {
+		--arm-rotate-flip: 1;
 		--arm-position-x: -0.25rem;
-		--arm-height: 1.5rem;
+		--arm-height-lower: 1rem;
 		z-index: 1;
 		top: 0.5rem;
-		height: var(--arm-height);
+		height: 2rem;
 		width: 0.5rem;
 		transform-origin: 0.25rem center;
-		transform: rotate(var(--arm-rotate));
+		transform: rotate(calc(15deg * var(--arm-rotate-flip)));
 		background-color: var(--white);
 
 		&-lower {
 			z-index: 2;
-			top: calc(100% - 0.5rem);
+			top: calc(100% - 0.25rem);
 			width: 100%;
-			height: var(--arm-height);
+			height: var(--arm-height-lower);
+			transform-origin: center 0.25rem;
+			transform: rotate(calc(var(--arm-lower-rotate) * var(--arm-rotate-flip)));
 			background-color: inherit;
+			transition: var(--arm-lower-transition, transform 0s)
 		}
 
 		&-paw {
 			z-index: 1;
 			left: calc(50% - 0.375rem);
-			top: calc(100% + var(--arm-height) - 0.625rem);
+			top: calc(100% + var(--arm-height-lower) - 0.375rem);
 			height: 1rem;
 			width: 0.75rem;
-			transform: rotate(--arm-paw-rotate);
+			transform: rotate(calc(10deg * var(--arm-rotate-flip))) scale(var(--arm-paw-scale));
 			transform-origin: center 0.125rem;
 			background-color: var(--secondary-color);
-			border-radius: 100%;
+			border-radius: var(--arm-paw-border-radius, 100%);
+			transition: var(--arm-paw-transition, transform 0s);
 		}
 
 		&-left {
-			--arm-rotate: 15deg;
-			--arm-paw-rotate: 10deg;
+			--finger-rotate-flip: -1;
+			--arm-paw-finger-1-right: var(--arm-paw-finger-1-position-x);
+			--arm-paw-finger-2-right: var(--arm-paw-finger-2-position-x);
+			--arm-paw-finger-3-right: var(--arm-paw-finger-3-position-x);
+			--arm-paw-finger-wrap-right: 0;
 			left: var(--arm-position-x);
 		}
 
 		&-right {
-			--arm-rotate: -15deg;
-			--arm-paw-rotate: -10deg;
+			--arm-rotate-flip: -1;
+			--arm-paw-finger-1-left: var(--arm-paw-finger-1-position-x);
+			--arm-paw-finger-2-left: var(--arm-paw-finger-2-position-x);
+			--arm-paw-finger-3-left: var(--arm-paw-finger-3-position-x);
+			--arm-paw-finger-wrap-left: 0;
 			right: var(--arm-position-x);
+		}
+	}
+
+	&-arm-paw-rage {
+		visibility: var(--arm-paw-rage-visibility, hidden);
+		transition: var(--arm-paw-rage-transition, transform 0s);
+
+		&,
+		&-finger-wrap {
+			top: calc(100% - var(--arm-paw-rage-top-offset, 0.125rem));
+			transform: rotate(calc(var(--arm-paw-rage-rotate, 10deg) * var(--arm-rotate-flip))) translateX(calc(var(--arm-paw-rage-translate) * var(--arm-rotate-flip))) scale(var(--arm-paw-rage-scale, 1));
+		}
+
+		&-finger {
+			height: 1.5rem;
+			width: 0.75rem;
+			transform-origin: center top;
+			transform: scaleY(var(--arm-paw-finger-scale, 0)) rotate(calc(var(--arm-paw-finger-rotate) * var(--finger-rotate-flip)));
+			transition: var(--arm-paw-finger-transition, transform 0s);
+
+			&::before,
+			&::after {
+				content: '';
+			}
+
+			&::before {
+				@include absolute-fill();
+				
+				border-bottom-left-radius: 50% 50%;
+				border-bottom-right-radius: 50% 50%;
+				background-color: var(--secondary-color);
+			}
+
+			&::after {
+				z-index: -1;
+				top: calc(100% - 0.125rem);
+				left: calc(50% - 0.125rem);
+				height: 0.5rem;
+				width: 0.1875rem;
+				border-bottom-left-radius: 50% 70%;
+				border-bottom-right-radius: 50% 70%;
+				background-color: var(--black);
+			}
+
+			&-1 {
+				--arm-paw-finger-rotate: 55deg;
+				top: 0.4375rem;
+				height: 1rem;
+				left: var(--arm-paw-finger-1-left, auto);
+				right: var(--arm-paw-finger-1-right, auto);
+			}
+
+			&-2 {
+				--arm-paw-finger-rotate: 5deg;
+				top: 0.75rem;
+				left: var(--arm-paw-finger-2-left, auto);
+				right: var(--arm-paw-finger-2-right, auto);
+			}
+
+			&-3 {
+				--arm-paw-finger-rotate: -10deg;
+				top: 0.75rem;
+				left: var(--arm-paw-finger-3-left, auto);
+				right: var(--arm-paw-finger-3-right, auto);
+			}
+
+			&-wrap {
+				--arm-paw-rage-scale: 1;
+				z-index: -1;
+				left: var(--arm-paw-finger-wrap-left, auto);
+				right: var(--arm-paw-finger-wrap-right, auto);
+				height: 1rem;
+				width: 1rem;
+			}
 		}
 	}
 
@@ -788,14 +873,15 @@
 		height: 3rem;
 		width: 3rem;
 		transform-origin: left top;
-		transform: rotate(-30deg);
+		transform: rotate(var(--tail-rotate, -30deg));
 		border-top-right-radius: 85%;
 		border-bottom-left-radius: 85%;
 		border-bottom-right-radius: 15%;
-		background-color: aqua;
+		background-color: var(--primary-color);
 		// background: linear-gradient(135deg, var(--primary-color) 30%, var(--secondary-color) 30%, var(--secondary-color) 40%, var(--primary-color) 40%, var(--primary-color) 55%, var(--secondary-color) 55%, var(--secondary-color) 65%, var(--primary-color) 65%, var(--primary-color) 80%, var(--secondary-color) 80%);
 		background-image: radial-gradient(circle 4rem at 0 0.3125rem, var(--primary-color) 30%, var(--secondary-color) 30%, var(--secondary-color) 40%, var(--primary-color) 40%, var(--primary-color) 55%, var(--secondary-color) 55%, var(--secondary-color) 65%, var(--primary-color) 65%, var(--primary-color) 80%, var(--secondary-color) 80%);
 		background-repeat: no-repeat;
+		transition: var(--tail-transition, transform 0s);
 	}
 
 	&-leg {
@@ -804,7 +890,9 @@
 		top: calc(100% - 0.5rem);
 		height: 1.75rem;
 		width: 1rem;
+		transform: rotateY(var(--leg-rotate-y));
 		background-color: var(--secondary-color);
+		transition: var(--leg-transition, transform 0s);
 
 		&::before,
 		&::after {
@@ -894,6 +982,20 @@
 		height: 5.5rem;
 		perspective: 1000px;
 	}
+
+	&-arm-clone {
+		--finger-rotate-flip: 1;
+		--arm-paw-finger-1-position-x: -0.3125rem;
+		--arm-paw-finger-2-position-x: -0.375rem;
+		--arm-paw-finger-3-position-x: 1.0625rem;
+		z-index: 5;
+		position: absolute;
+		top: 10rem;
+
+		.retsuko-arm {
+			background-color: transparent;
+		}
+	}
 }
 
 .rage-control {
@@ -902,10 +1004,12 @@
 
 	&:checked {
 		+ .retsuko {
-			--rage-opacity: 1;
 			--rage-delay: 0.4s;
 
-			--eye-scale: 0;
+			--rage-opacity: 1;
+			--rage-transition: opacity 0.4s var(--rage-delay);
+
+			--eye-scale: 0.2;
 			--eye-transition: transform 0.3s ease-in-out;
 
 			--eye-rage-translate: -1.25rem;
@@ -936,6 +1040,26 @@
 			--face-fur-transition: transform 0.3s ease-in-out;
 			--snout-fur-transform: scaleY(1.1);
 			--snout-fur-transition: transform 0.3s var(--rage-delay) ease-in-out;
+
+			--tail-rotate: -60deg;
+			--tail-transition: transform 0.4s ease-in-out;
+
+			--arm-lower-rotate: 100deg;
+			--arm-lower-transition: transform 0.5s var(--rage-delay) ease-in-out;
+			--arm-paw-scale: 0;
+			--arm-paw-border-radius: 45%;
+			--arm-paw-transition: 0s 0.5s;
+			--arm-paw-rage-top-offset: 0.375rem;
+			--arm-paw-rage-scale: 3, 1.9;
+			--arm-paw-rage-rotate: 60deg;
+			--arm-paw-rage-translate: 0.5rem;
+			--arm-paw-rage-visibility: visible;
+			--arm-paw-rage-transition: visibility 0s 0.5s, transform 0.5s 0.6s ease-in-out, border-radius 0.6s 0.6s ease-in-out, top 0.2s 0.6s;
+			--arm-paw-finger-scale: 1;
+			--arm-paw-finger-transition: transform 0.2s 1s ease-in-out;
+
+			--leg-rotate-y: -180deg;
+			--leg-transition: transform 0.3s var(--rage-delay) ease-in-out;
 
 			.retsuko-eyebrow {
 				--eyebrow-transform: translate(calc(0.875rem * var(--eyebrow-flip)), -0.375rem) rotate(calc(20deg * var(--eyebrow-flip)));
