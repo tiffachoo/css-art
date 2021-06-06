@@ -60,10 +60,11 @@
 		height: 1.875rem;
 		width: 1.625rem;
 		transform-origin: center 70%;
-		transform: rotate(var(--eye-rotate)) scaleY(var(--eye-scale, 1));
+		transform: rotate(calc(var(--eye-rotate, 15deg) * var(--eye-rotate-flip, 1))) scaleY(var(--eye-scale, 1));
 		background-color: var(--black);
 		visibility: var(--eye-visibility, visible);
-		transition: var(--eye-transition, transform 0s);
+		transition: var(--eye-transition, transform 0.25s ease-in-out);
+		// animation: var(--eye-animation);
 
 		&::before {
 			content: '';
@@ -75,7 +76,6 @@
 		}
 
 		&-left {
-			--eye-rotate: 15deg;
 			left: var(--eye-position-x);
 
 			&::before {
@@ -84,7 +84,7 @@
 		}
 
 		&-right {
-			--eye-rotate: -15deg;
+			--eye-rotate-flip: -1;
 			right: var(--eye-position-x);
 
 			&::before {
@@ -201,7 +201,7 @@
 		border-radius: 100%;
 		transform: var(--eyebrow-transform);
 		background-color: var(--white);
-		transition: var(--eyebrow-transition, transform 0s);
+		transition: var(--eyebrow-transition, transform 0.25s ease-in-out);
 
 		&::before {
 			content: '';
@@ -215,7 +215,7 @@
 			border-top-left-radius: 100%;
 			border-top-right-radius: 100%;
 			background-color: var(--white);
-			transition: var(--eyebrow-rage-transition, transform 0s);
+			transition: var(--eyebrow-rage-transition, transform 0.25s ease-in-out);
 		}
 
 		&-left {
@@ -239,7 +239,7 @@
 		border-radius: 100%;
 		background-color: var(--blush-color);
 		opacity: var(--blush-opacity, 0.5);
-		transition: var(--blush-transition, opacity 0s);
+		transition: var(--blush-transition, opacity 0.5s ease-in-out);
 
 		&-left {
 			left: 1.625rem;
@@ -267,10 +267,10 @@
 			width: calc(100% - (var(--stroke-width) * 2));
 			transform-origin: center bottom;
 			transform: var(--mouth-transform, none);
-			border-radius: 100%;
+			border-radius: var(--mouth-border-radius, 100%);
 			border: var(--stroke-width) solid var(--black);
 			background-color: var(--mouth-background-color, transparent);
-			transition: var(--mouth-transition, transform 0s ease-in-out);
+			transition: var(--mouth-transition, transform 0.25s ease-in-out);
 		}
 	}
 
@@ -280,8 +280,10 @@
 		left: 50%;
 		height: 2.75rem;
 		width: 2.625rem;
+		transform-origin: center;
 		transform: translateX(-50%) scale(var(--mouth-rage-scale, 0));
-		transition: var(--mouth-rage-transition, transform 0s);
+		transition: var(--mouth-rage-transition, transform 0.15s ease-in-out);
+		animation: var(--mouth-rage-animation);
 
 		&-teeth {
 			display: flex;
@@ -405,7 +407,7 @@
 			transform-origin: center 20%;
 			transform: rotate(-20deg) scaleY(var(--tongue-scale, 0));
 			background-color: var(--tongue-color);
-			transition: var(--tongue-transition, transform 0s);
+			transition: var(--tongue-transition, transform 0.25s ease-in-out);
 
 			&::before {
 				content: '';
@@ -428,7 +430,7 @@
 		height: 0.9375rem;
 		width: 0.9375rem;
 		transform: translate(-50%, var(--nose-translate-y, 0)) scaleY(0.65);
-		transition: var(--nose-transition, transform 0s);
+		transition: var(--nose-transition, transform 0.25s ease-in-out);
 
 		&::before {
 			@include absolute-fill(true);
@@ -452,7 +454,7 @@
 		transform-origin: center bottom;
 		transform: rotate(var(--face-fur-rotate)) scaleY(var(--face-fur-scale, 1));
 		background-color: var(--secondary-color);
-		transition: var(--face-fur-transition, transform 0s);
+		transition: var(--face-fur-transition, transform 0.25s ease-in-out);
 
 		&-left {
 			--face-fur-rotate: 5deg;
@@ -554,7 +556,7 @@
 
 				transform-origin: center bottom;
 				transform: var(--snout-fur-transform, none);
-				transition: var(--snout-fur-transition, transform 0s);
+				transition: var(--snout-fur-transition, transform 0.25s ease-in-out);
 			}
 		}
 	}
@@ -641,8 +643,11 @@
 
 	&-head {
 		position: relative;
+		z-index: 10;
 		height: 10rem;
 		width: 12.5rem;
+		transform-origin: center bottom;
+		animation: var(--head-animation);
 	}
 
 	&-shirt {
@@ -739,8 +744,10 @@
 		height: 2rem;
 		width: 0.5rem;
 		transform-origin: 0.25rem center;
-		transform: rotate(calc(15deg * var(--arm-rotate-flip)));
+		transform: rotate(calc(var(--arm-rotate, 15deg) * var(--arm-rotate-flip)));
 		background-color: var(--white);
+		transition: var(--arm-transition, transform 0.25s 2s ease-in-out);
+		animation: var(--arm-animation);
 
 		&-lower {
 			z-index: 2;
@@ -750,7 +757,7 @@
 			transform-origin: center 0.25rem;
 			transform: rotate(calc(var(--arm-lower-rotate) * var(--arm-rotate-flip)));
 			background-color: inherit;
-			transition: var(--arm-lower-transition, transform 0s)
+			transition: var(--arm-lower-transition, transform 0.25s ease-in-out)
 		}
 
 		&-paw {
@@ -763,7 +770,7 @@
 			transform-origin: center 0.125rem;
 			background-color: var(--secondary-color);
 			border-radius: var(--arm-paw-border-radius, 100%);
-			transition: var(--arm-paw-transition, transform 0s);
+			transition: var(--arm-paw-transition, 0.25s ease-in-out);
 		}
 
 		&-left {
@@ -787,7 +794,7 @@
 
 	&-arm-paw-rage {
 		visibility: var(--arm-paw-rage-visibility, hidden);
-		transition: var(--arm-paw-rage-transition, transform 0s);
+		transition: var(--arm-paw-rage-transition, 0.25s ease-in-out);
 
 		&,
 		&-finger-wrap {
@@ -800,7 +807,7 @@
 			width: 0.75rem;
 			transform-origin: center top;
 			transform: scaleY(var(--arm-paw-finger-scale, 0)) rotate(calc(var(--arm-paw-finger-rotate) * var(--finger-rotate-flip)));
-			transition: var(--arm-paw-finger-transition, transform 0s);
+			transition: var(--arm-paw-finger-transition, transform 0s ease-in-out);
 
 			&::before,
 			&::after {
@@ -882,52 +889,63 @@
 		// background: linear-gradient(135deg, var(--primary-color) 30%, var(--secondary-color) 30%, var(--secondary-color) 40%, var(--primary-color) 40%, var(--primary-color) 55%, var(--secondary-color) 55%, var(--secondary-color) 65%, var(--primary-color) 65%, var(--primary-color) 80%, var(--secondary-color) 80%);
 		background-image: radial-gradient(circle 4rem at 0 0.3125rem, var(--primary-color) 30%, var(--secondary-color) 30%, var(--secondary-color) 40%, var(--primary-color) 40%, var(--primary-color) 55%, var(--secondary-color) 55%, var(--secondary-color) 65%, var(--primary-color) 65%, var(--primary-color) 80%, var(--secondary-color) 80%);
 		background-repeat: no-repeat;
-		transition: var(--tail-transition, transform 0s);
+		transition: var(--tail-transition, transform 0.25s ease-in-out);
+		animation: var(--tail-animation);
 	}
 
 	&-leg {
 		--leg-position-x: 0.75rem;
 		z-index: 1;
-		top: calc(100% - 0.5rem);
-		height: 1.75rem;
+		top: calc(100% - 0.25rem);
+		height: 1.5rem;
 		width: 1rem;
-		transform: rotateY(var(--leg-rotate-y));
+		border-top-right-radius: 0.25rem;
+		border-top-left-radius: 0.25rem;
 		background-color: var(--secondary-color);
-		transition: var(--leg-transition, transform 0s);
-
-		&::before,
-		&::after {
-			content: '';
-			transform-origin: var(--leg-foot-transform-origin);
-			transform: rotate(var(--leg-foot-rotate));
-			border-radius: 100%;
-		}
-
-		&::before {
-			top: calc(100% - 0.5rem);
-			left: var(--leg-foot-left, auto);
-			right: var(--leg-foot-right, auto);
-			height: 0.625rem;
-			width: 1.325rem;
-			background-color: var(--black);
-		}
-
-		&::after {
-			bottom: 0.125rem;
-			left: 0;
+		
+		&-shoe {
+			height: 100%;
 			width: 100%;
-			height: 0.4375rem;
-			background-color: var(--secondary-color);
+			transform: rotateY(var(--leg-rotate-y));
+			transition: var(--leg-transition, transform 0.2s ease-in-out);
+
+			&::before,
+			&::after {
+				content: '';
+				transform-origin: var(--leg-foot-transform-origin);
+				transform: rotate(var(--leg-foot-rotate));
+				border-radius: 100%;
+			}
+	
+			&::before {
+				top: calc(100% - 0.5rem);
+				left: var(--leg-foot-left, auto);
+				right: var(--leg-foot-right, auto);
+				height: 0.625rem;
+				width: 1.325rem;
+				background-color: var(--black);
+			}
+	
+			&::after {
+				bottom: 0.125rem;
+				left: 0;
+				width: 100%;
+				height: 0.4375rem;
+				background-color: var(--secondary-color);
+			}
 		}
+
 
 		&-left {
 			--leg-foot-left: -0.0625rem;
 			--leg-foot-rotate: 20deg;
 			--leg-foot-transform-origin: left center;
 			left: var(--leg-position-x);
+			animation: var(--leg-animation);
 		}
 
 		&-right {
+			--leg-rotate-flip: -1;
 			--leg-foot-right: -0.0625rem;
 			--leg-foot-rotate: -20deg;
 			--leg-foot-transform-origin: right center;
@@ -989,7 +1007,7 @@
 		--arm-paw-finger-1-position-x: -0.3125rem;
 		--arm-paw-finger-2-position-x: -0.375rem;
 		--arm-paw-finger-3-position-x: 1.0625rem;
-		z-index: 5;
+		z-index: 11;
 		position: absolute;
 		top: 10rem;
 
@@ -1005,20 +1023,23 @@
 
 	&:checked {
 		+ .retsuko {
-			--rage-delay: 0.25s;
+			--rage-delay: 0.4s;
 			--rage-delay-2: 0.6s;
 			--rage-delay-3: 0.8s;
+			--rage-delay-4: 1.2s;
 
 			--rage-opacity: 1;
 			--rage-transition: opacity 0.4s var(--rage-delay-2);
 
 			--eye-scale: 0.3;
+			--eye-rotate: 25deg;
 			--eye-visibility: hidden;
-			--eye-transition: transform 0.3s ease-in-out, visibility 0s 0.3s;
+			--eye-transition: transform 0.2s 0.3s ease-in-out, visibility 0s 0.5s;
 
+			// start eye rotated to match original eye rotation
 			--eye-rage-top-offset: -1.25rem;
 			--eye-rage-scale: 1;
-			--eye-rage-transition: transform 0.3s var(--rage-delay) ease-in-out, top 0.3s var(--rage-delay-2) ease-in-out;
+			--eye-rage-transition: transform 0.2s var(--rage-delay) ease-in-out, top 0.2s var(--rage-delay-2) ease-in-out;
 
 			--eyebrow-transition: transform 0.9s 0.2s ease-out;
 			--eyebrow-rage-scale: 1;
@@ -1028,26 +1049,30 @@
 			--blush-transition: opacity 1s;
 
 			--mouth-transform: scale(0.3);
+			--mouth-border-radius: 50% / 70% 70% 30% 30%;
 			--mouth-background-color: var(--black);
 			--mouth-transition: transform 0.05s ease-in-out;
 
 			--mouth-rage-scale: 1;
-			--mouth-rage-transition: transform 0.3s var(--rage-delay-2) ease-in-out;
+			--mouth-rage-transition: transform 0.2s var(--rage-delay-2) ease-in-out;
+			--mouth-rage-animation: mouthShake 0.1s var(--rage-delay-4) infinite;
 
 			--tongue-scale: 1;
 			--tongue-transition: transform 0.4s var(--rage-delay-3) ease-in-out;
 
 			--nose-translate-y: -1.25rem;
-			--nose-transition: transform 0.3s var(--rage-delay-2) ease-in-out;
+			--nose-transition: transform 0.2s var(--rage-delay-2) ease-in-out;
 
 			--face-fur-scale: 1.3;
-			--face-fur-transition: transform 0.3s var(--rage-delay-2) ease-in-out;
+			--face-fur-transition: transform 0.2s var(--rage-delay-2) ease-in-out;
 			--snout-fur-transform: scaleY(1.1);
-			--snout-fur-transition: transform 0.3s var(--rage-delay-2) ease-in-out;
+			--snout-fur-transition: transform 0.2s var(--rage-delay-2) ease-in-out;
 
 			--tail-rotate: -60deg;
 			--tail-transition: transform 0.4s ease-in-out;
 
+			// --arm-rotate: 15deg;
+			--arm-transition: transform 0.3s ease-in-out;
 			--arm-lower-rotate: 100deg;
 			--arm-lower-transition: transform 0.5s var(--rage-delay-2) ease-in-out;
 			--arm-paw-scale: 0;
@@ -1063,11 +1088,65 @@
 			--arm-paw-finger-transition: transform 0.2s 1.1s ease-in-out;
 
 			--leg-rotate-y: -180deg;
-			--leg-transition: transform 0.3s var(--rage-delay-2) ease-in-out;
+			--leg-transition: transform 0.2s var(--rage-delay-2) ease-in-out;
 
 			.retsuko-eyebrow {
 				--eyebrow-transform: translate(calc(0.875rem * var(--eyebrow-flip)), -0.375rem) rotate(calc(20deg * var(--eyebrow-flip)));
 			}
 		}
+	}
+
+	&:not(:checked) {
+		+ .retsuko {
+			--eye-animation: blinky 7s 2s infinite;
+
+			--head-animation: headRotate 1.5s 2.3s infinite;
+
+			--arm-rotate: 80deg;
+			--arm-animation: armRotate 1.5s 2.3s infinite;
+
+			--leg-animation: legRotate 1.5s 2.3s infinite;
+
+			--tail-animation: tailRotate 1.5s 2.3s infinite;
+		}
+	}
+}
+
+@keyframes mouthShake {
+	0%, 100% {
+		--mouth-rage-scale: 1;
+	}
+	50% { 
+		--mouth-rage-scale: 1, 1.1;
+	}
+}
+
+@keyframes armRotate {
+	20% {
+		transform: rotate(calc(60deg * var(--arm-rotate-flip)))
+	}
+	50% {
+		transform: rotate(calc(90deg * var(--arm-rotate-flip)))
+	}
+}
+
+@keyframes headRotate {
+	50% {
+		transform: rotate(-5deg)
+	}
+}
+
+@keyframes tailRotate {
+	50% {
+		transform: rotate(-60deg)
+	}
+}
+
+@keyframes legRotate {
+	50%, 70% {
+		transform: rotate(calc(80deg * var(--leg-rotate-flip, 1)))
+	}
+	30%, 80% {
+		transform: rotate(0deg);
 	}
 }

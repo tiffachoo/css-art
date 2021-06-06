@@ -90,8 +90,12 @@
 				</div>
 				<div class="retsuko-body-lower">
 					<div class="retsuko-skirt"></div>
-					<div class="retsuko-leg retsuko-leg-left"></div>
-					<div class="retsuko-leg retsuko-leg-right"></div>
+					<div class="retsuko-leg retsuko-leg-left">
+						<div class="retsuko-leg-shoe"></div>
+					</div>
+					<div class="retsuko-leg retsuko-leg-right">
+						<div class="retsuko-leg-shoe"></div>
+					</div>
 					<div class="retsuko-tail"></div>
 				</div>
 			</div>
