@@ -4,8 +4,12 @@
 		<label for="rage" class="retsuko">
 			<div class="retsuko-head">
 				<div class="retsuko-face">
-					<div class="retsuko-eye retsuko-eye-left"></div>
-					<div class="retsuko-eye retsuko-eye-right"></div>
+					<div class="retsuko-eye-wrap retsuko-eye-left">
+						<div class="retsuko-eye"></div>
+					</div>
+					<div class="retsuko-eye-wrap retsuko-eye-right">
+						<div class="retsuko-eye"></div>
+					</div>
 					<div class="retsuko-eye-rage retsuko-eye-rage-left">
 						<div class="retsuko-eye-rage-makeup retsuko-eye-rage-makeup-1"></div>
 						<div class="retsuko-eye-rage-makeup retsuko-eye-rage-makeup-2"></div>
@@ -122,6 +126,7 @@
 				</div>
 			</div>
 		</label>
+		<div class="rage-background"></div>
 	</div>
 </template>
 

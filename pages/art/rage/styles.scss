@@ -13,6 +13,7 @@
 	--mouth-color: #c42127;
 	--tongue-color: #e0464b;
 	--shadow-color: rgba(73, 104, 136, 0.3);
+	--rage-color: #bf1739;
 	--background: linear-gradient(hsl(8, 100%, 90%) 0%, hsl(342, 100%, 90%) 100%);
 	--stroke-width: 0.1875rem;
 	--stroke-width-2: 0.25rem;
@@ -31,6 +32,7 @@
 
 .retsuko {
 	position: relative;
+	z-index: 666;
 	cursor: pointer;
 
 	*,
@@ -52,19 +54,12 @@
 
 	&-eye {
 		@include border-radius(50% 60%, 50% 40%);
+		@include absolute-fill();
 
-		--eye-position-x: 2.75rem;
-		--eye-lash-position-x: -0.25rem;
-		z-index: 5;
-		top: 5.5rem;
-		height: 1.875rem;
-		width: 1.625rem;
-		transform-origin: center 70%;
 		transform: rotate(calc(var(--eye-rotate, 15deg) * var(--eye-rotate-flip, 1))) scaleY(var(--eye-scale, 1));
 		background-color: var(--black);
 		visibility: var(--eye-visibility, visible);
 		transition: var(--eye-transition, transform 0.25s ease-in-out);
-		// animation: var(--eye-animation);
 
 		&::before {
 			content: '';
@@ -78,7 +73,7 @@
 		&-left {
 			left: var(--eye-position-x);
 
-			&::before {
+			.retsuko-eye::before {
 				left: var(--eye-lash-position-x);
 			}
 		}
@@ -87,9 +82,24 @@
 			--eye-rotate-flip: -1;
 			right: var(--eye-position-x);
 
-			&::before {
+			.retsuko-eye::before {
 				right: var(--eye-lash-position-x);
 			}
+		}
+
+		&,
+		&-wrap {
+			transform-origin: center 70%;
+		}
+
+		&-wrap {
+			--eye-position-x: 2.75rem;
+			--eye-lash-position-x: -0.25rem;
+			z-index: 5;
+			top: 5.5rem;
+			height: 1.875rem;
+			width: 1.625rem;
+			animation: var(--eye-animation);
 		}
 	}
 
@@ -280,7 +290,7 @@
 		left: 50%;
 		height: 2.75rem;
 		width: 2.625rem;
-		transform-origin: center;
+		transform-origin: center 60%;
 		transform: translateX(-50%) scale(var(--mouth-rage-scale, 0));
 		transition: var(--mouth-rage-transition, transform 0.15s ease-in-out);
 		animation: var(--mouth-rage-animation);
@@ -592,6 +602,18 @@
 			background-color: var(--secondary-color);
 		}
 
+		&::after {
+			content: '';
+			bottom: 0.5rem;
+			left: var(--ear-shadow-left, auto);
+			right: var(--ear-shadow-right, auto);
+			height: 4rem;
+			width: 3rem;
+			border-radius: 100%;
+			background-color: var(--shadow-color);
+			opacity: 0.5;
+		}
+
 		&-fur {
 			height: 1.25rem;
 			width: 1.25rem;
@@ -616,6 +638,7 @@
 			--ear-border-radius: 0.5rem 0 0 100%;
 			--ear-transform-origin: right center;
 			--ear-rotate: 30deg;
+			--ear-shadow-right: 0.625rem;
 			--ear-inner-left: 1.5rem;
 			--ear-inner-rotate: -5deg;
 			--ear-inner-border-radius:  0.25rem 90% 0 90%;
@@ -630,6 +653,7 @@
 			--ear-border-radius: 0 0.5rem 100% 0;
 			--ear-transform-origin: left center;
 			--ear-rotate: -30deg;
+			--ear-shadow-left: 0.625rem;
 			--ear-inner-right: 1.5rem;
 			--ear-inner-rotate: 5deg;
 			--ear-inner-border-radius:  90% 0.25rem 90% 0;
@@ -740,13 +764,13 @@
 		--arm-position-x: -0.25rem;
 		--arm-height-lower: 1rem;
 		z-index: 1;
-		top: 0.5rem;
+		top: 0.25rem;
 		height: 2rem;
 		width: 0.5rem;
 		transform-origin: 0.25rem center;
 		transform: rotate(calc(var(--arm-rotate, 15deg) * var(--arm-rotate-flip)));
 		background-color: var(--white);
-		transition: var(--arm-transition, transform 0.25s 2s ease-in-out);
+		transition: var(--arm-transition, transform 0.25s 1.5s ease-in-out);
 		animation: var(--arm-animation);
 
 		&-lower {
@@ -766,11 +790,11 @@
 			top: calc(100% + var(--arm-height-lower) - 0.375rem);
 			height: 1rem;
 			width: 0.75rem;
-			transform: rotate(calc(10deg * var(--arm-rotate-flip))) scale(var(--arm-paw-scale));
+			transform: rotate(calc(10deg * var(--arm-rotate-flip))) scale(var(--arm-paw-scale, 1));
 			transform-origin: center 0.125rem;
 			background-color: var(--secondary-color);
 			border-radius: var(--arm-paw-border-radius, 100%);
-			transition: var(--arm-paw-transition, 0.25s ease-in-out);
+			transition: var(--arm-paw-transition, 0s 0.25s);
 		}
 
 		&-left {
@@ -794,7 +818,7 @@
 
 	&-arm-paw-rage {
 		visibility: var(--arm-paw-rage-visibility, hidden);
-		transition: var(--arm-paw-rage-transition, 0.25s ease-in-out);
+		transition: var(--arm-paw-rage-transition, transform 0.25s ease-in-out, visibility 0s 0.27s);
 
 		&,
 		&-finger-wrap {
@@ -907,7 +931,7 @@
 			height: 100%;
 			width: 100%;
 			transform: rotateY(var(--leg-rotate-y));
-			transition: var(--leg-transition, transform 0.2s ease-in-out);
+			transition: var(--leg-transition, transform 0.1s ease-out);
 
 			&::before,
 			&::after {
@@ -990,6 +1014,7 @@
 		bottom: 0;
 		height: 3rem;
 		width: 100%;
+		perspective: 1000px;
 	}
 
 	&-body {
@@ -999,7 +1024,7 @@
 		transform: translateX(-50%);
 		width: 4rem;
 		height: 5.5rem;
-		perspective: 1000px;
+		// perspective: 1000px;
 	}
 
 	&-arm-clone {
@@ -1074,7 +1099,7 @@
 			// --arm-rotate: 15deg;
 			--arm-transition: transform 0.3s ease-in-out;
 			--arm-lower-rotate: 100deg;
-			--arm-lower-transition: transform 0.5s var(--rage-delay-2) ease-in-out;
+			--arm-lower-transition: transform 0.5s var(--rage-delay-3) ease-in-out;
 			--arm-paw-scale: 0;
 			--arm-paw-border-radius: 45%;
 			--arm-paw-transition: 0s var(--rage-delay-3);
@@ -1088,28 +1113,48 @@
 			--arm-paw-finger-transition: transform 0.2s 1.1s ease-in-out;
 
 			--leg-rotate-y: -180deg;
-			--leg-transition: transform 0.2s var(--rage-delay-2) ease-in-out;
+			--leg-transition: transform 0.1s var(--rage-delay-2) ease-out;
 
 			.retsuko-eyebrow {
 				--eyebrow-transform: translate(calc(0.875rem * var(--eyebrow-flip)), -0.375rem) rotate(calc(20deg * var(--eyebrow-flip)));
 			}
 		}
+		~ .rage-background {
+			--rage-opacity: 1;
+			--rage-size: 140%;
+			--rage-transition: opacity 0.3s 0.6s, background-size 0.7s 0.6s ease-in-out;
+		}
 	}
 
 	&:not(:checked) {
 		+ .retsuko {
+			--dance-animation: 0.8s 2s infinite;
 			--eye-animation: blinky 7s 2s infinite;
 
-			--head-animation: headRotate 1.5s 2.3s infinite;
+			--head-animation: headRotate var(--dance-animation);
 
-			--arm-rotate: 80deg;
-			--arm-animation: armRotate 1.5s 2.3s infinite;
+			--arm-rotate: 50deg;
+			--arm-animation: armRotate var(--dance-animation);
 
-			--leg-animation: legRotate 1.5s 2.3s infinite;
+			--leg-animation: legRotate var(--dance-animation);
 
-			--tail-animation: tailRotate 1.5s 2.3s infinite;
+			--tail-animation: tailRotate var(--dance-animation);
 		}
 	}
+}
+
+.rage-background {
+	position: fixed;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	background-image: radial-gradient(circle, var(--rage-color) 0%, var(--black) 70%);
+	background-size: var(--rage-size, 100%);
+	background-position: center;
+	background-repeat: no-repeat;
+;	opacity: var(--rage-opacity, 0);
+	mix-blend-mode: multiply;
+	transition: var(--rage-transition, 0.25s);
 }
 
 @keyframes mouthShake {
@@ -1122,9 +1167,6 @@
 }
 
 @keyframes armRotate {
-	20% {
-		transform: rotate(calc(60deg * var(--arm-rotate-flip)))
-	}
 	50% {
 		transform: rotate(calc(90deg * var(--arm-rotate-flip)))
 	}
@@ -1143,10 +1185,7 @@
 }
 
 @keyframes legRotate {
-	50%, 70% {
-		transform: rotate(calc(80deg * var(--leg-rotate-flip, 1)))
-	}
-	30%, 80% {
-		transform: rotate(0deg);
+	50% {
+		transform: rotate(calc(80deg * var(--leg-rotate-flip, 1))) translate(-0.25rem, -0.125rem)
 	}
 }
