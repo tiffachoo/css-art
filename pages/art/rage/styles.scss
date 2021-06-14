@@ -679,7 +679,8 @@
 
 		z-index: 5;
 		background-color: var(--accent-color);
-		transform: perspective(1rem) rotateX(3deg);
+		// transform: perspective(1rem) rotateX(3deg);
+		transform: perspective(2rem) rotateX(6deg) translateZ(1px); // safari💀
 
 		&::before,
 		&::after {
@@ -705,6 +706,7 @@
 		&-cut {
 			z-index: 6;
 			left: 50%;
+			-webkit-transform: translateZ(2px); // safari💀
 
 			&-fur {
 				z-index: 2;
@@ -982,7 +984,8 @@
 
 		z-index: 2;
 		background-color: var(--accent-color);
-		transform: perspective(1rem) rotateX(-2deg);
+		// transform: perspective(1rem) rotateX(-2deg);
+		transform: perspective(2rem) rotateX(-4deg) scaleX(0.95) translateZ(2px); // safari💀
 
 		&::before,
 		&::after {
