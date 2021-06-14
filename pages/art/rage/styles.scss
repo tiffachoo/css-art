@@ -1189,6 +1189,6 @@
 
 @keyframes legRotate {
 	50% {
-		transform: rotate(calc(80deg * var(--leg-rotate-flip, 1))) translate(-0.25rem, -0.125rem)
+		transform: rotate(calc(80deg * var(--leg-rotate-flip, 1))) translate(-0.25rem, 0.125rem)
 	}
 }
