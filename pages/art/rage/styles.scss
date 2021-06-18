@@ -770,7 +770,7 @@
 		height: 2rem;
 		width: 0.5rem;
 		transform-origin: 0.25rem center;
-		transform: rotate(calc(var(--arm-rotate, 15deg) * var(--arm-rotate-flip)));
+		transform: rotate(calc(var(--arm-rotate, 50deg) * var(--arm-rotate-flip)));
 		background-color: var(--white);
 		transition: var(--arm-transition, transform 0.25s 1.5s ease-in-out);
 		animation: var(--arm-animation);
@@ -1100,6 +1100,7 @@
 			--tail-transition: transform 0.4s ease-in-out;
 
 			// --arm-rotate: 15deg;
+			--arm-animation: armRotateDown 0.3s ease-in-out forwards;
 			--arm-transition: transform 0.3s ease-in-out;
 			--arm-lower-rotate: 100deg;
 			--arm-lower-transition: transform 0.5s var(--rage-delay-3) ease-in-out;
@@ -1190,5 +1191,11 @@
 @keyframes legRotate {
 	50% {
 		transform: rotate(calc(80deg * var(--leg-rotate-flip, 1))) translate(-0.25rem, 0.125rem)
+	}
+}
+
+@keyframes armRotateDown {
+	100% {
+		transform: rotate(calc(15deg * var(--arm-rotate-flip)))
 	}
 }
