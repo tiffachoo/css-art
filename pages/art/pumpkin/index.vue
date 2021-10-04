@@ -29,6 +29,10 @@
 				<div class="pumpkin-body-front"></div>
 				<div class="pumpkin-body-side pumpkin-body-side-left"></div>
 				<div class="pumpkin-body-side pumpkin-body-side-right"></div>
+				<div class="pumpkin-leaves">
+					<div class="pumpkin-leaf pumpkin-leaf-left"></div>
+					<div class="pumpkin-leaf pumpkin-leaf-right"></div>
+				</div>
 			</div>
 		</label>
 		<div class="darkness"></div>
