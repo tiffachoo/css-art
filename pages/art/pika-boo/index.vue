@@ -41,10 +41,10 @@
 
 <script>
 	export default {
-		name: 'pumpkin',
+		name: 'pika-boo',
 		head() {
 			return {
-				title: 'pumpkin',
+				title: 'pika-boo',
 			}
 		}
 	}
