@@ -122,6 +122,7 @@ html{ font-size: 14px; }
 		&-inner {
 			height: 100%;
 			width: 100%;
+			transform: translateZ(0); // safari overflow hidden + br fix
 			border-top-left-radius: 50% 60%;
 			border-top-right-radius: 50% 60%;
 			border-bottom-left-radius: var(--eye-br-bottom-left);
@@ -441,6 +442,7 @@ html{ font-size: 14px; }
 .darkness {
 	@include absolute-fill;
 
+	position: fixed;
 	z-index: -1;
 	max-width: 100%;
 	background-color: var(--darkness-color);
