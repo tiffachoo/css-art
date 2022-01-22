@@ -1,0 +1,130 @@
+:root {
+	--black: #733910;
+	--white: #fff;
+	--primary-color: #ee8b4a;
+	--primary-color-dark: #c55252;
+	--primary-color-tint: #ffb452;
+	--secondary-color: #fff6a4;
+	--accent-color: #ff6a6a;
+
+	--background: #eaeaea;
+}
+
+* { box-sizing: border-box; }
+.body {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+	background-color: var(--background);
+	font-size: 16px;
+	line-height: 1;
+}
+
+.tiger {
+	position: relative;
+
+	*,
+	*::before,
+	*::after {
+		position: absolute;
+	}
+
+	&-eye {
+		@include border-radius(50% 60%, 50% 40%);
+
+		--position: 3rem;
+		z-index: 5;
+		top: 5.5rem;
+		height: 1.125rem;
+		width: 0.875rem;
+		background-color: var(--black);
+
+		&-left {
+			left: var(--position);
+		}
+
+		&-right {
+			right: var(--position);
+		}
+	}
+
+	&-nose {
+		--sizing: 1rem;
+		z-index: 4;
+		top: 6rem;
+		left: calc(50% - (var(--sizing) / 2));
+		height: var(--sizing);
+		width: var(--sizing);
+		transform: rotate(45deg);
+		border-top-left-radius: 100%;
+		border-top-right-radius: 30%;
+		border-bottom-left-radius: 30%;
+		border-bottom-right-radius: 0.125rem;
+		background-color: var(--accent-color);
+	}
+
+	&-snout {
+		--offset: -0.125rem;
+		--flipper: 1;
+		z-index: 2;
+		top: 6.5rem;
+		left: 50%;
+		height: 2.25rem;
+		width: 2rem;
+
+		&::before,
+		&::after {
+			content: '';
+			top: 0;
+			height: 100%;
+			width: 100%;
+			border-radius: 100%;
+			background-color: var(--secondary-color);
+			transform: rotate(calc(40deg * var(--flipper)));
+		}
+
+		&::before {
+			right: calc(100% + var(--offset));
+		}
+
+		&::after {
+			--flipper: -1;
+			left: var(--offset);
+		}
+	}
+
+	&-blush {
+		--position: 1.5rem;
+		top: 6rem;
+		height: 1.75rem;
+		width: 2.25rem;
+		border-radius: 100%;
+		background-color: var(--accent-color);
+		opacity: 0.5;
+
+		&-left {
+			left: var(--position);
+		}
+
+		&-right {
+			right: var(--position);
+		}
+	}
+
+	&-face {
+		@include border-radius(50% 65%, 50% 35%);
+		
+		inset: 0;
+		background-color: var(--primary-color);
+	}
+
+	&-head {
+		position: relative;
+		height: 11rem;
+		width: 13rem;
+	}
+
+	&-front {
+		position: relative;
+	}
+}
