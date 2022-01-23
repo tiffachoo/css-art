@@ -1,8 +1,8 @@
 :root {
-	--black: #733910;
+	--black: #624a29;
 	--white: #fff;
-	--primary-color: #ee8b4a;
-	--primary-color-dark: #c55252;
+	--primary-color: #ff9c6a;
+	--primary-color-dark: #ee7331;
 	--primary-color-tint: #ffb452;
 	--secondary-color: #fff6a4;
 	--accent-color: #ff6a6a;
@@ -31,20 +31,29 @@
 
 	&-eye {
 		@include border-radius(50% 60%, 50% 40%);
-
-		--position: 3rem;
+		@include positionX(3rem);
+		
 		z-index: 5;
 		top: 5.5rem;
 		height: 1.125rem;
 		width: 0.875rem;
 		background-color: var(--black);
+	}
+
+	&-eyebrow {
+		@include positionX(2rem);
+
+		--flip: 1;
+		z-index: 2;
+		top: 3.75rem;
+		height: 1.25rem;
+		width: 1.5rem;
+		transform: rotate(calc(20deg * var(--flip)));
+		border-radius: 100%;
+		background-color: var(--secondary-color);
 
 		&-left {
-			left: var(--position);
-		}
-
-		&-right {
-			right: var(--position);
+			--flip: -1;
 		}
 	}
 
@@ -80,7 +89,7 @@
 			width: 100%;
 			border-radius: 100%;
 			background-color: var(--secondary-color);
-			transform: rotate(calc(40deg * var(--flipper)));
+			transform: rotate(calc(50deg * var(--flipper)));
 		}
 
 		&::before {
@@ -94,28 +103,80 @@
 	}
 
 	&-blush {
-		--position: 1.5rem;
+		@include positionX(1.5rem);
+
 		top: 6rem;
 		height: 1.75rem;
 		width: 2.25rem;
 		border-radius: 100%;
 		background-color: var(--accent-color);
 		opacity: 0.5;
+	}
 
-		&-left {
-			left: var(--position);
+	&-stripes-top {
+		top: 0;
+		height: 4rem;
+		width: 1rem;
+		border-bottom-left-radius: 50%;
+		border-bottom-right-radius: 50%;
+		background-color: var(--black);
+
+		&,
+		&::before,
+		&::after {
+			left: 50%;
+			transform: translateX(-50%);
+			background-color: var(--black);	
 		}
 
-		&-right {
-			right: var(--position);
+		&::before,
+		&::after {
+			content: '';
+			height: 0.75rem;
+			border-radius: 50%;
+		}
+
+		&::before {
+			top: 0.75rem;
+			width: 3rem;
+		}
+
+		&::after {
+			top: 2rem;
+			width: 2.5rem;
 		}
 	}
 
 	&-face {
 		@include border-radius(50% 65%, 50% 35%);
 		
+		z-index: 5;
 		inset: 0;
 		background-color: var(--primary-color);
+	}
+
+	&-ear {
+		@include positionX(-0.5rem);
+
+		--flip: 1;
+		z-index: 1;
+		top: 0.75rem;
+		height: 3rem;
+		width: 3.5rem;
+		transform: rotate(calc(50deg * var(--flip)));
+		border-radius: 50% / 40%;
+		background-color: var(--primary-color);
+
+		&::before {
+			content: '';
+			inset: 1rem;
+			border-radius: 50%;
+			background-color: var(--accent-color);
+		}
+
+		&-left {
+			--flip: -1;
+		}
 	}
 
 	&-head {

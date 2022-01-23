@@ -16,3 +16,15 @@
 	height: 100%;
 	width: 100%;
 }
+
+@mixin positionX($val: 0) {
+	--position: #{$val};
+
+	&-left {
+		left: var(--position);
+	}
+
+	&-right {
+		right: var(--position);
+	}
+}

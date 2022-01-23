@@ -3,13 +3,18 @@
 		<div class="tiger-front">
 			<div class="tiger-head">
 				<div class="tiger-face">
+					<div class="tiger-eyebrow tiger-eyebrow-left"></div>
+					<div class="tiger-eyebrow tiger-eyebrow-right"></div>
 					<div class="tiger-eye tiger-eye-left"></div>
 					<div class="tiger-eye tiger-eye-right"></div>
 					<div class="tiger-nose"></div>
 					<div class="tiger-snout"></div>
 					<div class="tiger-blush tiger-blush-left"></div>
 					<div class="tiger-blush tiger-blush-right"></div>
+					<div class="tiger-stripes-top"></div>
 				</div>
+				<div class="tiger-ear tiger-ear-left"></div>
+				<div class="tiger-ear tiger-ear-right"></div>
 			</div>
 		</div>
 		<div class="tiger-back"></div>
