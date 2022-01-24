@@ -11,6 +11,7 @@
 
 	--background: var(--primary-color-tint);
 	--circle-sizing: 18rem;
+	--circle-rotate: 0deg;
 }
 
 * { box-sizing: border-box; }
@@ -25,6 +26,13 @@
 
 .tiger {
 	position: relative;
+	height: var(--circle-sizing);
+	width: var(--circle-sizing);
+	transform-style: preserve-3d;
+	transform: rotateY(var(--circle-rotate));
+	// perspective: 1000px;
+	transition: 0.5s ease-in-out;
+	cursor: pointer;
 
 	*,
 	*::before,
@@ -373,18 +381,38 @@
 	}
 
 	&-front {
-		position: relative;
 		background-color: var(--secondary-color-tint);
+		transform: translateZ(0.25rem);
+		backface-visibility: hidden;
 
 		&,
 		&-mask {
-			height: var(--circle-sizing);
-			width: var(--circle-sizing);
+			inset: 0;
 			border-radius: 100%;
 		}
 
 		&-mask {
 			overflow: hidden;
+		}
+	}
+
+	&-back {
+		position: absolute;
+		inset: 0;
+		transform: rotateY(180deg);
+		border-radius: 100%;
+		background-color: var(--secondary-color-dark);
+		backface-visibility: hidden;
+	}
+
+	&-control {
+		position: absolute;
+		opacity: 0;
+
+		&:checked {
+			+ .tiger {
+				--circle-rotate: 180deg;
+			}
 		}
 	}
 }
