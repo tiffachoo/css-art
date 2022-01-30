@@ -37,7 +37,20 @@
 				<div class="tiger-paw tiger-paw-left"></div>
 				<div class="tiger-paw tiger-paw-right"></div>
 			</div>
-			<div class="tiger-back"></div>
+			<div class="tiger-back">
+				<div class="tiger-body-back">
+					<div class="tiger-rear">
+						<div class="tiger-rear-stripes tiger-rear-stripes-left"></div>
+						<div class="tiger-rear-stripes tiger-rear-stripes-right"></div>
+					</div>
+					<div class="tiger-tail-wrap">
+						<div class="tiger-tail">
+							<div class="tiger-tail-stripes"></div>
+						</div>
+					</div>
+					<div class="tiger-cross"></div>
+				</div>
+			</div>
 		</label>
 	</div>
 </template>

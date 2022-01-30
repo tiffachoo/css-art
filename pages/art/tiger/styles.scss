@@ -396,13 +396,165 @@
 		}
 	}
 
+	&-cross {
+		--flip: 1;
+		top: 4.5rem;
+		left: 50%;
+		height: 1.5rem;
+		width: 1.5rem;
+		transform: translateX(-50%);
+
+		&::before,
+		&::after {
+			content: '';
+			left: 50%;
+			height: 100%;
+			width: 0.5rem;
+			border-radius: 50%;
+			background-color: var(--primary-color-dark);
+			transform: translateX(-50%) rotate(calc(45deg * var(--flip)))
+		}
+
+		&::before {
+			--flip: -1;
+		}
+	}
+
+	&-tail {
+		inset: 0;
+		transform-origin: 50% 95%;
+		transform: rotate(30deg);
+		border-radius: inherit;
+		background-color: var(--primary-color);
+		overflow: hidden;
+		
+		&::before {
+			content: '';
+			height: 1.5rem;
+			width: 150%;
+			left: -50%;
+			border-radius: 100%;
+			background-color: var(--black)
+		}
+
+		&-stripes {
+			top: 2.5rem;
+			left: -0.25rem;
+			width: 2rem;
+			
+			&::before,
+			&::after {
+				content: '';
+				height: 1rem;
+				width: 100%;
+				border-top-right-radius: 100% 50%;
+				border-bottom-right-radius: 100% 50%;
+				background-color: var(--black);
+			}
+
+			&::after {
+				top: 1.5rem;
+				left: -0.5rem;
+			}
+		}
+
+		&-wrap {
+			top: -3.5rem;
+			left: 50%;
+			height: 7.5rem;
+			width: 3rem;
+			transform: translateX(-50%);
+			border-radius: 40% 60% 50% 50% / 20% 30% 70% 80%;
+
+			&::before {
+				content: '';
+				z-index: -1;
+				left: 0rem;
+				bottom: 0.25rem;
+				height: 58%;
+				width: 3rem;
+				transform-origin: center bottom;
+				transform: rotate(50deg);
+				border-radius: inherit;
+				background-color: var(--primary-color-dark);
+			}
+		}
+	}
+
+	&-rear-stripes {
+		@include positionX(-1rem);
+
+		--flip: 1;
+		top: 4.5rem;
+		height: 2.5rem;
+
+		&::before,
+		&::after {
+			content: '';
+			height: 100%;
+			width: 1rem;
+			transform-origin: center top;
+			border-bottom-left-radius: 50% 100%;
+			border-bottom-right-radius: 50% 100%;
+			background-color: var(--black);
+		}
+
+		&::before {
+			transform: rotate(calc(80deg * var(--flip)));
+		}
+
+		&::after {
+			top: 2rem;
+			transform: rotate(calc(95deg * var(--flip)));
+		}
+
+		&-left {
+			--flip: -1;
+		}
+
+		&-right {
+			&::before,
+			&::after {
+				right: 0;
+			}
+		}
+	}
+
+	&-rear {
+		@include border-radius(50% 55%, 50% 45%);
+
+		inset: 0;
+		background-color: var(--primary-color);
+		overflow: hidden;
+
+		&::before {
+			content: '';
+			bottom: -2rem;
+			left: 50%;
+			height: 60%;
+			width: 70%;
+			transform: translateX(-50%);
+			border-radius: inherit;
+			background-color: var(--secondary-color);
+		}
+	}
+
+	&-body-back {
+		bottom: -1rem;
+		left: 50%;
+		height: 11rem;
+		width: 13.5rem;
+		transform: translateX(-50%);
+	}
+
 	&-back {
 		position: absolute;
 		inset: 0;
 		transform: rotateY(180deg);
 		border-radius: 100%;
-		background-color: var(--secondary-color-dark);
+		background-color: var(--secondary-color-tint);
 		backface-visibility: hidden;
+		overflow: hidden;
 	}
 
 	&-control {
