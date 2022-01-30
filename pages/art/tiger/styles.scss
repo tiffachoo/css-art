@@ -42,17 +42,19 @@
 
 	&-eye {
 		@include border-radius(50% 60%, 50% 40%);
-		@include positionX(3rem);
+		@include position-x(3rem);
 		
 		z-index: 5;
 		top: 5.5rem;
 		height: 1.125rem;
 		width: 0.875rem;
+		transform-origin: center 70%;
 		background-color: var(--black);
+		animation: blinky 7s infinite;
 	}
 
 	&-eyebrow {
-		@include positionX(2rem);
+		@include position-x(2rem);
 
 		--flip: 1;
 		z-index: 2;
@@ -114,7 +116,7 @@
 	}
 
 	&-blush {
-		@include positionX(1.5rem);
+		@include position-x(1.5rem);
 
 		z-index: 2;
 		top: 6rem;
@@ -126,7 +128,7 @@
 	}
 
 	&-face-fluff {
-		@include positionX(1.25rem);
+		@include position-x(1.25rem);
 
 		--flip: 1;
 		--before-pos: -0.75rem;
@@ -197,7 +199,7 @@
 	}
 
 	&-stripes-side {
-		@include positionX(-0.5rem);
+		@include position-x(-0.5rem);
 		--flip: 1;
 		top: 5.5rem;
 
@@ -248,7 +250,7 @@
 	}
 
 	&-ear {
-		@include positionX(-0.5rem);
+		@include position-x(-0.5rem);
 
 		--flip: 1;
 		--inner-position: -2rem;
@@ -290,6 +292,7 @@
 
 		&-right {
 			--inner-left: var(--inner-position);
+			animation: earTwitch 3s infinite;
 		}
 	}
 
@@ -299,8 +302,9 @@
 		left: 50%;
 		height: 11rem;
 		width: 13rem;
-		transform: translateX(-50%);
+		transform: translateX(-50%) translateY(var(--head-translate-y, 0));
 		transform-origin: center bottom;
+		transition: 0.4s ease-out;
 
 		&::before {
 			content: '';
@@ -315,7 +319,7 @@
 	}
 
 	&-paw {
-		@include positionX(1.5rem);
+		@include position-x(1.5rem);
 
 		--flip: 1;
 		z-index: 6;
@@ -393,6 +397,7 @@
 
 		&-mask {
 			overflow: hidden;
+			transform: translateZ(0); // safari - overflow + border-radius 💀
 		}
 	}
 
@@ -458,6 +463,11 @@
 			}
 		}
 
+		&,
+		&-wrap::before {
+			animation: tailWiggle 2s ease-in infinite;
+		}
+
 		&-wrap {
 			top: -3.5rem;
 			left: 50%;
@@ -477,12 +487,13 @@
 				transform: rotate(50deg);
 				border-radius: inherit;
 				background-color: var(--primary-color-dark);
+				animation-name: tailWiggleShadow;
 			}
 		}
 	}
 
 	&-rear-stripes {
-		@include positionX(-1rem);
+		@include position-x(-1rem);
 
 		--flip: 1;
 		top: 4.5rem;
@@ -547,6 +558,74 @@
 		transform: translateX(-50%);
 	}
 
+	&-toe-beans {
+		bottom: 0.25rem;
+		left: 50%;
+		transform: translateX(-50%);
+
+		&,
+		&::before,
+		&::after {
+			height: 0.625rem;
+			width: 0.5rem;
+			border-radius: 100%;
+			background-color: var(--accent-color);
+		}
+
+		&::before,
+		&::after {
+			content: '';
+			bottom: 0.25rem;
+		}
+
+		&::before {
+			left: -0.75rem;
+		}
+
+		&::after {
+			right: -0.75rem;
+		}
+
+		&-main {
+			bottom: 1.25rem;
+			left: 50%;
+			height: 1.5rem;
+			width: 1.75rem;
+			transform: translateX(-50%);
+			border-radius: 100%;
+			background-color: var(--accent-color);
+		}
+	}
+
+	&-paw-back {
+		@include position-x(2.5rem);
+		@include border-radius(50% 70%, 50% 30%);
+
+		--flip: 1;
+		bottom: -0.25rem;
+		height: 4rem;
+		width: 3rem;
+		background-color: var(--secondary-color);
+		transform-origin: 50% 10%;
+		transform: rotate(calc(30deg * var(--flip)));
+		animation: pawRotate 5s ease-in-out infinite;
+
+		&::before {
+			content: '';
+			left: 50%;
+			bottom: -0.25rem;
+			height: 2rem;
+			width: 2rem;
+			transform: translateX(-50%);
+			border-radius: 100%;
+			background-color: inherit;
+		}
+
+		&-left {
+			--flip: -1;
+		}
+	}
+
 	&-back {
 		position: absolute;
 		inset: 0;
@@ -554,7 +633,81 @@
 		border-radius: 100%;
 		background-color: var(--secondary-color-tint);
 		backface-visibility: hidden;
-		overflow: hidden;
+
+		&,
+		&-mask {
+			inset: 0;
+			border-radius: 100%;
+		}
+
+		&-mask {
+			overflow: hidden;
+			transform: translateZ(0); // safari - overflow + border-radius 💀
+		}
+	}
+
+	&-decor {
+		&,
+		&::before,
+		&::after {
+			position: absolute;
+			height: 2rem;
+			border-radius: 2rem;
+			background-color: var(--secondary-color);
+		}
+		
+		&-1 {
+			top: 3rem;
+			left: 0rem;
+			width: 20rem;
+			border-bottom-right-radius: 0;
+
+			&::before {
+				content: '';
+				top: 2rem;
+				right: -5rem;
+				width: 11rem;
+				border-top-left-radius: 0;
+			}
+		}
+
+		&-2 {
+			top: 9rem;
+			left: -9rem;
+			width: 14rem;
+			border-bottom-right-radius: 0;
+
+			&::before {
+				content: '';
+				top: -4rem;
+				left: 2rem;
+				width: 6rem;
+			}
+
+			&::after {
+				content: '';
+				top: 2rem;
+				left: 5rem;
+				width: 26rem;
+				border-top-left-radius: 0;
+			}
+		}
+
+		&-3 {
+			top: 17rem;
+			right: -4rem;
+			width: 6rem;
+		}
+
+		&-wrap {
+			position: absolute;
+			z-index: -1;
+			left: 50%;
+			height: var(--circle-sizing);
+			width: var(--circle-sizing);
+			transform: translateX(-50%);
+			opacity: 0.2;
+		}
 	}
 
 	&-control {
@@ -566,5 +719,38 @@
 				--circle-rotate: 180deg;
 			}
 		}
+	}
+
+	&:hover { 
+		.tiger-head {
+			--head-translate-y: 2rem;
+		}
+	}
+}
+
+@keyframes tailWiggle {
+	50% {
+		transform: rotate(40deg);
+	}
+}
+
+@keyframes tailWiggleShadow {
+	50% {
+		transform: rotate(52deg) scaleY(0.95);
+	}
+}
+
+@keyframes pawRotate {
+	50% {
+		transform: rotate(calc(10deg * var(--flip)))
+	}
+}
+
+@keyframes earTwitch {
+	0%, 70%, 85% {
+		transform: rotate(calc(50deg * var(--flip))) 
+	}
+	80%, 90% {
+		transform: rotate(calc(60deg * var(--flip))) scaleX(0.9);
 	}
 }

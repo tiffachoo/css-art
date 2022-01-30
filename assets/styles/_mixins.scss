@@ -17,7 +17,7 @@
 	width: 100%;
 }
 
-@mixin positionX($val: 0) {
+@mixin position-x($val: 0) {
 	--position: #{$val};
 
 	&-left {
