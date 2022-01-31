@@ -726,6 +726,11 @@
 			--head-translate-y: 2rem;
 		}
 	}
+
+	&-wrap {
+		display: grid;
+		animation: squiggleVision 0.3s infinite alternate;
+	}
 }
 
 @keyframes tailWiggle {
@@ -752,5 +757,20 @@
 	}
 	80%, 90% {
 		transform: rotate(calc(60deg * var(--flip))) scaleX(0.9);
+	}
+}
+
+@keyframes squiggleVision {
+	0% {
+		filter: url('#filterSquiggle1');
+	}
+	25% {
+		filter: url('#filterSquiggle2');
+	}
+	50% {
+		filter: url('#filterSquiggle3');
+	}
+	75% {
+		filter: url('#filterSquiggle4');
 	}
 }
