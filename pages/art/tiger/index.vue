@@ -69,7 +69,7 @@
 				<div class="tiger-decor tiger-decor-3"></div>
 			</div>
 		</div>
-		<svg style="display: none">
+		<svg class="svg-filter-hide">
 			<defs>
 				<filter id="filterSquiggle1">
 					<feTurbulence baseFrequency="0.02" numOctaves="3" seed="10" />

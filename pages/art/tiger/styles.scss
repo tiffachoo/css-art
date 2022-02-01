@@ -733,6 +733,12 @@
 	}
 }
 
+.svg-filter-hide {
+	position: absolute; 
+	opacity: 0; 
+	pointer-events: none;
+}
+
 @keyframes tailWiggle {
 	50% {
 		transform: rotate(40deg);
@@ -761,7 +767,7 @@
 }
 
 @keyframes squiggleVision {
-	0% {
+	0%, 100% {
 		filter: url('#filterSquiggle1');
 	}
 	25% {
