@@ -1,0 +1,123 @@
+:root {
+	--black: #444;
+	--white: #fff;
+	--primary-color: #2c2940;
+	--primary-color-dark: #00bd9e;
+	--primary-color-tint: #99ffee;
+	--secondary-color: #fff5f0;
+	--accent-color: #ff00c8;
+
+	--background: #eaeaea;
+}
+
+* { box-sizing: border-box; }
+.body {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+	background-color: var(--background);
+	font-size: 16px;
+	line-height: 1;
+}
+
+.komi {
+	position: relative;
+
+	*,
+	*::before,
+	*::after {
+		position: absolute;
+	}
+
+	&-eye {
+		top: 4rem;
+		left: 1.5rem;
+		height: 3.75rem;
+		width: 3.5rem;
+		border-radius: 100%;
+		background-color: var(--white);
+	}
+
+	&-face {
+		@include border-radius(50% 50%, 50% 40%);
+
+		inset: 0;
+		background-color: var(--secondary-color);
+	}
+
+	&-face-inner {
+		inset: 0;
+	}
+
+	&-hair {
+		&-back {
+			top: -1.75rem;
+			left: -2rem;
+			width: 120%;
+
+			&-1 {
+				width: 100%;
+				height: 8.5rem;
+				transform: rotate(-10deg);
+				border-radius: 100%;
+				background-color: var(--primary-color);
+
+				&::before {
+					content: '';
+					top: 4.25rem;
+					right: -1rem;
+					width: 50%;
+					height: 60%;
+					background-color: inherit;
+					border-radius: 100%;
+				}
+			}
+		}
+
+		&-bangs {
+			top: -0.5rem;
+			left: 25%;
+			width: 65%;
+
+			&-1,
+			&-2 {
+				transform-origin: center top;
+				background-color: var(--primary-color);
+			}
+
+			&-1 {
+				top: 0;
+				left: 0;
+				width: 55%;
+				height: 5rem;
+				transform: rotate(-8deg);
+				border-bottom-left-radius: 100% 50%;
+
+				&::before {
+					content: '';
+					left: -1.5rem;
+					height: 80%;
+					border-bottom-left-radius: 100%;
+					transform: rotate(50deg);
+					width: 3rem;
+					border-left: 1.5rem solid var(--primary-color);
+				}
+			}
+
+			&-2 {
+				top: 0;
+				left: 50%;
+				width: 45%;
+				height: 5.5rem;
+				transform: rotate(-12deg);
+				border-bottom-left-radius: 100% 70%;
+			}
+		}
+	}
+	
+	&-head {
+		position: relative;
+		height: 11rem;
+		width: 13rem;
+	}
+}
