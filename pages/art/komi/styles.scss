@@ -1,13 +1,18 @@
+// @use 'sass-math';
+
 :root {
-	--black: #444;
+	--black: #2c2940;
 	--white: #fff;
-	--primary-color: #2c2940;
+	--primary-color: #3c3757;
 	--primary-color-dark: #00bd9e;
 	--primary-color-tint: #99ffee;
 	--secondary-color: #fff5f0;
-	--accent-color: #ff00c8;
+	--accent-color: #ff4dde;
 
 	--background: #eaeaea;
+
+	--line-width-1: 0.125rem;
+	--line-width-2: 0.375rem;
 }
 
 * { box-sizing: border-box; }
@@ -30,12 +35,84 @@
 	}
 
 	&-eye {
-		top: 4rem;
-		left: 1.5rem;
+		--flip: 1;
+		--eye-offset: 1.25rem;
+		--pupil-offset: 0.5rem;
+		--eye-line-top-offset: -13%;
+		--eye-line-bottom-offset: 16%;
+		inset: 4.5rem var(--eye-right) auto var(--eye-left);
 		height: 3.75rem;
-		width: 3.5rem;
+		width: 4rem;
 		border-radius: 100%;
 		background-color: var(--white);
+
+		&::before,
+		&::after {
+			content: '';
+		}
+
+		&::before {
+			inset: -0.0625rem var(--eye-line-top-right) auto var(--eye-line-top-left);
+			height: 120%;
+			width: 120%;
+			transform: rotate(calc(-12deg * var(--flip)));
+			border-radius: 100%;
+			border: var(--line-width-2) solid transparent;
+			border-top: var(--line-width-2) solid var(--black);
+		}
+
+		&::after {
+			inset: auto var(--eye-line-bottom-right) 0 var(--eye-line-bottom-left);
+			height: 15%;
+			width: 50%;
+			transform: rotate(calc(8deg * var(--flip)));
+			border-radius: 100%;
+			border: var(--line-width-1) solid transparent;
+			border-bottom: var(--line-width-1) solid var(--black);
+		}
+
+		&-pupil {
+			inset: 0.75rem var(--pupil-right) auto var(--pupil-left);
+			height: 2.5rem;
+			width: 2.5rem;
+			border-radius: 100%;
+			background-color: var(--black);
+		}
+
+		&-left {
+			--eye-left: var(--eye-offset);
+			--pupil-right: var(--pupil-offset);
+			--eye-line-top-left: var(--eye-line-top-offset);
+			--eye-line-bottom-left: var(--eye-line-bottom-offset);
+		}
+
+		&-right {
+			--flip: -1;
+			--eye-right: var(--eye-offset);
+			--pupil-left: var(--pupil-offset);
+			--eye-line-top-right: var(--eye-line-top-offset);
+			--eye-line-bottom-right: var(--eye-line-bottom-offset);
+		}
+	}
+
+	&-ear {
+		--flip: 1;
+		--ear-offset: -1.25rem;
+		inset: 5.75rem var(--ear-right) auto var(--ear-left);
+		height: 3rem;
+		width: 2rem;
+		transform: rotate(calc(40deg * var(--flip)));
+		border-radius: 100%;
+		background-color: var(--secondary-color);
+
+		&-left {
+			--flip: -1;
+			--ear-left: var(--ear-offset);
+		}
+
+		&-right {
+			--ear-right: var(--ear-offset);
+		}
 	}
 
 	&-face {
@@ -64,7 +141,7 @@
 
 				&::before {
 					content: '';
-					top: 4.25rem;
+					top: 4.5rem;
 					right: -1rem;
 					width: 50%;
 					height: 60%;
@@ -89,7 +166,7 @@
 				top: 0;
 				left: 0;
 				width: 55%;
-				height: 5rem;
+				height: 6rem;
 				transform: rotate(-8deg);
 				border-bottom-left-radius: 100% 50%;
 
@@ -97,9 +174,9 @@
 					content: '';
 					left: -1.5rem;
 					height: 80%;
+					width: 3rem;
 					border-bottom-left-radius: 100%;
 					transform: rotate(50deg);
-					width: 3rem;
 					border-left: 1.5rem solid var(--primary-color);
 				}
 			}
@@ -108,16 +185,88 @@
 				top: 0;
 				left: 50%;
 				width: 45%;
-				height: 5.5rem;
+				height: 6.5rem;
 				transform: rotate(-12deg);
 				border-bottom-left-radius: 100% 70%;
+			}
+
+			&-3 {
+				top: 1.5rem;
+				left: -1.75rem;
+				height: 6rem;
+				width: 4.5rem;
+				border-bottom-left-radius: 100%;
+				transform-origin: center top;
+				transform: rotate(45deg);
+				border-left: 1.75rem solid var(--primary-color);
 			}
 		}
 	}
 	
 	&-head {
 		position: relative;
-		height: 11rem;
+		z-index: 2;
+		height: 12rem;
 		width: 13rem;
+		margin-bottom: 5rem;
+	}
+
+	&-hair-extension {
+		top: 3rem;
+		left: 50%;
+		width: 14rem;
+		height: 14rem;
+		transform: translateX(-50%);
+		background-color: var(--primary-color);
+	}
+
+	&-neck {
+		z-index: -1;
+		bottom: 100%;
+		left: 50%;
+		height: 4rem;
+		width: 2rem;
+		transform: translateX(-50%);
+		background-color: var(--secondary-color);
+
+		// &::before,
+		&::after {
+			--flip: 1;
+			content: '';
+			inset: 3rem var(--collar-right) auto var(--collar-left);
+			height: 0;
+			width: 0;
+			border: 1.75rem solid transparent;
+			// border-top-color: aqua;
+			// transform: skewY(-20deg) rotate(calc(60deg * var(--flip)));
+		}
+
+		&::before {
+			--collar-left: 0;
+		}
+
+		&::after {
+			--flip: -1;
+			--collar-right: -2.125rem;
+		}
+	}
+
+	&-body {
+		z-index: 1;
+		top: 12rem;
+		left: 50%;
+		height: 6rem;
+		width: 12rem;
+		transform: translateX(-50%);
+	}
+
+	&-panel {
+		top: 2rem;
+		left: 50%;
+		width: m#{a}x(50vw, 25rem);
+		height: 15rem;
+		transform: translateX(-50%);
+		background-color: var(--white);
+		// overflow: hidden;
 	}
 }
