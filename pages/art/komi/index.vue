@@ -19,12 +19,22 @@
 				<div class="komi-eye komi-eye-right">
 					<div class="komi-eye-pupil"></div>
 				</div>
+				<div class="komi-blush komi-blush-left"></div>
+				<div class="komi-blush komi-blush-right"></div>
 			</div>
 		</div>
 		<div class="komi-panel">
 			<div class="komi-hair-extension"></div>
 			<div class="komi-body">
-				<div class="komi-neck"></div>
+				<div class="komi-neck">
+					<div class="komi-collar komi-collar-left"></div>
+					<div class="komi-collar komi-collar-right"></div>
+					<div class="komi-bow">
+						<div class="komi-bow-top"></div>
+						<div class="komi-bow-bottom"></div>
+					</div>
+				</div>
+				<div class="komi-shirt"></div>
 			</div>
 		</div>
 	</div>
