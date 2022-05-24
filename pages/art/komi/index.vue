@@ -6,6 +6,12 @@
 			</div>
 			<div class="komi-ear komi-ear-left"></div>
 			<div class="komi-ear komi-ear-right"></div>
+			<div class="komi-cat-ear komi-cat-ear-left">
+				<div class="komi-cat-ear-fur"></div>
+			</div>
+			<div class="komi-cat-ear komi-cat-ear-right">
+				<div class="komi-cat-ear-fur"></div>
+			</div>
 			<div class="komi-face"></div>
 			<div class="komi-hair-bangs">
 				<div class="komi-hair-bangs-1"></div>
@@ -14,10 +20,14 @@
 			</div>
 			<div class="komi-face-inner">
 				<div class="komi-eye komi-eye-left">
-					<div class="komi-eye-pupil"></div>
+					<div class="komi-eye-pupil">
+						<div class="komi-eye-sparkle"></div>
+					</div>
 				</div>
 				<div class="komi-eye komi-eye-right">
-					<div class="komi-eye-pupil"></div>
+					<div class="komi-eye-pupil">
+						<div class="komi-eye-sparkle"></div>
+					</div>
 				</div>
 				<div class="komi-blush komi-blush-left"></div>
 				<div class="komi-blush komi-blush-right"></div>
@@ -34,7 +44,9 @@
 						<div class="komi-bow-bottom"></div>
 					</div>
 				</div>
-				<div class="komi-shirt"></div>
+				<div class="komi-shirt">
+					<div class="komi-shirt-sleeves"></div>
+				</div>
 			</div>
 		</div>
 	</div>
