@@ -13,7 +13,7 @@
 	--shirt-color-dark: #f5f5f5;
 	--bow-color-1: #961E60;
 	--bow-color-2: #411854;
-	--bow-gradient: repeating-linear-gradient(-45deg, var(--bow-color-1), var(--bow-color-1) 0.25rem, var(--bow-color-2) 0.25rem, var(--bow-color-2) 0.375rem);
+	--bow-gradient: repeating-linear-gradient(-45deg, var(--bow-color-1) 0 0.25rem, var(--bow-color-2) 0.25rem 0.375rem);
 
 	--background: #eaeaea;
 
@@ -38,6 +38,12 @@
 	*::before,
 	*::after {
 		position: absolute;
+	}
+
+	&-head,
+	&-body,
+	&-hair-extension {
+		animation: var(--hover-animation, none);
 	}
 
 	&-eye {
@@ -97,6 +103,7 @@
 				height: 100%;
 				width: 0.5rem;
 				transform: translateX(-50%);
+				animation: twinkleY 0.3s infinite;
 			}
 
 			&::after {
@@ -104,6 +111,7 @@
 				width: 100%;
 				height: 0.5rem;
 				transform: translateY(-50%);
+				animation: twinkleX 0.3s 0.3s infinite;
 			}
 		}
 
@@ -177,6 +185,7 @@
 		&-left {
 			--flip: -1;
 			--ear-left: var(--ear-offset);
+			z-index: -1;
 		}
 
 		&-right {
@@ -191,11 +200,11 @@
 		--cat-ear-fur-1-offset: 1.75rem;
 		--cat-ear-fur-2-offset: 1.5rem;
 		z-index: -1;
-		inset: -3rem var(--cat-ear-right) auto var(--cat-ear-left);
+		inset: var(--cat-ear-translate, 4rem) var(--cat-ear-right) auto var(--cat-ear-left);
 		height: 6rem;
 		width: 5rem;
 		transition: 0.5s ease-in-out;
-		transform: scaleY(var(--cat-ear-scale, 0)) translateY(var(--cat-ear-translate, 300%));
+		// transform: scaleY(var(--cat-ear-scale, 0)) translateY(var(--cat-ear-translate, 300%));
 
 		&::before {
 			content: '';
@@ -256,6 +265,7 @@
 			--cat-ear-fur-2-right: var(--cat-ear-fur-2-offset);
 			--cat-ear-fur-border-radius: 100% 0 100% 0;
 			border-radius: 0 0.5rem 100% 0;
+			animation: var(--cat-ear-animation);
 		}
 	}
 
@@ -380,6 +390,15 @@
 				border-left: 1.75rem solid var(--primary-color);
 			}
 		}
+
+		&-strand {
+			z-index: -1;
+			top: 4rem;
+			left: -0.75rem;
+			height: 13rem;
+			width: 1.5rem;
+			background-color: var(--primary-color);
+		}
 	}
 	
 	&-head {
@@ -392,11 +411,18 @@
 
 	&-hair-extension {
 		top: 3rem;
-		left: 50%;
+		left: calc(50% - 7rem);
 		width: 14rem;
 		height: 14rem;
-		transform: translateX(-50%);
 		background-color: var(--primary-color);
+
+		&::after {
+			content: '';
+			left: 1rem;
+			height: 100%;
+			width: 5rem;
+			background-color: var(--primary-color-dark);
+		}
 	}
 
 	&-neck {
@@ -451,8 +477,8 @@
 	&-bow {
 		bottom: -1.875rem;
 		left: 50%;
-		height: 1rem;
-		width: 1.75rem;
+		height: 0.75rem;
+		width: 1.25rem;
 		transform: translateX(-50%);
 
 		&::after {
@@ -466,7 +492,7 @@
 
 		&-top {
 			--flip: 1;
-			--bow-top-offset: 1.125rem;
+			--bow-top-offset: 0.75rem;
 			z-index: 2;
 			inset: 0;
 			// perspective: 1000px;
@@ -474,10 +500,10 @@
 			&::before,
 			&::after {
 				content: '';
-				inset: -0.125rem var(--bow-top-right) auto var(--bow-top-left);
+				inset: -0.25rem var(--bow-top-right) auto var(--bow-top-left);
 				height: 1.75rem;
 				width: 1.75rem;
-				transform: rotate(calc(-10deg * var(--flip))) perspective(1rem) rotateY(calc(22deg * var(--flip)));
+				transform: rotate(calc(-15deg * var(--flip))) perspective(1rem) rotateY(calc(22deg * var(--flip)));
 				background-color: var(--bow-color-1);
 				background-image: var(--bow-gradient);
 				border-radius: 0.25rem;
@@ -491,11 +517,39 @@
 				--bow-top-left: var(--bow-top-offset);
 				--flip: -1;
 			}
+
+			&-shadow {
+				--bow-top-shadow-offset: 0.75rem;
+				inset: 0;
+
+				&::before,
+				&::after {
+					content: '';
+					z-index: 1;
+					inset: 0.125rem var(--bow-top-shadow-right) auto var(--bow-top-shadow-left);
+					height: 0.75rem;
+					width: 1.25rem;
+					transform: rotate(calc(-15deg * var(--flip)));
+					border-radius: 100%;
+					background-color: var(--bow-color-2);
+					mix-blend-mode: multiply;
+					opacity: 0.4;
+				}
+
+				&::before {
+					--bow-top-shadow-right: var(--bow-top-shadow-offset);
+				}
+
+				&::after {
+					--bow-top-shadow-left: var(--bow-top-shadow-offset);
+					--flip: -1;
+				}
+			}
 		}
 
 		&-bottom {
 			--flip: 1;
-			--bow-bottom-offset: -1.25rem;
+			--bow-bottom-offset: -1.5rem;
 			z-index: 1;
 			inset: 0;
 
@@ -503,8 +557,8 @@
 			&::after {
 				content: '';
 				top: 0.5rem;
-				inset: 0.5rem var(--bow-bottom-right) auto var(--bow-bottom-left);
-				height: 3rem;
+				inset: 0.325rem var(--bow-bottom-right) auto var(--bow-bottom-left);
+				height: 1.75rem;
 				width: 2rem;
 				transform: rotate(calc(15deg * var(--flip)));
 				border-radius: 0.125rem;
@@ -581,10 +635,9 @@
 	&-body {
 		z-index: 1;
 		top: 12rem;
-		left: 50%;
+		left: calc(50% - 6rem);
 		height: 6rem;
 		width: 12rem;
-		transform: translateX(-50%);
 	}
 
 	&-panel {
@@ -597,13 +650,124 @@
 		overflow: hidden;
 	}
 
+	&-zigzag {
+		background-image: repeating-linear-gradient(45deg, var(--primary-color-tint) 0 0.125rem, transparent 0.125rem 0.25rem);
+		
+		&,
+		&::after {
+			height: 0.125rem;
+			width: 1.125rem;
+		}
+
+		&::after {
+			content: '';
+			background-image: repeating-linear-gradient(-45deg, transparent 0 0.125rem, var(--primary-color-tint) 0.125rem 0.25rem);
+		}
+
+		&-1 {
+			left: -2rem;
+			bottom: 2rem;
+			transform: rotate(85deg);
+		}
+
+		&-2 {
+			left: -2rem;
+			bottom: 6rem;
+			width: 0.875rem;
+			transform: rotate(90deg);
+		}
+
+		&-3 {
+			left: -3rem;
+			top: 5rem;
+			transform: rotate(60deg);
+		}
+
+		&-4 {
+			left: -2rem;
+			top: -1rem;
+			transform: rotate(-40deg);
+		}
+
+		&-5 {
+			left: 5rem;
+			top: -4rem;
+			transform: rotate(-10deg);
+		}
+
+		&-6 {
+			right: -1rem;
+			top: -2rem;
+			transform: rotate(50deg);
+		}
+	}
+
+	&-zigzags {
+		inset: 0;
+	}
+
 	&-head {
 		&:hover {
 			--eye-pupil-scale: 1.1;
 			--eye-sparkle-scale: 1;
 			--blush-opacity: 0.3;
 			--cat-ear-scale: 1;
-			--cat-ear-translate: 0;
+			--cat-ear-translate: -3rem;
+			--cat-ear-animation: catEarTwitch 3s 0.5s infinite;
+
+			&,
+			+ .komi-panel {
+				--hover-animation: none;
+			}
 		}
+	}
+
+	&:hover {
+		// --hover-animation: tremble 0.3s infinite;
+		--eye-pupil-scale: 0.9;
+	}
+}
+
+@keyframes twinkleY {
+	0%, 100% {
+		transform: translateX(-50%) scaleY(1);
+	}
+	
+	50% {
+		transform: translateX(-50%) scaleY(0.5);
+	}
+}
+
+@keyframes twinkleX {
+	0%, 100% {
+		transform: translateY(-50%) scaleX(1);
+	}
+	
+	50% {
+		transform: translateY(-50%) scaleX(0.5);
+	}
+}
+
+@keyframes catEarTwitch {
+	0%, 70%, 90% {
+		transform: rotate(0deg);
+	}
+
+	80%, 95% {
+		transform: rotate(5deg) scaleX(0.9);
+	}
+}
+
+@keyframes tremble {
+	0%, 24%, 50%, 74%, 100% {
+		transform: translate(0, 0);
+	}
+
+	25%, 49% {
+		transform: translate(0.0625rem, 0.1875rem);
+	}
+
+	75%, 99% {
+		transform: translate(-0.0625rem, 0.1875rem);
 	}
 }
