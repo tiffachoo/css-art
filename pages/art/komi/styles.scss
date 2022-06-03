@@ -575,7 +575,6 @@
 			&::after {
 				@include inset(0.325rem, var(--bow-bottom-right), auto, var(--bow-bottom-left));
 				content: '';
-				top: 0.5rem;
 				height: 1.75rem;
 				width: 2rem;
 				transform: rotate(calc(15deg * var(--flip)));
