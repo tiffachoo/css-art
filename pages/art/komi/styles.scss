@@ -1,4 +1,3 @@
-// @use 'sass-math';
 @import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap');
 
 :root {
@@ -50,13 +49,13 @@
 	}
 
 	&-eye {
+		@include inset(4.5rem, var(--eye-right), auto, var(--eye-left));
 		--flip: 1;
 		--eye-offset: 1.25rem;
 		--pupil-offset: 0.5rem;
 		--eye-line-top-offset: -13%;
 		--eye-line-bottom-offset: 16%;
 		z-index: 2;
-		inset: 4.5rem var(--eye-right) auto var(--eye-left);
 		height: 3.75rem;
 		width: 4rem;
 		transform-origin: center 70%;
@@ -70,7 +69,7 @@
 		}
 
 		&::before {
-			inset: -0.0625rem var(--eye-line-top-right) auto var(--eye-line-top-left);
+			@include inset(-0.0625rem, var(--eye-line-top-right), auto, var(--eye-line-top-left));
 			height: 120%;
 			width: 120%;
 			transform: rotate(calc(-12deg * var(--flip)));
@@ -80,7 +79,7 @@
 		}
 
 		&::after {
-			inset: auto var(--eye-line-bottom-right) 0 var(--eye-line-bottom-left);
+			@include inset(auto, var(--eye-line-bottom-right), 0, var(--eye-line-bottom-left));
 			height: 15%;
 			width: 50%;
 			transform: rotate(calc(8deg * var(--flip)));
@@ -119,7 +118,7 @@
 		}
 
 		&-pupil {
-			inset: 0.75rem var(--pupil-right) auto var(--pupil-left);
+			@include inset(0.75rem, var(--pupil-right), auto, var(--pupil-left));
 			height: 2.5rem;
 			width: 2.5rem;
 			transform: scale(var(--eye-pupil-scale, 1));
@@ -157,8 +156,8 @@
 	}
 
 	&-blush {
+		@include inset(7.5rem, var(--blush-right), auto, var(--blush-left));
 		--blush-offset: 0.75rem;
-		inset: 7.5rem var(--blush-right) auto var(--blush-left);
 		height: 2rem;
 		width: 2.5rem;
 		border-radius: 100%;
@@ -176,9 +175,9 @@
 	}
 
 	&-ear {
+		@include inset(5.75rem, var(--ear-right), auto, var(--ear-left));
 		--flip: 1;
 		--ear-offset: -1.25rem;
-		inset: 5.75rem var(--ear-right) auto var(--ear-left);
 		height: 3rem;
 		width: 2rem;
 		transform: rotate(calc(40deg * var(--flip)));
@@ -197,17 +196,16 @@
 	}
 
 	&-cat-ear {
+		@include inset(var(--cat-ear-translate, 4rem), var(--cat-ear-right), auto, var(--cat-ear-left));
 		--flip: 1;
 		--cat-ear-offset: -3rem;
 		--cat-ear-fur-offset: 20%;
 		--cat-ear-fur-1-offset: 1.75rem;
 		--cat-ear-fur-2-offset: 1.5rem;
 		z-index: -1;
-		inset: var(--cat-ear-translate, 4rem) var(--cat-ear-right) auto var(--cat-ear-left);
 		height: 6rem;
 		width: 5rem;
 		transition: 0.5s ease-in-out;
-		// transform: scaleY(var(--cat-ear-scale, 0)) translateY(var(--cat-ear-translate, 300%));
 
 		&::before {
 			content: '';
@@ -219,7 +217,7 @@
 		}
 
 		&-fur {
-			inset: 10% var(--cat-ear-fur-right) auto var(--cat-ear-fur-left);
+			@include inset(10%, var(--cat-ear-fur-right), auto, var(--cat-ear-fur-left));
 			height: 70%;
 			width: 70%;
 			transform-origin: var(--cat-ear-transform-origin);
@@ -235,14 +233,14 @@
 			}
 			
 			&::before {
-				inset: -0.625rem var(--cat-ear-fur-1-right) auto var(--cat-ear-fur-1-left);
+				@include inset(-0.625rem, var(--cat-ear-fur-1-right), auto, var(--cat-ear-fur-1-left));
 				height: 2rem;
 				width: 2rem;
 				transform: rotate(calc(-70deg * var(--flip)));
 			}
 
 			&::after {
-				inset: -0.25rem var(--cat-ear-fur-2-right) auto var(--cat-ear-fur-2-left);
+				@include inset(-0.25rem, var(--cat-ear-fur-2-right), auto, var(--cat-ear-fur-2-left));
 				height: 1rem;
 				width: 1rem;
 				transform: rotate(calc(-50deg * var(--flip)));
@@ -475,8 +473,8 @@
 		transform: translateX(-50%) skewY(calc(-15deg * var(--flip))) scaleY(0.6);
 
 		&::before {
+			@include inset(0.5rem, var(--collar-right), auto, var(--collar-left));
 			content: '';
-			inset: 0.5rem var(--collar-right) auto var(--collar-left);
 			height: 0;
 			width: 0;
 			border: 2.5rem solid transparent;
@@ -519,8 +517,8 @@
 
 			&::before,
 			&::after {
+				@include inset(-0.25rem, var(--bow-top-right), auto, var(--bow-top-left));
 				content: '';
-				inset: -0.25rem var(--bow-top-right) auto var(--bow-top-left);
 				height: 1.75rem;
 				width: 1.75rem;
 				transform: rotate(calc(-15deg * var(--flip))) perspective(1rem) rotateY(calc(22deg * var(--flip)));
@@ -544,9 +542,9 @@
 
 				&::before,
 				&::after {
+					@include inset(0.125rem, var(--bow-top-shadow-right), auto, var(--bow-top-shadow-left));
 					content: '';
 					z-index: 1;
-					inset: 0.125rem var(--bow-top-shadow-right) auto var(--bow-top-shadow-left);
 					height: 0.75rem;
 					width: 1.25rem;
 					transform: rotate(calc(-15deg * var(--flip)));
@@ -575,9 +573,9 @@
 
 			&::before,
 			&::after {
+				@include inset(0.325rem, var(--bow-bottom-right), auto, var(--bow-bottom-left));
 				content: '';
 				top: 0.5rem;
-				inset: 0.325rem var(--bow-bottom-right) auto var(--bow-bottom-left);
 				height: 1.75rem;
 				width: 2rem;
 				transform: rotate(calc(15deg * var(--flip)));
@@ -608,9 +606,9 @@
 
 		&::before,
 		&::after {
+			@include inset(0, var(--shirt-right), auto, var(--shirt-left));
 			content: '';
 			z-index: 2;
-			inset: 0 var(--shirt-right) auto var(--shirt-left);
 			height: 100%;
 			width: 70%;
 			border-radius: 0.5rem;
@@ -630,9 +628,9 @@
 		&-sleeves {
 			&::before,
 			&::after {
+				@include inset(1rem, var(--shirt-sleeve-right), auto, var(--shirt-sleeve-left));
 				content: '';
 				z-index: -1;
-				inset: 1rem var(--shirt-sleeve-right) auto var(--shirt-sleeve-left);
 				height: 4rem;
 				width: 4rem;
 				border-radius: 0.25rem;
@@ -659,8 +657,8 @@
 
 				&::before,
 				&::after {
+					@include inset(2.5rem, var(--shirt-sleeve-sh-right), auto, var(--shirt-sleeve-sh-left));
 					content: '';
-					inset: 2.5rem var(--shirt-sleeve-sh-right) auto var(--shirt-sleeve-sh-left);
 					height: 50%;
 					width: 1.5rem;
 					transform: rotate(calc(20deg * var(--flip)));
