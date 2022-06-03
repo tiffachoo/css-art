@@ -38,6 +38,7 @@
 			<div class="komi-hair-extension"></div>
 			<div class="komi-body">
 				<div class="komi-neck">
+					<div class="komi-neck-shadow"></div>
 					<div class="komi-collar komi-collar-left"></div>
 					<div class="komi-collar komi-collar-right"></div>
 					<div class="komi-bow">
@@ -49,6 +50,7 @@
 				</div>
 				<div class="komi-shirt">
 					<div class="komi-shirt-sleeves"></div>
+					<div class="komi-shirt-sleeves-shadow"></div>
 				</div>
 			</div>
 		</div>
@@ -60,6 +62,28 @@
 		<div class="komi-zigzag komi-zigzag-6"></div>
 		<div class="komi-zigzag komi-zigzag-7"></div>
 		<div class="komi-zigzag komi-zigzag-8"></div>
+		<div class="komi-zigzag komi-zigzag-9"></div>
+		<div class="komi-zigzag komi-zigzag-10"></div>
+		<div lang="ja" class="komi-buruburu">
+			<span class="komi-buruburu-character komi-buruburu-character-1">
+				ブ
+			</span>
+			<span class="komi-buruburu-character komi-buruburu-character-2">
+				ル
+			</span>
+			<span class="komi-buruburu-character komi-buruburu-character-3">
+				ル
+			</span>
+			<span class="komi-buruburu-character komi-buruburu-character-4">
+				ル
+			</span>
+			<span class="komi-buruburu-character komi-buruburu-character-5">
+				ル
+			</span>
+			<span class="komi-buruburu-character komi-buruburu-character-6">
+				ル
+			</span>
+		</div>
 	</div>
 </template>
 
