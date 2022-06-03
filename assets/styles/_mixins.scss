@@ -28,3 +28,11 @@
 		right: var(--position);
 	}
 }
+
+// fix for custom css properties within inset / codepen sass output ?
+@mixin inset($top, $right, $bottom, $left) {
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+}
