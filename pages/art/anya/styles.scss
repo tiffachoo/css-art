@@ -4,8 +4,15 @@
 	--primary-color: #ffaeb3;
 	--primary-color-dark: #d06f93;
 	--primary-color-tint: #f7e4d0;
+	--secondary-color-dark: #f7dfe4;
 	--secondary-color: #fff0f3;
 	--accent-color: #fff6b3;
+
+	--angel-primary-color: #fff;
+	--devil-primary-color: #333;
+
+	--dress-color: var(--angel-primary-color);
+	--wing-color: var(--angel-primary-color);
 
 	--background: #eaeaea;
 	--flip: 1;
@@ -23,6 +30,7 @@
 
 .anya {
 	position: relative;
+	display: grid;
 
 	*,
 	*::before,
@@ -38,6 +46,7 @@
 		height: 3rem;
 		width: 2.5rem;
 		border: 1px solid var(--black);
+		border-bottom: 0;
 		background-color: var(--white);
 
 		&::before {
@@ -56,8 +65,8 @@
 
 		bottom: 0.75rem;
 		left: 50%;
-		height: 1.75rem;
-		width: 1.75rem;
+		height: 1.5rem;
+		width: 1.5rem;
 		translate: -50% 0;
 		background-color: var(--primary-color);
 	}
@@ -213,7 +222,194 @@
 	
 	&-head {
 		position: relative;
+		z-index: 5;
 		height: 9.5rem;
 		width: 10rem;
+
+		&-back {
+			position: absolute;
+			z-index: -1;
+			top: 0;
+		}
+	}
+
+	&-dress {
+		z-index: 2;
+
+		&-body,
+		& {
+			inset: 0;
+		}
+
+		&-body {
+			border-bottom-left-radius: 50% 0.5rem;
+			border-bottom-right-radius: 50% 0.5rem;
+			background-color: var(--dress-color);
+			transform: perspective(2rem) rotateX(6deg) translateZ(2px);
+		}
+	}
+	
+	&-neck-line {
+		inset: 0;
+		border-top-left-radius: 2rem 0.625rem;
+		border-top-right-radius: 2rem 0.625rem;
+		overflow: hidden;
+
+		&::before {
+			content: '';
+			left: 17%;
+			top: -1.25rem;
+			width: 66%;
+			aspect-ratio: 2/1.5;
+			border-radius: 100%;
+			background-color: var(--secondary-color-dark);
+		}
+	}
+
+	&-neck {
+		z-index: 3;
+		left: calc(50% - 1rem);
+		top: -1rem;
+		height: 1.25rem;
+		width: 2rem;
+		background-color: var(--secondary-color-dark);
+	}
+
+	&-shoulder {
+		@include position-x(0, true);
+
+		z-index: -1;
+		inset: 0;
+		top: 0.0625rem;
+
+		&::before,
+		&::after {
+			content: '';
+			height: 90%;
+			width: 70%;
+			border-radius: 0.25rem;
+			background-color: var(--dress-color);
+			transform: rotate(calc(6deg * var(--flip)));
+		}
+
+		&::before {
+			--flip: -1;
+		}
+	}
+
+	&-arm {
+		@include border-radius(50% 20%, 50% 80%);
+		@include position-x(-0.4375rem);
+		--hand-offset: 0;
+
+		top: 0.375rem;
+		height: 5rem;
+		width: 0.75rem;
+		transform-origin: center 0.25rem;
+		background-color: var(--secondary-color);
+		rotate: calc(20deg * var(--flip));
+
+		&::before {
+			@include border-radius(50% 40%, 50% 60%);
+
+			content: '';
+			top: calc(100% - 0.25rem);
+			left: var(--hand-left);
+			right: var(--hand-right);
+			height: 0.75rem;
+			width: 0.5rem;
+			transform-origin: center 0.25rem;
+			rotate: calc(40deg * var(--flip));
+			background-color: var(--secondary-color);
+		}
+
+		&-left {
+			--hand-left: var(--hand-offset);
+		}
+
+		&-right {
+			--flip: -1;
+			--hand-right: var(--hand-offset);
+		}
+	}
+
+	&-leg {
+		@include border-radius(50% 20%, 50% 80%);
+		@include position-x(0.5rem);
+		--foot-offset: 0.25rem;
+
+		top: calc(100% - 1rem);
+		height: 5rem;
+		width: 0.875rem;
+		transform-origin: center 0.25rem;
+		background-color: var(--secondary-color);
+
+		&::before {
+			@include border-radius(50% 30%, 50% 70%);
+
+			content: '';
+			top: calc(100% - 0.325rem);
+			left: var(--foot-left);
+			right: var(--foot-right);
+			height: 0.875rem;
+			width: 0.5rem;
+			transform-origin: center 0.25rem;
+			background-color: var(--secondary-color);
+		}
+
+		&-left {
+			--foot-left: var(--foot-offset);
+			rotate: calc(26deg);
+		}
+
+		&-right {
+			--flip: -1;
+			--foot-right: var(--foot-offset);
+			rotate: calc(10deg);
+		}
+	}
+
+	&-wing {
+		top: 1rem;
+		left: calc(100% - 1rem);
+		height: 3rem;
+		width: 8rem;
+		transform-origin: 1.25rem center;
+		border-radius: 100%;
+		background: var(--wing-color);
+		rotate: -55deg;
+
+		&::before,
+		&::after {
+			content: '';
+			transform-origin: right bottom;
+			border-radius: inherit;
+			background-color: inherit;
+		}
+
+		&::before {
+			right: -0.5rem;
+			bottom: 0.6875rem;
+			height: 70%;
+			width: 100%;
+			rotate: -40deg;
+		}
+
+		&::after {
+			right: 0.5rem;
+			bottom: 1.5rem;
+			height: 50%;
+			width: 90%;
+			rotate: -34deg;
+
+		}
+	}
+
+	&-body {
+		position: relative;
+		justify-self: center;
+		margin-top: 0.25rem;
+		height: 7rem;
+		width: 4rem;
 	}
 }

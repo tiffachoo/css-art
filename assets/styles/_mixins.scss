@@ -17,14 +17,22 @@
 	width: 100%;
 }
 
-@mixin position-x($val: 0) {
+@mixin position-x($val: 0, $pseudo: false) {
+	$leftEl: '&-left';
+	$rightEl: '&-right';
+
+	@if $pseudo {
+		$leftEl: '&::before';
+		$rightEl: '&::after';
+	}
+
 	--position: #{$val};
 
-	&-left {
+	#{$leftEl} {
 		left: var(--position);
 	}
 
-	&-right {
+	#{$rightEl} {
 		right: var(--position);
 	}
 }
