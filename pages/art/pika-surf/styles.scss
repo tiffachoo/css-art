@@ -136,9 +136,9 @@
     z-index: 2;
     inset: 0;
     border-top-left-radius: 40% 75%;
-    border-top-right-radius: 50% 65%;
+    border-top-right-radius: 50% 60%;
     border-bottom-left-radius: 40% 25%;
-    border-bottom-right-radius: 60% 35%;
+    border-bottom-right-radius: 60% 40%;
     background-color: var(--primary-color);
   }
 
@@ -192,6 +192,32 @@
     width: 12rem;
   }
 
+  &-back-stripes {
+    z-index: 3;
+    top: 25%;
+    height: 35%;
+
+    &::before,
+    &::after {
+      content: '';
+      height: 1.5rem;
+      border-top-right-radius: 2rem 40%;
+      border-bottom-right-radius: 2rem 60%;
+      background-color: var(--black);
+      rotate: 20deg;
+    }
+
+    &::before {
+      width: 2rem;
+    }
+
+    &::after {
+      left: -0.5rem;
+      bottom: 0;
+      width: 2.5rem;
+    }
+  }
+
   &-torso {
     inset: 0;
     border-top-left-radius: 30% 70%;
@@ -199,6 +225,105 @@
     border-bottom-left-radius: 40% 30%;
     border-bottom-right-radius: 30% 50%;
     background-color: var(--primary-color);
+    overflow: hidden;
+  }
+
+  &-fingers {
+    left: 50%;
+    translate: -50% -30%;
+
+    &,
+    &::before,
+    &::after {
+      @include border-radius(50% 80%, 50% 20%);
+
+      height: 0.75rem;
+      width: 0.4375rem;
+      background-color: inherit;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+    }
+
+    &::before {
+      translate: -90% 20%;
+    }
+
+    &::after {
+      translate: 90% 20%;
+    }
+  }
+
+  &-arm {
+    background-color: var(--primary-color);
+
+    &-left {
+
+    }
+
+    &-right {
+      @include border-radius(50% 70%, 50% 30%);
+
+      z-index: 10;
+      top: 25%;
+      right: 0.25rem;
+      height: 3rem;
+      width: 3rem;
+      transform-origin: center bottom;
+      rotate: 80deg;
+    }
+  }
+
+  &-tail {
+    z-index: -1;
+    transform-origin: right bottom;
+    background-color: var(--primary-color);
+    border-radius: 0.25rem;
+
+    &-1 {
+      right: 95%;
+      bottom: 40%;
+      height: 1.5rem;
+      width: 3.75rem;
+      rotate: 40deg;
+      transform: skewX(10deg);
+      background-color: var(--accent-color);
+      // background-color: magenta;
+    }
+
+    &-2 {
+      left: 0;
+      bottom: 0;
+      height: 3rem;
+      width: 1.75rem;
+      // background-color: orangered;
+    }
+
+    &-3 {
+      right: 0;
+      height: 2rem;
+      width: 4.75rem;
+      // background-color: yellow;
+    }
+
+    &-4 {
+      left: 0;
+      bottom: 0;
+      height: 4.5rem;
+      width: 2rem;
+      rotate: 10deg;
+      // background-color: greenyellow;
+    }
+
+    &-5 {
+      right: 0;
+      height: 3.25rem;
+      width: 5.5rem;
+      transform: skewX(20deg);
+      // background-color: aqua;
+    }
   }
 
   &-body {

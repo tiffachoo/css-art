@@ -16,7 +16,24 @@
       <div class="pika-ear pika-ear-right"></div>
     </div>
     <div class="pika-body">
-      <div class="pika-torso"></div>
+      <div class="pika-arm pika-arm-left">
+        <div class="pika-fingers"></div>
+      </div>
+      <div class="pika-arm pika-arm-right">
+        <div class="pika-fingers"></div>
+      </div>
+      <div class="pika-torso">
+        <div class="pika-back-stripes"></div>
+      </div>
+      <div class="pika-tail pika-tail-1">
+        <div class="pika-tail pika-tail-2">
+          <div class="pika-tail pika-tail-3">
+            <div class="pika-tail pika-tail-4">
+              <div class="pika-tail pika-tail-5"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 	</div>
 </template>
