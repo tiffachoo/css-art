@@ -2,12 +2,13 @@
 	--black: #444;
 	--white: #fff;
 	--primary-color: #f8f800;
-	--primary-color-dark: #00bd9e;
-	--primary-color-tint: #99ffee;
+	--primary-color-dark: #d3e54a;
+	--primary-color-tint: #fff;
 	--secondary-color: #58b8f8;
+	--secondary-color-tint: #b8daf8;
 	--accent-color: #f80808;
 
-	--background: var(--secondary-color);
+	--background: var(--secondary-color-tint);
   --mouth-stroke-width: 3px;
 }
 
@@ -257,22 +258,67 @@
   }
 
   &-arm {
+    transform-origin: center bottom;
     background-color: var(--primary-color);
 
     &-left {
+      z-index: 10;
+      top: 22%;
+      left: 28%;
+      height: 2.5rem;
+      width: 2.75rem;
+      rotate: 30deg;
+      border-top-left-radius: 60% 60%;
+      border-top-right-radius: 40% 70%;
+      border-bottom-left-radius: 60% 40%;
+      border-bottom-right-radius: 40% 30%;
 
+      &::before,
+      &::after {
+        content: '';
+      }
+
+      &::before {
+        z-index: -1;
+        top: -25%;
+        left: -5%;
+        height: 100%;
+        width: 100%;
+        border-radius: 100%;
+        background-color: var(--primary-color-dark);
+      }
+
+      &::after {
+        inset: 0;
+        border-radius: inherit;
+        background-color: var(--primary-color);
+      }
+
+      .pika-fingers {
+        top: -0.25rem;
+        left: 70%;
+        rotate: 20deg;
+      }
     }
 
     &-right {
       @include border-radius(50% 70%, 50% 30%);
 
-      z-index: 10;
       top: 25%;
       right: 0.25rem;
       height: 3rem;
       width: 3rem;
-      transform-origin: center bottom;
-      rotate: 80deg;
+      rotate: 85deg;
+
+      &::before {
+        content: '';
+        top: 20%;
+        left: 0;
+        height: 80%;
+        width: 100%;
+        border-radius: 100%;
+        background-color: var(--primary-color-dark);
+      }
     }
   }
 
@@ -327,9 +373,23 @@
   }
 
   &-body {
+    position: relative;
     margin-top: -5.5rem;
     left: -12%;
     height: 11rem;
     width: 12.5rem;
+  }
+
+  &-surf {
+    left: -40%;
+    bottom: -25%;
+    height: 6rem;
+    width: 25rem;
+    border-top-left-radius: 60% 55%;
+    border-top-right-radius: 30% 45%;
+    border-bottom-left-radius: 35% 45%;
+    border-bottom-right-radius: 65% 55%;
+    background-color: var(--secondary-color);
+    // box-shadow: inset -1.5rem 1rem 0 var(--primary-color);
   }
 }
