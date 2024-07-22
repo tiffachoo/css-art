@@ -24,6 +24,7 @@
       </div>
       <div class="pika-torso">
         <div class="pika-back-stripes"></div>
+        <div class="pika-leg"></div>
       </div>
       <div class="pika-tail pika-tail-1">
         <div class="pika-tail pika-tail-2">
@@ -32,11 +33,12 @@
               <div class="pika-tail pika-tail-5"></div>
             </div>
           </div>
+          <div class="pika-tail-2-highlight"></div>
         </div>
       </div>
     </div>
     <div class="pika-surf">
-      
+      <div class="pika-surf-fin"></div>
     </div>
 	</div>
 </template>
