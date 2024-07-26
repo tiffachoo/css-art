@@ -283,12 +283,11 @@
       }
 
       &::after {
-        left: 30%;
-        bottom: 25%;
-        height: 30%;
-        width: 90%;
+        left: 35%;
+        bottom: 21%;
+        height: 40%;
+        width: 70%;
         background-color: var(--primary-color);
-
       }
     }
   }
@@ -310,14 +309,15 @@
     &::before,
     &::after {
       content: '';
+      top: 20%;
     }
 
     &::before {
-      translate: -90% 20%;
+      right: 90%;
     }
 
     &::after {
-      translate: 90% 20%;
+      left: 90%;
     }
   }
 
@@ -344,7 +344,6 @@
         top: 3px;
         border-radius: inherit;
         background-color: var(--primary-color);
-        // background-color: red;
       }
 
       &::after {
@@ -352,24 +351,29 @@
         inset: 0;
         border-radius: inherit;
         background-color: var(--primary-color);
-        // background-color: var(--primary-color-dark);
         border-top: 3px solid var(--primary-color-dark);
       }
 
       .pika-fingers {
+        box-sizing: content-box;
         z-index: 1;
-        // top: -0.25rem;
+        top: 0.125rem;
         left: 70%;
         rotate: 20deg;
-        box-shadow: inset 2px -2px 0 0 var(--primary-color-dark), inset -2px -2px 0 0 var(--primary-color-dark);
 
-        // &,
+        &,
         &::before,
         &::after {
-          box-sizing: border-box;
           border: 2px solid var(--primary-color-dark);
           border-bottom: 0;
-          // background-color: var(--primary-color-dark);
+        }
+
+        &::before {
+          translate: 1px -2px;
+        }
+
+        &::after {
+          translate: -1px -2px;
         }
       }
     }
@@ -383,14 +387,20 @@
       width: 3rem;
       rotate: 85deg;
 
-      &::before {
-        content: '';
-        top: 20%;
-        left: 0;
-        height: 80%;
-        width: 100%;
-        border-radius: 100%;
-        background-color: var(--primary-color-dark);
+      .pika-arm-shadow {
+        inset: 0;
+        border-radius: inherit;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          top: 25%;
+          left: -60%;
+          height: 80%;
+          width: 100%;
+          border-radius: 100%;
+          background-color: var(--primary-color-dark);
+        }
       }
     }
   }
@@ -465,7 +475,7 @@
   }
 
   &-surf {
-    left: -40%;
+    left: -45%;
     bottom: -25%;
     height: 6rem;
     width: 25rem;

@@ -21,6 +21,7 @@
       </div>
       <div class="pika-arm pika-arm-right">
         <div class="pika-fingers"></div>
+        <div class="pika-arm-shadow"></div>
       </div>
       <div class="pika-torso">
         <div class="pika-torso-shadow"></div>
