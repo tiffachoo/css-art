@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="pika-surf">
-      <div class="pika-surf-fin"></div>
+      <div class="pika-surf-highlight"></div>
     </div>
 	</div>
 </template>

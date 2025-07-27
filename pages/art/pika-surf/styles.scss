@@ -25,6 +25,7 @@
 
 .pika {
   position: relative;
+  animation: surf 5s infinite ease-in-out;
 
 	*,
 	*::before,
@@ -36,6 +37,7 @@
 		@include border-radius(50% 55%, 50% 45%);
 
     background-color: var(--black);
+    animation: blinky 7s infinite;
 
     &::before {
       content: '';
@@ -65,7 +67,7 @@
 
       &::before {
         top: 20%;
-        left: 20%;
+        left: 25%;
       }
     }
   }
@@ -177,11 +179,13 @@
 			border-top-right-radius: 25% 80%;
 			border-bottom-right-radius: 20%;
       rotate: -70deg;
+      animation: earLeftRotate 5s infinite;
 
       &::before {
         left: -10%;
       }
     }
+
     &-right {
       bottom: 70%;
       right: 10%;
@@ -191,6 +195,7 @@
 			border-top-right-radius: 75% 100%;
 			border-bottom-left-radius: 20%;
       rotate: 15deg;
+      animation: earRightRotate 5s infinite;
 
       &::before {
         right: -10%;
@@ -419,6 +424,7 @@
       rotate: 40deg;
       transform: skewX(10deg);
       background-color: var(--accent-color);
+      animation: tail 5s infinite;
     }
 
     &-2 {
@@ -438,7 +444,7 @@
           bottom: -45%;
           height: 100%;
           width: 200%;
-          rotate: -35deg;
+          rotate: -40deg;
           background-color: var(--accent-color);
         }
       }
@@ -483,28 +489,84 @@
     border-top-right-radius: 30% 45%;
     border-bottom-left-radius: 35% 45%;
     border-bottom-right-radius: 65% 55%;
-    background-color: var(--secondary-color);
-    box-shadow: inset -1.5rem 1rem 0 var(--primary-color);
+    background-color: var(--secondary-color-dark);
 
-    &-fin {
+    &::after {
+      content: '';
       left: 4rem;
       bottom: -1rem;
       height: 3rem;
       width: 3.5rem;
       border-bottom-left-radius: 0.5em;
       border-bottom-right-radius: 80% 100%;
-      background-color: var(--secondary-color-dark);
+      background-color: var(--secondary-color);
+    }
+
+    &-highlight {
+      overflow: hidden;
+
+      &,
+      &::after {
+        inset: 0;
+        border-radius: inherit;
+      }
+
+      &::before,
+      &::after {
+        content: '';
+      }
 
       &::before {
-        content: '';
-        bottom: 100%;
-        left: -70%;
-        height: 50%;
-        width: 400%;
-        rotate: -8deg;
+        top: 5%;
+        left: -10%;
+        height: 70%;
+        width: 90%;
         border-radius: 100%;
         background-color: var(--secondary-color);
+        rotate: -7deg;
+      }
+
+      &::after {
+        box-shadow: inset -1.5rem 1rem 0 var(--primary-color);
+        opacity: 0.7;
       }
     }
+  }
+}
+
+@keyframes tail {
+  0%, 100% {
+    rotate: 40deg;
+  }
+  50% {
+    rotate: 10deg;
+  }
+}
+
+@keyframes earLeftRotate {
+  0%, 100% {
+    rotate: -70deg;
+  }
+  50% {
+    rotate: -60deg;
+  }
+}
+
+@keyframes earRightRotate {
+  0%, 100% {
+    rotate: 15deg;
+  }
+  50% {
+    rotate: 20deg;
+  }
+}
+
+@keyframes surf {
+  0%, 100% {
+    translate: 0;
+  }
+  50% {
+    translate: 0 2rem;
+    rotate: 2deg;
   }
 }
